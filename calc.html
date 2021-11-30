@@ -21,6 +21,7 @@
         <label for="first-digit-8">8</label>
         <input type="radio" name="first-digit" id="first-digit-9" />
         <label for="first-digit-9">9</label>
+
         <input type="radio" name="second-digit" id="second-digit-0" />
         <label for="second-digit-0">0</label>
         <input type="radio" name="second-digit" id="second-digit-1" />
@@ -41,11 +42,36 @@
         <label for="second-digit-8">8</label>
         <input type="radio" name="second-digit" id="second-digit-9" />
         <label for="second-digit-9">9</label>
+
+        <input type="radio" name="third-digit" id="third-digit-0" />
+        <label for="third-digit-0">0</label>
+        <input type="radio" name="third-digit" id="third-digit-1" />
+        <label for="third-digit-1">1</label>
+        <input type="radio" name="third-digit" id="third-digit-2" />
+        <label for="third-digit-2">2</label>
+        <input type="radio" name="third-digit" id="third-digit-3" />
+        <label for="third-digit-3">3</label>
+        <input type="radio" name="third-digit" id="third-digit-4" />
+        <label for="third-digit-4">4</label>
+        <input type="radio" name="third-digit" id="third-digit-5" />
+        <label for="third-digit-5">5</label>
+        <input type="radio" name="third-digit" id="third-digit-6" />
+        <label for="third-digit-6">6</label>
+        <input type="radio" name="third-digit" id="third-digit-7" />
+        <label for="third-digit-7">7</label>
+        <input type="radio" name="third-digit" id="third-digit-8" />
+        <label for="third-digit-8">8</label>
+        <input type="radio" name="third-digit" id="third-digit-9" />
+        <label for="third-digit-9">9</label>
         <div class="result"></div>
     </body>
     <style>
         body {
             counter-reset: first-number;
+        }
+
+        input#first-digit-0:checked ~ .result {
+            --first-digit: 0;
         }
 
         input#first-digit-1:checked ~ .result {
@@ -123,9 +149,62 @@
         input#second-digit-9:checked ~ .result {
             --second-digit: 9;
         }
+
+        input#third-digit-0:checked ~ .result {
+            --third-digit: 0;
+        }
+
+        input#third-digit-1:checked ~ .result {
+            --third-digit: 1;
+        }
+
+        input#third-digit-2:checked ~ .result {
+            --third-digit: 2;
+        }
+
+        input#third-digit-3:checked ~ .result {
+            --third-digit: 3;
+        }
+
+        input#third-digit-4:checked ~ .result {
+            --third-digit: 4;
+        }
+
+        input#third-digit-5:checked ~ .result {
+            --third-digit: 5;
+        }
+
+        input#third-digit-6:checked ~ .result {
+            --third-digit: 6;
+        }
+
+        input#third-digit-7:checked ~ .result {
+            --third-digit: 7;
+        }
+
+        input#third-digit-8:checked ~ .result {
+            --third-digit: 8;
+        }
+
+        input#third-digit-9:checked ~ .result {
+            --third-digit: 9;
+        }
+
+        /* cant increment counters directly because they would all activate so need to allow for overriding - DONT THINK ITS ACTUALLY NEEDED */
+        input[name="first-digit"]:checked ~ .result {
+            --first-number: var(--first-digit);
+        }
+
+        input[name="second-digit"]:checked ~ .result {
+            --first-number: calc(var(--first-digit)*10 + var(--second-digit));
+        }
+        
+        input[name="third-digit"]:checked ~ .result {
+            --first-number: calc(var(--first-digit)*100 + var(--second-digit)*10 + var(--third-digit));
+        }
         
         .result {
-            counter-increment: first-number calc(var(--first-digit)*10 + var(--second-digit));
+            counter-increment: first-number var(--first-number)
         }     
 
         .result::after {
