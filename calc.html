@@ -64,13 +64,79 @@
         <input type="radio" name="first-number-third-digit" id="first-number-third-digit-9" />
         <label for="first-number-third-digit-9">9</label>
 
+<hr>
+        <input type="radio" name="second-number-first-digit" id="second-number-first-digit-0" />
+        <label for="second-number-first-digit-0">0</label>
+        <input type="radio" value="1" name="second-number-first-digit" id="second-number-first-digit-1" />
+        <label for="second-number-first-digit-1">1</label>
+        <input type="radio" name="second-number-first-digit" id="second-number-first-digit-2" />
+        <label for="second-number-first-digit-2">2</label>
+        <input type="radio" name="second-number-first-digit" id="second-number-first-digit-3" />
+        <label for="second-number-first-digit-3">3</label>
+        <input type="radio" name="second-number-first-digit" id="second-number-first-digit-4" />
+        <label for="second-number-first-digit-4">4</label>
+        <input type="radio" name="second-number-first-digit" id="second-number-first-digit-5" />
+        <label for="second-number-first-digit-5">5</label>
+        <input type="radio" name="second-number-first-digit" id="second-number-first-digit-6" />
+        <label for="second-number-first-digit-6">6</label>
+        <input type="radio" name="second-number-first-digit" id="second-number-first-digit-7" />
+        <label for="second-number-first-digit-7">7</label>
+        <input type="radio" name="second-number-first-digit" id="second-number-first-digit-8" />
+        <label for="second-number-first-digit-8">8</label>
+        <input type="radio" name="second-number-first-digit" id="second-number-first-digit-9" />
+        <label for="second-number-first-digit-9">9</label>
+
+        <input type="radio" name="second-number-second-digit" id="second-number-second-digit-0" />
+        <label for="second-number-second-digit-0">0</label>
+        <input type="radio" name="second-number-second-digit" id="second-number-second-digit-1" />
+        <label for="second-number-second-digit-1">1</label>
+        <input type="radio" name="second-number-second-digit" id="second-number-second-digit-2" />
+        <label for="second-number-second-digit-2">2</label>
+        <input type="radio" name="second-number-second-digit" id="second-number-second-digit-3" />
+        <label for="second-number-second-digit-3">3</label>
+        <input type="radio" name="second-number-second-digit" id="second-number-second-digit-4" />
+        <label for="second-number-second-digit-4">4</label>
+        <input type="radio" name="second-number-second-digit" id="second-number-second-digit-5" />
+        <label for="second-number-second-digit-5">5</label>
+        <input type="radio" name="second-number-second-digit" id="second-number-second-digit-6" />
+        <label for="second-number-second-digit-6">6</label>
+        <input type="radio" name="second-number-second-digit" id="second-number-second-digit-7" />
+        <label for="second-number-second-digit-7">7</label>
+        <input type="radio" name="second-number-second-digit" id="second-number-second-digit-8" />
+        <label for="second-number-second-digit-8">8</label>
+        <input type="radio" name="second-number-second-digit" id="second-number-second-digit-9" />
+        <label for="second-number-second-digit-9">9</label>
+
+        <input type="radio" name="second-number-third-digit" id="second-number-third-digit-0" />
+        <label for="second-number-third-digit-0">0</label>
+        <input type="radio" name="second-number-third-digit" id="second-number-third-digit-1" />
+        <label for="second-number-third-digit-1">1</label>
+        <input type="radio" name="second-number-third-digit" id="second-number-third-digit-2" />
+        <label for="second-number-third-digit-2">2</label>
+        <input type="radio" name="second-number-third-digit" id="second-number-third-digit-3" />
+        <label for="second-number-third-digit-3">3</label>
+        <input type="radio" name="second-number-third-digit" id="second-number-third-digit-4" />
+        <label for="second-number-third-digit-4">4</label>
+        <input type="radio" name="second-number-third-digit" id="second-number-third-digit-5" />
+        <label for="second-number-third-digit-5">5</label>
+        <input type="radio" name="second-number-third-digit" id="second-number-third-digit-6" />
+        <label for="second-number-third-digit-6">6</label>
+        <input type="radio" name="second-number-third-digit" id="second-number-third-digit-7" />
+        <label for="second-number-third-digit-7">7</label>
+        <input type="radio" name="second-number-third-digit" id="second-number-third-digit-8" />
+        <label for="second-number-third-digit-8">8</label>
+        <input type="radio" name="second-number-third-digit" id="second-number-third-digit-9" />
+        <label for="second-number-third-digit-9">9</label>
+
         <div class="result">
             <div class="first-number"></div>
+            <div class="second-number"></div>
         </div>
     </body>
     <style>
         body {
             counter-reset: first-number;
+            counter-reset: second-number;
         }
 
         input#first-number-first-digit-0:checked ~ .result {
@@ -211,6 +277,146 @@
 
         .first-number::after {
             content: counter(first-number);
+        }
+
+        input#second-number-first-digit-0:checked ~ .result {
+            --second-number-first-digit: 0;
+        }
+
+        input#second-number-first-digit-1:checked ~ .result {
+            --second-number-first-digit: 1;
+        }
+
+        input#second-number-first-digit-2:checked ~ .result {
+            --second-number-first-digit: 2;
+        }
+
+        input#second-number-first-digit-3:checked ~ .result {
+            --second-number-first-digit: 3;
+        }
+
+        input#second-number-first-digit-4:checked ~ .result {
+            --second-number-first-digit: 4;
+        }
+
+        input#second-number-first-digit-5:checked ~ .result {
+            --second-number-first-digit: 5;
+        }
+
+        input#second-number-first-digit-6:checked ~ .result {
+            --second-number-first-digit: 6;
+        }
+
+        input#second-number-first-digit-7:checked ~ .result {
+            --second-number-first-digit: 7;
+        }
+
+        input#second-number-first-digit-8:checked ~ .result {
+            --second-number-first-digit: 8;
+        }
+
+        input#second-number-first-digit-9:checked ~ .result {
+            --second-number-first-digit: 9;
+        }
+
+        input#second-number-second-digit-0:checked ~ .result {
+            --second-number-second-digit: 0;
+        }
+
+        input#second-number-second-digit-1:checked ~ .result {
+            --second-number-second-digit: 1;
+        }
+
+        input#second-number-second-digit-2:checked ~ .result {
+            --second-number-second-digit: 2;
+        }
+
+        input#second-number-second-digit-3:checked ~ .result {
+            --second-number-second-digit: 3;
+        }
+
+        input#second-number-second-digit-4:checked ~ .result {
+            --second-number-second-digit: 4;
+        }
+
+        input#second-number-second-digit-5:checked ~ .result {
+            --second-number-second-digit: 5;
+        }
+
+        input#second-number-second-digit-6:checked ~ .result {
+            --second-number-second-digit: 6;
+        }
+
+        input#second-number-second-digit-7:checked ~ .result {
+            --second-number-second-digit: 7;
+        }
+
+        input#second-number-second-digit-8:checked ~ .result {
+            --second-number-second-digit: 8;
+        }
+
+        input#second-number-second-digit-9:checked ~ .result {
+            --second-number-second-digit: 9;
+        }
+
+        input#second-number-third-digit-0:checked ~ .result {
+            --second-number-third-digit: 0;
+        }
+
+        input#second-number-third-digit-1:checked ~ .result {
+            --second-number-third-digit: 1;
+        }
+
+        input#second-number-third-digit-2:checked ~ .result {
+            --second-number-third-digit: 2;
+        }
+
+        input#second-number-third-digit-3:checked ~ .result {
+            --second-number-third-digit: 3;
+        }
+
+        input#second-number-third-digit-4:checked ~ .result {
+            --second-number-third-digit: 4;
+        }
+
+        input#second-number-third-digit-5:checked ~ .result {
+            --second-number-third-digit: 5;
+        }
+
+        input#second-number-third-digit-6:checked ~ .result {
+            --second-number-third-digit: 6;
+        }
+
+        input#second-number-third-digit-7:checked ~ .result {
+            --second-number-third-digit: 7;
+        }
+
+        input#second-number-third-digit-8:checked ~ .result {
+            --second-number-third-digit: 8;
+        }
+
+        input#second-number-third-digit-9:checked ~ .result {
+            --second-number-third-digit: 9;
+        }
+
+        input[name="second-number-first-digit"]:checked ~ .result {
+            --second-number: var(--second-number-first-digit);
+        }
+
+        input[name="second-number-second-digit"]:checked ~ .result {
+            --second-number: calc(var(--second-number-first-digit)*10 + var(--second-number-second-digit));
+        }
+        
+        input[name="second-number-third-digit"]:checked ~ .result {
+            --second-number: calc(var(--second-number-first-digit)*100 + var(--second-number-second-digit)*10 + var(--second-number-third-digit));
+        }
+        
+        .second-number {
+            counter-increment: second-number var(--second-number)
+        }     
+
+        .second-number::after {
+            content: counter(second-number);
         }
 
         /* input[name="first-number-first-digit"]:checked ~ .display::after {
