@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <input type="radio" name="first-digit" id="first-digit-0" />
+        <label for="first-digit-0">0</label>
+        <input type="radio" value="1" name="first-digit" id="first-digit-1" />
+        <label for="first-digit-1">1</label>
+        <input type="radio" name="first-digit" id="first-digit-2" />
+        <label for="first-digit-2">2</label>
+        <input type="radio" name="first-digit" id="first-digit-3" />
+        <label for="first-digit-3">3</label>
+        <input type="radio" name="first-digit" id="first-digit-4" />
+        <label for="first-digit-4">4</label>
+        <input type="radio" name="first-digit" id="first-digit-5" />
+        <label for="first-digit-5">5</label>
+        <input type="radio" name="first-digit" id="first-digit-6" />
+        <label for="first-digit-6">6</label>
+        <input type="radio" name="first-digit" id="first-digit-7" />
+        <label for="first-digit-7">7</label>
+        <input type="radio" name="first-digit" id="first-digit-8" />
+        <label for="first-digit-8">8</label>
+        <input type="radio" name="first-digit" id="first-digit-9" />
+        <label for="first-digit-9">9</label>
+        <input type="radio" name="second-digit" id="second-digit-0" />
+        <label for="second-digit-0">0</label>
+        <input type="radio" name="second-digit" id="second-digit-1" />
+        <label for="second-digit-1">1</label>
+        <input type="radio" name="second-digit" id="second-digit-2" />
+        <label for="second-digit-2">2</label>
+        <input type="radio" name="second-digit" id="second-digit-3" />
+        <label for="second-digit-3">3</label>
+        <input type="radio" name="second-digit" id="second-digit-4" />
+        <label for="second-digit-4">4</label>
+        <input type="radio" name="second-digit" id="second-digit-5" />
+        <label for="second-digit-5">5</label>
+        <input type="radio" name="second-digit" id="second-digit-6" />
+        <label for="second-digit-6">6</label>
+        <input type="radio" name="second-digit" id="second-digit-7" />
+        <label for="second-digit-7">7</label>
+        <input type="radio" name="second-digit" id="second-digit-8" />
+        <label for="second-digit-8">8</label>
+        <input type="radio" name="second-digit" id="second-digit-9" />
+        <label for="second-digit-9">9</label>
+        <div class="result"></div>
+    </body>
+    <style>
+        body {
+            counter-reset: first-number;
+        }
+
+        input#first-digit-1:checked ~ .result {
+            --first-digit: 1;
+        }
+
+        input#first-digit-2:checked ~ .result {
+            --first-digit: 2;
+        }
+
+        input#first-digit-3:checked ~ .result {
+            --first-digit: 3;
+        }
+
+        input#first-digit-4:checked ~ .result {
+            --first-digit: 4;
+        }
+
+        input#first-digit-5:checked ~ .result {
+            --first-digit: 5;
+        }
+
+        input#first-digit-6:checked ~ .result {
+            --first-digit: 6;
+        }
+
+        input#first-digit-7:checked ~ .result {
+            --first-digit: 7;
+        }
+
+        input#first-digit-8:checked ~ .result {
+            --first-digit: 8;
+        }
+
+        input#first-digit-9:checked ~ .result {
+            --first-digit: 9;
+        }
+
+        input#second-digit-0:checked ~ .result {
+            --second-digit: 0;
+        }
+
+        input#second-digit-1:checked ~ .result {
+            --second-digit: 1;
+        }
+
+        input#second-digit-2:checked ~ .result {
+            --second-digit: 2;
+        }
+
+        input#second-digit-3:checked ~ .result {
+            --second-digit: 3;
+        }
+
+        input#second-digit-4:checked ~ .result {
+            --second-digit: 4;
+        }
+
+        input#second-digit-5:checked ~ .result {
+            --second-digit: 5;
+        }
+
+        input#second-digit-6:checked ~ .result {
+            --second-digit: 6;
+        }
+
+        input#second-digit-7:checked ~ .result {
+            --second-digit: 7;
+        }
+
+        input#second-digit-8:checked ~ .result {
+            --second-digit: 8;
+        }
+
+        input#second-digit-9:checked ~ .result {
+            --second-digit: 9;
+        }
+        
+        .result {
+            counter-increment: first-number calc(var(--first-digit)*10 + var(--second-digit));
+        }     
+
+        .result::after {
+            content: counter(first-number);
+        }
+
+        /* input[name="first-digit"]:checked ~ .display::after {
+            content: counter(first-digit);
+        }      */
+
+        /* input[name="third-digit"]:checked ~ .display::after {
+            content: calc(counter(first-digit)/counter(third-digit));
+        }      */
+    </style>
+</html>
