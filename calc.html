@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <body>
+        <div class="q"></div>
         <input type="radio" name="first-number-first-digit" id="first-number-first-digit-0" />
         <label for="first-number-first-digit-0">0</label>
         <input type="radio" value="1" name="first-number-first-digit" id="first-number-first-digit-1" />
@@ -141,11 +142,15 @@
         <div class="result">
             <div class="first-number"></div>
             <div class="second-number"></div>
-            <div class="output-decimal"></div>
+            <div class="output">
+                <span class="main"></span>
+                <span class="decimal"></span>
+            </div>
             <div class="output"></div>
         </div>
     </body>
     <style>
+
         @property --property-output-integer {
             syntax: '<integer>';
             initial-value: 0;
@@ -158,8 +163,15 @@
             inherits: false;
         }
 
+        @counter-style pad-4 {
+            system: numeric;
+            symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+            pad: 4 "0";
+        }
+
         body {
             counter-reset: output-integer output-decimal;
+            --decimal-shift: 10000;
         }
 
         input#first-number-first-digit-0:checked ~ .result {
@@ -457,22 +469,35 @@
         input#operation-divison:checked ~ .result {
             --property-output-integer: calc(var(--first-number) / var(--second-number) - 0.5);
             --output-integer: var(--property-output-integer); 
-            --x: calc(var(--first-number) * 10000 / var(--second-number)); 
-            --property-output-decimal: calc(var(--x) - (var(--property-output-integer) * 10000));
+            --x: calc(var(--first-number) * var(--decimal-shift) / var(--second-number)); 
+            --property-output-decimal: calc(var(--x) - (var(--property-output-integer) * var(--decimal-shift)));
             --output-decimal: var(--property-output-decimal);
             
         }
+
+        .output {
+            font-size: 0px;
+        }
+
+        .output > span {
+            font-size: 16px;
+        }
         
-        .output-decimal {
+        .output > .decimal {
             counter-increment: output-decimal var(--output-decimal);
         }
 
-        .output {
+        .output > .main {
             counter-increment: output-integer var(--output-integer);
         }
 
-        .output::after {
-            content: counter(output-integer) "." counter(output-decimal);
+        .output > .main::after {
+            content: counter(output-integer);
         }
+        
+        .output > .decimal::after {
+            content: "." counter(output-decimal, pad-4);
+        }
+
     </style>
 </html>
