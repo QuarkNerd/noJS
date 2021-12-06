@@ -141,12 +141,25 @@
         <div class="result">
             <div class="first-number"></div>
             <div class="second-number"></div>
+            <div class="output-decimal"></div>
             <div class="output"></div>
         </div>
     </body>
     <style>
+        @property --property-output-integer {
+            syntax: '<integer>';
+            initial-value: 0;
+            inherits: false;
+        }
+
+        @property --property-output-decimal {
+            syntax: '<integer>';
+            initial-value: 0;
+            inherits: false;
+        }
+
         body {
-            counter-reset: first-number second-number output;
+            counter-reset: output-integer output-decimal;
         }
 
         input#first-number-first-digit-0:checked ~ .result {
@@ -430,36 +443,36 @@
         }
 
         input#operation-plus:checked ~ .result {
-            --output: calc(var(--first-number) + var(--second-number));
+            --output-integer: calc(var(--first-number) + var(--second-number));
         }
 
         input#operation-minus:checked ~ .result {
-            --output: calc(var(--first-number) - var(--second-number));
+            --output-integer: calc(var(--first-number) - var(--second-number));
         }
 
         input#operation-multiplication:checked ~ .result {
-            --output: calc(var(--first-number) * var(--second-number));
+            --output-integer: calc(var(--first-number) * var(--second-number));
         }
 
         input#operation-divison:checked ~ .result {
-            --output: calc(calc( 8 / 2 )*1);
-            --output: calc(calc( 8 / 0 )*1);
+            --property-output-integer: calc(var(--first-number) / var(--second-number) - 0.5);
+            --output-integer: var(--property-output-integer); 
+            --x: calc(var(--first-number) * 10000 / var(--second-number)); 
+            --property-output-decimal: calc(var(--x) - (var(--property-output-integer) * 10000));
+            --output-decimal: var(--property-output-decimal);
+            
+        }
+        
+        .output-decimal {
+            counter-increment: output-decimal var(--output-decimal);
         }
 
         .output {
-            counter-increment: output var(--output);
+            counter-increment: output-integer var(--output-integer);
         }
 
         .output::after {
-            content: "gdfgdg" counter(output);
+            content: counter(output-integer) "." counter(output-decimal);
         }
-
-        /* input[name="first-number-first-digit"]:checked ~ .display::after {
-            content: counter(first-number-first-digit);
-        }      */
-
-        /* input[name="first-number-third-digit"]:checked ~ .display::after {
-            content: calc(counter(first-number-first-digit)/counter(first-number-third-digit));
-        }      */
     </style>
 </html>
