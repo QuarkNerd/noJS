@@ -87,8 +87,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="display">
-                                            <div class="numbers-display first-number-first-digit">
+                                        <div class="pad">
+                                            <div class="numbers-pad first-number first-number-first-digit">
                                                 <label for="first-number-first-digit-0">0</label>
                                                 <label for="first-number-first-digit-1">1</label>
                                                 <label for="first-number-first-digit-2">2</label>
@@ -100,7 +100,7 @@
                                                 <label for="first-number-first-digit-8">8</label>
                                                 <label for="first-number-first-digit-9">9</label>
                                             </div>
-                                            <div class="numbers-display first-number-first-digit">
+                                            <div class="numbers-pad first-number first-number-second-digit">
                                                 <label for="first-number-second-digit-0">0</label>
                                                 <label for="first-number-second-digit-1">1</label>
                                                 <label for="first-number-second-digit-2">2</label>
@@ -112,7 +112,7 @@
                                                 <label for="first-number-second-digit-8">8</label>
                                                 <label for="first-number-second-digit-9">9</label>
                                             </div>
-                                            <div class="numbers-display first-number-first-digit">
+                                            <div class="numbers-pad first-number first-number-third-digit">
                                                 <label for="first-number-third-digit-0">0</label>
                                                 <label for="first-number-third-digit-1">1</label>
                                                 <label for="first-number-third-digit-2">2</label>
@@ -125,7 +125,7 @@
                                                 <label for="first-number-third-digit-9">9</label>
                                             </div>
                                             <hr>
-                                            <div class="numbers-display second-number-first-digit">
+                                            <div class="numbers-pad second-number second-number-first-digit">
                                                 <label for="second-number-first-digit-0">0</label>
                                                 <label for="second-number-first-digit-1">1</label>
                                                 <label for="second-number-first-digit-2">2</label>
@@ -137,7 +137,7 @@
                                                 <label for="second-number-first-digit-8">8</label>
                                                 <label for="second-number-first-digit-9">9</label>
                                             </div>
-                                            <div class="numbers-display second-number-first-digit">
+                                            <div class="numbers-pad second-number second-number-second-digit">
                                                 <label for="second-number-second-digit-0">0</label>
                                                 <label for="second-number-second-digit-1">1</label>
                                                 <label for="second-number-second-digit-2">2</label>
@@ -149,7 +149,7 @@
                                                 <label for="second-number-second-digit-8">8</label>
                                                 <label for="second-number-second-digit-9">9</label>
                                             </div>
-                                            <div class="numbers-display second-number-first-digit">
+                                            <div class="numbers-pad second-number second-number-third-digit">
                                                 <label for="second-number-third-digit-0">0</label>
                                                 <label for="second-number-third-digit-1">1</label>
                                                 <label for="second-number-third-digit-2">2</label>
@@ -162,7 +162,7 @@
                                                 <label for="second-number-third-digit-9">9</label>
                                             </div>
                                             <hr>
-                                            <div class="operation-display">
+                                            <div class="operation-pad">
                                                 <label class="operation" for="operation-plus">+</label>
                                                 <label class="operation" for="operation-minus">-</label>
                                                 <label class="operation" for="operation-divison">/</label>
@@ -328,7 +328,82 @@
         }
 
         /* Button visbility */
+            /* First number */
 
+        input[name="first-number-first-digit"]:checked ~ * .numbers-pad.first-number-first-digit {
+            display: none;
+        }
+
+        .numbers-pad.first-number-second-digit {
+            display: none;
+        }
+
+        input[name="first-number-first-digit"]:checked ~ * .numbers-pad.first-number-second-digit {
+            display: block;
+        }
+        
+        input[name="first-number-second-digit"]:checked ~ * .numbers-pad.numbers-pad.first-number-second-digit {
+            display: none;
+        }
+
+        .numbers-pad.first-number-third-digit {
+            display: none;
+        }
+
+        input[name="first-number-second-digit"]:checked ~ * .numbers-pad.first-number-third-digit {
+            display: block;
+        }
+        
+        input[name="first-number-third-digit"]:checked ~ * .numbers-pad.numbers-pad.first-number-third-digit {
+            display: none;
+        }
+
+        input[name="operation"]:checked ~ * .numbers-pad.first-number {
+            display: none !important;
+        }
+            /* Second-number */
+
+        .numbers-pad.second-number-first-digit {
+            display: none;
+        }
+
+        input[name="operation"]:checked ~ * .numbers-pad.second-number-first-digit {
+            display: block;
+        }
+
+        input[name="second-number-first-digit"]:checked ~ * .numbers-pad.second-number-first-digit {
+            display: none;
+        }
+
+        .numbers-pad.second-number-second-digit {
+            display: none;
+        }
+
+        input[name="second-number-first-digit"]:checked ~ * .numbers-pad.second-number-second-digit {
+            display: block;
+        }
+        
+        input[name="second-number-second-digit"]:checked ~ * .numbers-pad.numbers-pad.second-number-second-digit {
+            display: none;
+        }
+
+        .numbers-pad.second-number-third-digit {
+            display: none;
+        }
+
+        input[name="second-number-second-digit"]:checked ~ * .numbers-pad.second-number-third-digit {
+            display: block;
+        }
+        
+        input[name="second-number-third-digit"]:checked ~ * .numbers-pad.numbers-pad.second-number-third-digit {
+            display: none;
+        }
+
+            /* operation */
+
+        input[name="operation"]:checked ~ * .operation-pad {
+            display: none;
+        }
 
         /* style */
         input {
