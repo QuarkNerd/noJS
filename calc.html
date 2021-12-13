@@ -79,9 +79,12 @@
                                     <div class="set-digit set-second-number-third-digit">
                                         
                                         <div class="determine-numbers">
-                                            <div class="first-number-display"></div>
-                                            <div class="second-number-display"></div>
-                                            <div class="answer-display">
+                                            <div class="display input-display">
+                                                <span class="first-number"></span>
+                                                <span class="operation"></span>
+                                                <span class="second-number"></span>
+                                            </div>
+                                            <div class="display answer-display">
                                                 <span class="integer"></span>
                                                 <span class="decimal"></span>
                                             </div>
@@ -124,7 +127,6 @@
                                                 <label for="first-number-third-digit-8">8</label>
                                                 <label for="first-number-third-digit-9">9</label>
                                             </div>
-                                            <hr>
                                             <div class="numbers-pad second-number second-number-first-digit">
                                                 <label for="second-number-first-digit-0">0</label>
                                                 <label for="second-number-first-digit-1">1</label>
@@ -243,14 +245,6 @@
         input[name="first-number-third-digit"]:checked ~ .set-digit .determine-numbers {
             --first-number: calc(var(--first-number-first-digit)*100 + var(--first-number-second-digit)*10 + var(--first-number-third-digit));
         }
-
-        .determine-numbers > .first-number-display {
-            counter-increment: first-number var(--first-number)
-        }     
-
-        .determine-numbers > .first-number-display::after {
-            content: counter(first-number);
-        }
         
         /* second-number */
 
@@ -270,14 +264,6 @@
 
         input[name="second-number-third-digit"]:checked ~ .set-digit .determine-numbers {
             --second-number: calc(var(--second-number-first-digit)*100 + var(--second-number-second-digit)*10 + var(--second-number-third-digit));
-        }
-
-        .determine-numbers > .second-number-display {
-            counter-increment: second-number var(--second-number)
-        }     
-
-        .determine-numbers > .second-number-display::after {
-            content: counter(second-number);
         }
 
         /* Calculation */
@@ -316,15 +302,6 @@
 
         .determine-numbers > .answer-display > .decimal::after {
             content: "." counter(output-decimal, pad-4);
-        }
-
-        .answer-display {
-            /* to remove gap between spans */
-            font-size: 0px;
-        }
-
-        .answer-display > span {
-            font-size: 16px;
         }
 
         /* Button visbility */
@@ -400,9 +377,16 @@
         }
 
             /* operation */
+        .operation-pad {
+            display: none;
+        }
+
+        input[name="first-number-first-digit"]:checked ~ * .operation-pad {
+            display: block;
+        }
 
         input[name="operation"]:checked ~ * .operation-pad {
-            display: none;
+            display: none !important;
         }
 
         /* style */
@@ -418,5 +402,36 @@
             background-color: black;
             color: white;
         }
+
+        .display {
+            /* to remove gap between spans */
+            font-size: 0px;
+        }
+
+        .display > span {
+            font-size: 16px;
+        }
+
+        .input-display > .first-number {
+            counter-increment: first-number var(--first-number)
+        }
+
+        input[name="first-number-first-digit"]:checked ~ * .input-display > .first-number::after {
+            content: counter(first-number);
+        }
+
+        input[name="operation"]#operation-plus:checked ~ * .input-display > .operation::after { content: "+"; }
+        input[name="operation"]#operation-minus:checked ~ * .input-display > .operation::after { content: "-"; }
+        input[name="operation"]#operation-divison:checked ~ * .input-display > .operation::after { content: "/"; }
+        input[name="operation"]#operation-multiplication:checked ~ * .input-display > .operation::after { content: "*"; }
+
+        .input-display > .second-number {
+            counter-increment: second-number var(--second-number)
+        }
+
+        input[name="second-number-first-digit"]:checked ~ * .input-display > .second-number::after {
+            content: counter(second-number);
+        }
+
     </style>
 </html>
