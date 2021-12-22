@@ -290,7 +290,7 @@
     </body>
     <style>
 
-        @property --property-output-integer {
+        /* @property --property-output-integer {
             syntax: '<integer>';
             initial-value: 0;
             inherits: false;
@@ -300,7 +300,7 @@
             syntax: '<integer>';
             initial-value: 0;
             inherits: false;
-        }
+        } */
 
         @property --property-first-number-integer {
             syntax: '<integer>';
@@ -470,7 +470,7 @@
             --output: calc(var(--first-number) / var(--second-number));
         }
 
-        .operation-catch .determine-numbers {
+        /* .operation-catch .determine-numbers {
             --property-output-integer: calc(var(--output) - 0.5);
             --output-integer: var(--property-output-integer); 
             --x: calc(var(--output) * var(--output-decimal-places)); 
@@ -492,7 +492,7 @@
 
         .determine-numbers > .answer-display > .decimal::after {
             content: "." counter(output-decimal, var(--output-decimal-padding));
-        }
+        } */
 
         /* Button visbility */
             /* First number */
@@ -656,11 +656,11 @@
         }
 
         .first-number-display {
-            --property-first-number-integer: calc(var(--first-number) - 0.499999);
+            --property-first-number-integer: calc(var(--first-number) - 1/2 );
             --first-number-integer: var(--property-first-number-integer); 
-            --x: calc( var(--first-number) * var(--first-number-decimal-shift) ); 
+            /* --x: calc( var(--first-number) * var(--first-number-decimal-shift) ); 
             --property-first-number-decimal: calc(var(--x) - (var(--property-first-number-integer) * var(--first-number-decimal-shift)));
-            --first-number-decimal: var(--property-first-number-decimal);
+            --first-number-decimal: var(--property-first-number-decimal); */
         }
 
         .first-number-display > .integer {
