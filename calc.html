@@ -569,12 +569,17 @@
             display: none;
         }
 
-        input[name="second-number-fourth-digit"]:checked ~ * .numbers-pad.second-number-fifth-digit {
+        /* input#operation-multiplication:checked ~ * .numbers-pad.second-number-first-digit {
+            display: block;
+        } */
+
+        /* only allow 4 digits in second number if multiplicatin selected because counters are limited to 32bit */
+        input#operation-multiplication:not(:checked) ~ * input[name="second-number-fourth-digit"]:checked ~ * .numbers-pad.second-number-fifth-digit {
             display: block;
         }
         
         input[name="second-number-fifth-digit"]:checked ~ * .numbers-pad.numbers-pad.second-number-fifth-digit {
-            display: none;
+            display: none !important;
         }
 
             /* operation */
@@ -606,7 +611,9 @@
          input[name="operation"]:checked ~ * .numbers-pad.only-reset {
             display: none;
         }
-
+    
+        /* only allow 4 digits in second number if multiplicatin selected because counters are limited to 32bit */
+        input#operation-multiplication:checked ~ * input[name="second-number-fourth-digit"]:checked ~ * .numbers-pad.only-reset,
         input[name="second-number-fifth-digit"]:checked ~ * .numbers-pad.only-reset {
             display: block;
         }
