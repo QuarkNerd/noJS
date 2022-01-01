@@ -634,7 +634,7 @@
         }
 
         .answer-display > span {
-            font-size: 22px;
+            font-size: 30px;
         }
 
         .input-display > .first-number {
@@ -685,42 +685,47 @@
 
         .calculator {
             background-color: yellowgreen;
-            width: 360px;
-            height: 330px;
-            border-radius: 5px;
+            width: 420px;
+            height: 450px;
+            border-radius: 15px;
+            margin: auto;
+            margin-top: 50px;
         }
 
         .pad {
             background-color: slategray;
             display: flex;
             flex-direction: row;
-            height: 310px;
-            border-radius: 5px;
+            border-radius: 15px;
         }
 
         label {
             display: inline-block;
-            height: 65px;
-            width: 65px;
+            height: 85px;
+            width: 85px;
             margin-left: 10px;
             margin-top: 10px;
-            border-radius: 10px;
+            border-radius: 15px;
 
             text-align: center;
-            line-height: 65px;
+            line-height: 85px;
         }
 
-        .numbers-pad-holder {
-            width: 260px;
-        }
-
-        .operation-pad {
-            width: 30px;
+        label[for="reset"] {
+            margin-bottom: 10px;
         }
 
         .numbers-pad.only-reset label[for="reset"] {
             position: relative;
-            top: 225px;
+            margin-top: 295px;
+        }
+
+        .numbers-pad-holder {
+            width: 310px;
+        }
+
+        .operation-pad {
+            width: 30px;
         }
 
         .display {
