@@ -431,13 +431,21 @@
         input#operation-multiplication:checked ~ .operation-catch .determine-numbers {
             --output-integer: calc(var(--first-number) * var(--second-number));
         }
+        
+        @supports (-moz-appearance:none) {
+            input#operation-divison:checked ~ .operation-catch .determine-numbers {
+                --output-integer: calc(var(--first-number) / var(--second-number));
+            }
+        }
 
-        input#operation-divison:checked ~ .operation-catch .determine-numbers {
-            --property-output-integer: calc(var(--first-number) / var(--second-number) - 0.5);
-            --output-integer: var(--property-output-integer); 
-            --x: calc(var(--first-number) * var(--decimal-shift) / var(--second-number)); 
-            --property-output-decimal: calc(var(--x) - (var(--property-output-integer) * var(--decimal-shift)));
-            --output-decimal: var(--property-output-decimal);
+        @supports not (-moz-appearance:none) {
+            input#operation-divison:checked ~ .operation-catch .determine-numbers {
+                --property-output-integer: calc(var(--first-number) / var(--second-number) - 0.5);
+                --output-integer: var(--property-output-integer); 
+                --x: calc(var(--first-number) * var(--decimal-shift) / var(--second-number)); 
+                --property-output-decimal: calc(var(--x) - (var(--property-output-integer) * var(--decimal-shift)));
+                --output-decimal: var(--property-output-decimal);
+            }
         }
 
         .determine-numbers > .answer-display > .integer {
@@ -448,12 +456,14 @@
             content: counter(output-integer);
         }
 
-        .determine-numbers > .answer-display > .decimal {
-            counter-increment: output-decimal var(--output-decimal)
-        }     
+        @supports not (-moz-appearance:none) {
+            .determine-numbers > .answer-display > .decimal {
+                counter-increment: output-decimal var(--output-decimal)
+            }     
 
-        input#operation-divison:checked ~ * .determine-numbers > .answer-display > .decimal::after {
-            content: "." counter(output-decimal, pad-7);
+            input#operation-divison:checked ~ * .determine-numbers > .answer-display > .decimal::after {
+                content: "." counter(output-decimal, pad-7);
+            }
         }
 
         /* Button visbility */
@@ -568,10 +578,6 @@
         .numbers-pad.second-number-fifth-digit {
             display: none;
         }
-
-        /* input#operation-multiplication:checked ~ * .numbers-pad.second-number-first-digit {
-            display: block;
-        } */
 
         /* only allow 4 digits in second number if multiplicatin selected because counters are limited to 32bit */
         input#operation-multiplication:not(:checked) ~ * input[name="second-number-fourth-digit"]:checked ~ * .numbers-pad.second-number-fifth-digit {
@@ -736,7 +742,5 @@
             width: 10px;
             text-decoration: none !important;
         }
-
-
     </style>
 </html>
