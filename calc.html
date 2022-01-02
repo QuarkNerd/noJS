@@ -328,6 +328,12 @@
             pad: 7 "0";
         }
 
+        @counter-style no-zero {
+            system: numeric;
+            symbols: "\00AD" "";
+            range: 0 0
+        }
+
         body {
             counter-reset: output-integer output-decimal first-number second-number;
             --decimal-shift: 10000000;
@@ -431,13 +437,21 @@
         input#operation-multiplication:checked ~ .operation-catch .determine-numbers {
             --output-integer: calc(var(--first-number) * var(--second-number));
         }
+        
+        @supports (-moz-appearance:none) {
+            input#operation-divison:checked ~ .operation-catch .determine-numbers {
+                --output-integer: calc(var(--first-number) / var(--second-number));
+            }
+        }
 
-        input#operation-divison:checked ~ .operation-catch .determine-numbers {
-            --property-output-integer: calc(var(--first-number) / var(--second-number) - 0.5);
-            --output-integer: var(--property-output-integer); 
-            --x: calc(var(--first-number) * var(--decimal-shift) / var(--second-number)); 
-            --property-output-decimal: calc(var(--x) - (var(--property-output-integer) * var(--decimal-shift)));
-            --output-decimal: var(--property-output-decimal);
+        @supports not (-moz-appearance:none) {
+            input#operation-divison:checked ~ .operation-catch .determine-numbers {
+                --property-output-integer: calc(var(--first-number) / var(--second-number) - 0.5);
+                --output-integer: var(--property-output-integer); 
+                --x: calc(var(--first-number) * var(--decimal-shift) / var(--second-number)); 
+                --property-output-decimal: calc(var(--x) - (var(--property-output-integer) * var(--decimal-shift)));
+                --output-decimal: var(--property-output-decimal);
+            }
         }
 
         .determine-numbers > .answer-display > .integer {
@@ -448,12 +462,14 @@
             content: counter(output-integer);
         }
 
-        .determine-numbers > .answer-display > .decimal {
-            counter-increment: output-decimal var(--output-decimal)
-        }     
+        @supports not (-moz-appearance:none) {
+            .determine-numbers > .answer-display > .decimal {
+                counter-increment: output-decimal var(--output-decimal)
+            }     
 
-        input#operation-divison:checked ~ * .determine-numbers > .answer-display > .decimal::after {
-            content: "." counter(output-decimal, pad-7);
+            input#operation-divison:checked ~ * .determine-numbers > .answer-display > .decimal::after {
+                content: "." counter(output-decimal, pad-7);
+            }
         }
 
         /* Button visbility */
@@ -569,12 +585,13 @@
             display: none;
         }
 
-        input[name="second-number-fourth-digit"]:checked ~ * .numbers-pad.second-number-fifth-digit {
+        /* only allow 4 digits in second number if multiplicatin selected because counters are limited to 32bit */
+        input#operation-multiplication:not(:checked) ~ * input[name="second-number-fourth-digit"]:checked ~ * .numbers-pad.second-number-fifth-digit {
             display: block;
         }
         
         input[name="second-number-fifth-digit"]:checked ~ * .numbers-pad.numbers-pad.second-number-fifth-digit {
-            display: none;
+            display: none !important;
         }
 
             /* operation */
@@ -606,7 +623,9 @@
          input[name="operation"]:checked ~ * .numbers-pad.only-reset {
             display: none;
         }
-
+    
+        /* only allow 4 digits in second number if multiplicatin selected because counters are limited to 32bit */
+        input#operation-multiplication:checked ~ * input[name="second-number-fourth-digit"]:checked ~ * .numbers-pad.only-reset,
         input[name="second-number-fifth-digit"]:checked ~ * .numbers-pad.only-reset {
             display: block;
         }
@@ -627,7 +646,7 @@
         }
 
         .answer-display > span {
-            font-size: 22px;
+            font-size: 30px;
         }
 
         .input-display > .first-number {
@@ -635,13 +654,7 @@
         }
 
         .input-display > .first-number::after {
-            content: "OOO";
-            opacity: 0;
-        }
-
-        input[name="first-number-first-digit"]:checked ~ * .input-display > .first-number::after {
-            content: counter(first-number);
-            opacity: 1;
+            content: counter(first-number, no-zero);
         }
 
         input[name="operation"]#operation-plus:checked ~ * .input-display > .operation::after { content: "+"; }
@@ -653,8 +666,8 @@
             counter-increment: second-number var(--second-number)
         }
 
-        input[name="second-number-first-digit"]:checked ~ * .input-display > .second-number::after {
-            content: counter(second-number);
+        .input-display > .second-number::after {
+            content: counter(second-number, no-zero);
         }
    
         @font-face {
@@ -678,42 +691,47 @@
 
         .calculator {
             background-color: yellowgreen;
-            width: 360px;
-            height: 330px;
-            border-radius: 5px;
+            width: 420px;
+            height: 450px;
+            border-radius: 15px;
+            margin: auto;
+            margin-top: 50px;
         }
 
         .pad {
             background-color: slategray;
             display: flex;
             flex-direction: row;
-            height: 310px;
-            border-radius: 5px;
+            border-radius: 15px;
         }
 
         label {
             display: inline-block;
-            height: 65px;
-            width: 65px;
+            height: 85px;
+            width: 85px;
             margin-left: 10px;
             margin-top: 10px;
-            border-radius: 10px;
+            border-radius: 15px;
 
             text-align: center;
-            line-height: 65px;
+            line-height: 85px;
         }
 
-        .numbers-pad-holder {
-            width: 260px;
-        }
-
-        .operation-pad {
-            width: 30px;
+        label[for="reset"] {
+            margin-bottom: 10px;
         }
 
         .numbers-pad.only-reset label[for="reset"] {
             position: relative;
-            top: 225px;
+            margin-top: 295px;
+        }
+
+        .numbers-pad-holder {
+            width: 310px;
+        }
+
+        .operation-pad {
+            width: 30px;
         }
 
         .display {
@@ -724,7 +742,5 @@
             width: 10px;
             text-decoration: none !important;
         }
-
-
     </style>
 </html>
