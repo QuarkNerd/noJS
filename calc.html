@@ -328,6 +328,12 @@
             pad: 7 "0";
         }
 
+        @counter-style no-zero {
+            system: numeric;
+            symbols: "\00AD" "";
+            range: 0 0
+        }
+
         body {
             counter-reset: output-integer output-decimal first-number second-number;
             --decimal-shift: 10000000;
@@ -648,13 +654,7 @@
         }
 
         .input-display > .first-number::after {
-            content: "OOO";
-            opacity: 0;
-        }
-
-        input[name="first-number-first-digit"]:checked ~ * .input-display > .first-number::after {
-            content: counter(first-number);
-            opacity: 1;
+            content: counter(first-number, no-zero);
         }
 
         input[name="operation"]#operation-plus:checked ~ * .input-display > .operation::after { content: "+"; }
@@ -666,8 +666,8 @@
             counter-increment: second-number var(--second-number)
         }
 
-        input[name="second-number-first-digit"]:checked ~ * .input-display > .second-number::after {
-            content: counter(second-number);
+        .input-display > .second-number::after {
+            content: counter(second-number, no-zero);
         }
    
         @font-face {
