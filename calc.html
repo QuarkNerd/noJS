@@ -297,7 +297,7 @@
                                                     </div>
                                                     <span class="set-digit set-fifth-digit set-second-number-fifth-digit">
                                                         <div class="divide-by-zero">
-                                                            Wow, aren't you clever? Testing to see if divide by zero works.
+                                                            Wow, aren't you clever? Testing to see if divide by zero works. Well everytime you divide by zero, someone kicks a dog.
                                                         </div>
                                                         <div class="numbers-pad only-reset">
                                                             <a href="./calc.html">
@@ -580,13 +580,9 @@
             display: none;
         }
 
-        input[name="first-number-fifth-digit"]:checked ~ * > .numbers-pad.only-reset {
-            display: block;
-        }
-    
         /* only allow 4 digits in second number if multiplicatin selected because counters are limited to 32bit */
-        input#operation-multiplication:checked ~ * input[name="second-number-fourth-digit"]:checked ~ * .numbers-pad.only-reset
-        {
+        input#operation-multiplication:checked ~ * input[name="second-number-fourth-digit"]:checked ~ * .numbers-pad.only-reset,
+        input[name="first-number-fifth-digit"]:checked ~ * > .numbers-pad.only-reset {
             display: block;
         }
 
@@ -646,18 +642,12 @@
             content: counter(number-sign, number-sign);
         }
 
-        input[name="first-number-first-digit"]:checked ~ * .first-number-display > .integer::after {
-            content: counter(number-integer)
-        }
-
-        input[name="first-number-decimal-point"]:checked ~ * .first-number-display > .decimal::after {
-            content: "." counter(number-decimal, var(--number-decimal-display));
-        }
-
+        input[name="first-number-first-digit"]:checked ~ * .first-number-display > .integer::after,
         input[name="second-number-first-digit"]:checked ~ * .second-number-display > .integer::after {
             content: counter(number-integer)
         }
 
+        input[name="first-number-decimal-point"]:checked ~ * .first-number-display > .decimal::after,
         input[name="second-number-decimal-point"]:checked ~ * .second-number-display > .decimal::after {
             content: "." counter(number-decimal, var(--number-decimal-display));
         }
