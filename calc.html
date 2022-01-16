@@ -308,7 +308,7 @@
                                                             </span>
                                                             <span class="set-second-number">
                                                                 <span class="determine-numbers">
-                                                                    <div class="display answer-display">
+                                                                    <div class="number-display display answer-display">
                                                                         <span class="negative-sign"></span>
                                                                         <span class="integer"></span>
                                                                         <span class="decimal"></span>
@@ -390,14 +390,14 @@
             range: 0 0
         }
 
-        @counter-style output-sign {
+        @counter-style number-sign {
             system: numeric;
             symbols: "" "ERROR" "";
             range: -2 0
         }
 
         body {
-            counter-reset: output-integer output-decimal output-sign number-integer number-decimal;
+            counter-reset: number-sign number-integer number-decimal;
             --decimal-shift: 10000000;
             --number-decimal-shift: 1;
             --number-decimal-display: no-zero;
@@ -495,8 +495,8 @@
 
         .set-second-number { 
             --second-number: var(--number);
-            --number-decimal-shift: 1;
-            --number-decimal-display: no-zero;
+            --number-decimal-shift: 10000000;
+            --number-decimal-display: pad-7;
          }
 
         /* Calculation */
@@ -521,58 +521,32 @@
 
         @supports not (-moz-appearance:none) {
             input#operation-divison:checked ~ .set-operation .determine-numbers {
-                --base-calc: calc(var(--first-number) / var(--second-number));
+                --number: calc(var(--first-number) / var(--second-number));
             }
 
             input#operation-plus:checked ~ .set-operation .determine-numbers {
-                --base-calc: calc(var(--first-number) + var(--second-number));
+                --number: calc(var(--first-number) + var(--second-number));
             }
 
             input#operation-minus:checked ~ .set-operation .determine-numbers {
-                --base-calc: calc(var(--first-number) - var(--second-number));
+                --number: calc(var(--first-number) - var(--second-number));
             }
 
             input#operation-multiplication:checked ~ .set-operation .determine-numbers {
-                --base-calc: calc(var(--first-number) * var(--second-number));
+                --number: calc(var(--first-number) * var(--second-number));
             }
 
-            .determine-numbers {
-                /* Use abs and add negative sign manually later. Ths is becuase we cant have -0 so cant show number between -1 and 0*/
-                --abs-base-calc: max(var(--base-calc), -1 * var(--base-calc));
-                --property-integer: calc(var(--abs-base-calc) - 0.49999);
-                --output-integer: var(--property-integer); 
-                --x: calc(var(--abs-base-calc) * var(--decimal-shift)); 
-                --property-decimal: calc(var(--x) - (var(--property-integer) * var(--decimal-shift)));
-                --output-decimal: var(--property-decimal);
-
-                --sign-base-calc: calc(var( --abs-base-calc) / var(--base-calc));
-                --shifted-sign-base-cal: calc(var(--sign-base-calc) - 1);
-            }
         }
 
-        .answer-display > .integer {
-            counter-increment: output-integer var(--output-integer)
-        }     
 
         input[name="second-number-first-digit"]:checked ~ * .answer-display > .integer::after {
-            content: counter(output-integer);
+            content: counter(number-integer);
         }
 
         @supports not (-moz-appearance:none) {
-            .answer-display > .negative-sign {
-                counter-increment: output-sign var(--shifted-sign-base-cal);
-            }
-
-            .answer-display > .negative-sign::after {
-                content: counter(output-sign, output-sign);
-            }
-
-            .answer-display > .decimal {
-                counter-increment: output-decimal var(--output-decimal)
-            }     
 
             input[name="second-number-first-digit"]:checked ~ * .answer-display > .decimal::after {
-                content: "." counter(output-decimal, pad-7);
+                content: "." counter(number-decimal, pad-7);
             }
         }
 
@@ -643,26 +617,33 @@
             font-size: 30px;
         }
 
-        .operation {
-            font-size: 36px !important;
-        }
-
         .number-display {
             counter-reset: number-integer number-decimal;
-            --property-integer: calc(var(--number) - 0.5);
+            --abs-number: max(var(--number), -1 * var(--number));
+            --property-integer: calc(var(--abs-number) - 0.4999999);
             --number-integer: var(--property-integer); 
-            --y: calc(var(--number) * var(--number-decimal-shift)); 
-            --property-decimal: calc(var(--y) - (var(--property-integer) * var(--number-decimal-shift)));
+            --x: calc(var(--abs-number) * var(--number-decimal-shift)); 
+            --property-decimal: calc(var(--x) - (var(--property-integer) * var(--number-decimal-shift)));
             --number-decimal: var(--property-decimal);
+
+            --sign-number: calc(var( --abs-number) / var(--number));
+            --shifted-sign-base-cal: calc(var(--sign-number) - 1);
         }
         
         .number-display > .integer {
            counter-increment: number-integer var(--number-integer);
         }
-
         
         .number-display > .decimal {
             counter-increment: number-decimal var(--number-decimal);
+        }
+
+        .number-display > .negative-sign {
+            counter-increment: number-sign var(--shifted-sign-base-cal);
+        }
+
+        .number-display > .negative-sign::after {
+            content: counter(number-sign, number-sign);
         }
 
         input[name="first-number-first-digit"]:checked ~ * .first-number-display > .integer::after {
