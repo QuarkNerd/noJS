@@ -28,7 +28,7 @@
                 </a>
                 <label for="first-number-first-digit-0">0</label>
             </div>
-            <div class="set-digit set-first-number-first-digit first-number-second-digit">
+            <div class="set-digit set-first-digit set-first-number-first-digit first-number-second-digit">
                 <input type="radio" name="first-number-decimal-point" id="first-number-decimal-point-1" />
                 <input type="radio" name="first-number-second-digit" id="first-number-second-digit-0" />
                 <input type="radio" name="first-number-second-digit" id="first-number-second-digit-1" />
@@ -56,7 +56,7 @@
                     <label for="first-number-second-digit-0">0</label>
                     <label for="first-number-decimal-point-1">.</label>
                 </div>
-                <div class="set-digit set-first-number-second-digit first-number-third-digit">
+                <div class="set-digit set-second-digit set-first-number-second-digit first-number-third-digit">
                     <input type="radio" name="first-number-decimal-point" id="first-number-decimal-point-2" />
                     <input type="radio" name="first-number-third-digit" id="first-number-third-digit-0" />
                     <input type="radio" name="first-number-third-digit" id="first-number-third-digit-1" />
@@ -84,7 +84,7 @@
                         <label for="first-number-third-digit-0">0</label> 
                         <label for="first-number-decimal-point-2">.</label>
                     </div>
-                    <div class="set-digit set-first-number-third-digit first-number-fourth-digit">
+                    <div class="set-digit set-third-digit set-first-number-third-digit first-number-fourth-digit">
                         <input type="radio" name="first-number-decimal-point" id="first-number-decimal-point-3" />
                         <input type="radio" name="first-number-fourth-digit" id="first-number-fourth-digit-0" />
                         <input type="radio" name="first-number-fourth-digit" id="first-number-fourth-digit-1" />
@@ -112,7 +112,7 @@
                             <label for="first-number-fourth-digit-0">0</label>
                             <label for="first-number-decimal-point-3">.</label>
                         </div>
-                        <div class="set-digit set-first-number-fourth-digit first-number-fifth-digit">
+                        <div class="set-digit set-fourth-digit set-first-number-fourth-digit first-number-fifth-digit">
                             <input type="radio" name="first-number-decimal-point" id="first-number-decimal-point-4" />
                             <input type="radio" name="first-number-fifth-digit" id="first-number-fifth-digit-0" />
                             <input type="radio" name="first-number-fifth-digit" id="first-number-fifth-digit-1" />
@@ -140,7 +140,7 @@
                                 <label for="first-number-fifth-digit-0">0</label>
                                 <label for="first-number-decimal-point-4">.</label>
                             </div>
-                            <div class="set-digit set-first-number-fifth-digit">
+                            <div class="set-digit set-fifth-digit set-first-number-fifth-digit">
                                 <div class="numbers-pad only-reset">
                                     <a href="./calc.html">
                                         <label for="reset">C</label>
@@ -152,7 +152,7 @@
                                 <input class="operation" type="radio" name="operation" id="operation-divison" />
                                 <input class="operation" type="radio" name="operation" id="operation-multiplication" />
                                 <!-- second-number -->
-                                <div class="operation-catch second-number-first-digit">
+                                <div class="set-operation set-number second-number-first-digit">
                                     <input type="radio" name="second-number-first-digit" id="second-number-first-digit-0" />
                                     <input type="radio" name="second-number-first-digit" id="second-number-first-digit-1" />
                                     <input type="radio" name="second-number-first-digit" id="second-number-first-digit-2" />
@@ -178,7 +178,11 @@
                                         </a>
                                         <label for="second-number-first-digit-0">0</label>
                                     </div>
-                                    <div class="set-digit set-second-number-first-digit second-number-second-digit">
+                                    <span class="first-number-display display number-display">
+                                        <span class="integer"></span>
+                                        <span class="decimal"></span>
+                                    </span>
+                                    <span class="set-digit reset-number-counters set-first-number set-first-digit set-second-number-first-digit second-number-second-digit">
                                         <input type="radio" name="second-number-decimal-point" id="second-number-decimal-point-1" />
                                         <input type="radio" name="second-number-second-digit" id="second-number-second-digit-0" />
                                         <input type="radio" name="second-number-second-digit" id="second-number-second-digit-1" />
@@ -206,7 +210,7 @@
                                             <label for="second-number-second-digit-0">0</label>
                                             <label for="second-number-decimal-point-1">.</label>
                                         </div>
-                                        <div class="set-digit set-second-number-second-digit second-number-third-digit">
+                                        <span class="set-digit set-second-digit set-second-number-second-digit second-number-third-digit">
                                             <input type="radio" name="second-number-decimal-point" id="second-number-decimal-point-2" />
                                             <input type="radio" name="second-number-third-digit" id="second-number-third-digit-0" />
                                             <input type="radio" name="second-number-third-digit" id="second-number-third-digit-1" />
@@ -234,7 +238,7 @@
                                                 <label for="second-number-third-digit-0">0</label>
                                                 <label for="second-number-decimal-point-2">.</label>
                                             </div>
-                                            <div class="set-digit set-second-number-third-digit second-number-fourth-digit">
+                                            <span class="set-digit set-third-digit set-second-number-third-digit second-number-fourth-digit">
                                                 <input type="radio" name="second-number-decimal-point" id="second-number-decimal-point-3" />
                                                 <input type="radio" name="second-number-fourth-digit" id="second-number-fourth-digit-0" />
                                                 <input type="radio" name="second-number-fourth-digit" id="second-number-fourth-digit-1" />
@@ -262,7 +266,7 @@
                                                     <label for="second-number-fourth-digit-0">0</label>
                                                     <label for="second-number-decimal-point-3">.</label>
                                                 </div>
-                                                <div class="set-digit set-second-number-fourth-digit second-number-fifth-digit">
+                                                <span class="set-digit set-fourth-digit set-second-number-fourth-digit second-number-fifth-digit">
                                                     <input type="radio" name="second-number-decimal-point" id="second-number-decimal-point-4" />
                                                     <input type="radio" name="second-number-fifth-digit" id="second-number-fifth-digit-0" />
                                                     <input type="radio" name="second-number-fifth-digit" id="second-number-fifth-digit-1" />
@@ -290,41 +294,38 @@
                                                         <label for="second-number-fifth-digit-0">0</label>
                                                         <label for="second-number-decimal-point-4">.</label>
                                                     </div>
-                                                    <div class="set-digit set-second-number-fifth-digit">
+                                                    <span class="set-digit set-fifth-digit set-second-number-fifth-digit">
                                                         <div class="numbers-pad only-reset">
                                                             <a href="./calc.html">
                                                                 <label for="reset">C</label>
                                                             </a>
                                                         </div>
-                                                        <div class="determine-numbers">
-                                                            <div class="display input-display">
-                                                                <span class="first-number">
-                                                                    <span class="integer"></span>
-                                                                    <span class="decimal"></span>
-                                                                </span>
-                                                                <span class="operation"></span>
-                                                                <span class="second-number">
-                                                                    <span class="integer"></span>
-                                                                    <span class="decimal"></span>
-                                                                </span>
-                                                            </div>
-                                                            <div class="display answer-display">
-                                                                <span class="negative-sign"></span>
+                                                        <span class="set-number">
+                                                            <span class="operation"></span>
+                                                            <span class="number-display display second-number-display">
                                                                 <span class="integer"></span>
                                                                 <span class="decimal"></span>
-                                                            </div>
-                                                        </div>
-
+                                                            </span>
+                                                            <span class="set-second-number">
+                                                                <span class="determine-numbers">
+                                                                    <div class="display answer-display">
+                                                                        <span class="negative-sign"></span>
+                                                                        <span class="integer"></span>
+                                                                        <span class="decimal"></span>
+                                                                    </div>
+                                                                </span>
+                                                            </span>
+                                                        </span>
                                                         <div class="operation-pad">
                                                             <label class="operation" for="operation-plus">+</label>
                                                             <label class="operation" for="operation-minus">-</label>
                                                             <label class="operation" for="operation-divison">÷</label>
                                                             <label class="operation" for="operation-multiplication">×</label>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -335,41 +336,21 @@
         </form>
     </body>
     <style>
+        .span {
+            font-size: 0;
+            margin: 0;
+        }
 
-        @property --property-second-number-integer {
+        @property --property-integer {
             syntax: '<integer>';
             initial-value: 0;
             inherits: true;
         }
 
-        @property --property-second-number-decimal {
+        @property --property-decimal {
             syntax: '<integer>';
             initial-value: 0;
             inherits: true;
-        }
-
-        @property --property-first-number-integer {
-            syntax: '<integer>';
-            initial-value: 0;
-            inherits: true;
-        }
-
-        @property --property-first-number-decimal {
-            syntax: '<integer>';
-            initial-value: 0;
-            inherits: true;
-        }
-
-        @property --property-output-integer {
-            syntax: '<integer>';
-            initial-value: 0;
-            inherits: false;
-        }
-
-        @property --property-output-decimal {
-            syntax: '<integer>';
-            initial-value: 0;
-            inherits: false;
         }
 
         @counter-style pad-1 {
@@ -416,12 +397,16 @@
         }
 
         body {
-            counter-reset: output-integer output-decimal output-sign first-number-integer first-number-decimal second-number-integer second-number-decimal;
+            counter-reset: output-integer output-decimal output-sign number-integer number-decimal;
             --decimal-shift: 10000000;
-            --first-number-decimal-shift: 1;
-            --first-number-decimal-display: no-zero;
+            --number-decimal-shift: 1;
+            --number-decimal-display: no-zero;
             --second-number-decimal-shift: 1;
             --second-number-decimal-display: no-zero;
+        }
+
+        .reset-number-counters {
+            counter-reset: number-integer number-decimal;
         }
 
         /* All numbers */
@@ -445,187 +430,148 @@
 
         input[id$="digit-9"]:checked ~ .set-digit { --prev-digit: 9; }
 
+        .set-first-digit { --first-digit: var(--prev-digit); }
+
+        .set-second-digit { --second-digit: var(--prev-digit); }
+
+        .set-third-digit { --third-digit: var(--prev-digit); }
+
+        .set-fourth-digit { --fourth-digit: var(--prev-digit); }
+        
+        .set-fifth-digit { --fifth-digit: var(--prev-digit); }
+
+        input[name$="first-digit"]:checked ~ * > * > * > * > * > .set-number {
+            --number-initial: var(--first-digit);
+            --number: calc(var(--number-initial) / var(--number-decimal-shift));
+        }
+
+        input[name$="second-digit"]:checked ~ * > * > * > * > .set-number {
+            --number-initial: calc(var(--first-digit)*10 + var(--second-digit));
+            --number: calc(var(--number-initial) / var(--number-decimal-shift));
+        }
+        
+        input[name$="third-digit"]:checked ~ * > * > * > .set-number {
+            --number-initial: calc(var(--first-digit)*100 + var(--second-digit)*10 + var(--third-digit));
+            --number: calc(var(--number-initial) / var(--number-decimal-shift));
+        }
+
+        input[name$="fourth-digit"]:checked ~ * > * > .set-number {
+            --number-initial: calc(var(--first-digit)*1000 + var(--second-digit)*100 + var(--third-digit)*10 + var(--fourth-digit));
+            --number: calc(var(--number-initial) / var(--number-decimal-shift));
+        }
+
+        input[name$="fifth-digit"]:checked ~ * > .set-number {
+            --number-initial: calc(var(--first-digit)*10000 + var(--second-digit)*1000 + var(--third-digit)*100 + var(--fourth-digit)*10 + var(--fifth-digit));
+            --number: calc(var(--number-initial) / var(--number-decimal-shift));
+        }
+
         /* first-number */
 
-        .set-first-number-first-digit { --first-number-first-digit: var(--prev-digit); }
-
-        .set-first-number-second-digit { --first-number-second-digit: var(--prev-digit); }
-
-        .set-first-number-third-digit { --first-number-third-digit: var(--prev-digit); }
-
-        .set-first-number-fourth-digit { --first-number-fourth-digit: var(--prev-digit); }
-        
-        .set-first-number-fifth-digit { --first-number-fifth-digit: var(--prev-digit); }
-
-        input[name="first-number-first-digit"]:checked ~ .set-digit .determine-numbers {
-            --first-number-initial: var(--first-number-first-digit);
+        input[name$="number-decimal-point"]:checked ~ input[name*="number"][name*="digit"]:checked ~ * {
+            --number-decimal-shift: 10;
+            --number-decimal-display: pad-1;
         }
 
-        input[name="first-number-second-digit"]:checked ~ .set-digit .determine-numbers {
-            --first-number-initial: calc(var(--first-number-first-digit)*10 + var(--first-number-second-digit));
+        input[name$="number-decimal-point"]:checked ~ * > input[name*="number"][name*="digit"]:checked ~ * {
+            --number-decimal-shift: 100;
+            --number-decimal-display: pad-2;
         }
         
-        input[name="first-number-third-digit"]:checked ~ .set-digit .determine-numbers {
-            --first-number-initial: calc(var(--first-number-first-digit)*100 + var(--first-number-second-digit)*10 + var(--first-number-third-digit));
-        }
-
-        input[name="first-number-fourth-digit"]:checked ~ .set-digit .determine-numbers {
-            --first-number-initial: calc(var(--first-number-first-digit)*1000 + var(--first-number-second-digit)*100 + var(--first-number-third-digit)*10 + var(--first-number-fourth-digit));
-        }
-
-        input[name="first-number-fifth-digit"]:checked ~ .set-digit .determine-numbers {
-            --first-number-initial: calc(var(--first-number-first-digit)*10000 + var(--first-number-second-digit)*1000 + var(--first-number-third-digit)*100 + var(--first-number-fourth-digit)*10 + var(--first-number-fifth-digit));
-        }
-
-        input[name="first-number-decimal-point"]:checked ~ input[name*="first-number"][name*="digit"]:checked ~ * {
-            --first-number-decimal-shift: 10;
-            --first-number-decimal-display: pad-1;
-        }
-
-        input[name="first-number-decimal-point"]:checked ~ * > input[name*="first-number"][name*="digit"]:checked ~ * {
-            --first-number-decimal-shift: 100;
-            --first-number-decimal-display: pad-2;
+        input[name$="number-decimal-point"]:checked ~ * > * > input[name*="number"][name*="digit"]:checked ~ * {
+            --number-decimal-shift: 1000;
+            --number-decimal-display: pad-3;
         }
         
-        input[name="first-number-decimal-point"]:checked ~ * > * > input[name*="first-number"][name*="digit"]:checked ~ * {
-            --first-number-decimal-shift: 1000;
-            --first-number-decimal-display: pad-3;
-        }
-        
-        input[name="first-number-decimal-point"]:checked ~ * > * > * > input[name*="first-number"][name*="digit"]:checked ~ * {
-            --first-number-decimal-shift: 10000;
-            --first-number-decimal-display: pad-4;
+        input[name$="number-decimal-point"]:checked ~ * > * > * > input[name*="number"][name*="digit"]:checked ~ * {
+            --number-decimal-shift: 10000;
+            --number-decimal-display: pad-4;
         }
 
-        .determine-numbers { --first-number: calc(var(--first-number-initial) / var(--first-number-decimal-shift)); }
-        
-        /* second-number */
+        .set-first-number {  
+            --first-number: var(--number);
+            --number-decimal-shift: 1;
+            --number-decimal-display: no-zero;
+         }
 
-        .set-second-number-first-digit { --second-number-first-digit: var(--prev-digit); }
-
-        .set-second-number-second-digit { --second-number-second-digit: var(--prev-digit); }
-
-        .set-second-number-third-digit { --second-number-third-digit: var(--prev-digit); }
-
-        .set-second-number-fourth-digit { --second-number-fourth-digit: var(--prev-digit); }
-
-        .set-second-number-fifth-digit { --second-number-fifth-digit: var(--prev-digit); }
-
-        input[name="second-number-first-digit"]:checked ~ .set-digit .determine-numbers {
-            --second-number-initial: var(--second-number-first-digit);
-        }
-
-        input[name="second-number-second-digit"]:checked ~ .set-digit .determine-numbers {
-            --second-number-initial: calc(var(--second-number-first-digit)*10 + var(--second-number-second-digit));
-        }
-
-        input[name="second-number-third-digit"]:checked ~ .set-digit .determine-numbers {
-            --second-number-initial: calc(var(--second-number-first-digit)*100 + var(--second-number-second-digit)*10 + var(--second-number-third-digit));
-        }
-
-        input[name="second-number-fourth-digit"]:checked ~ .set-digit .determine-numbers {
-            --second-number-initial: calc(var(--second-number-first-digit)*1000 + var(--second-number-second-digit)*100 + var(--second-number-third-digit)*10 + var(--second-number-fourth-digit));
-        }
-
-        input[name="second-number-fifth-digit"]:checked ~ .set-digit .determine-numbers {
-            --second-number-initial: calc(var(--second-number-first-digit)*10000 + var(--second-number-second-digit)*1000 + var(--second-number-third-digit)*100 + var(--second-number-fourth-digit)*10 + var(--second-number-fifth-digit));
-        }
-
-        input[name="second-number-decimal-point"]:checked ~ input[name*="second-number"][name*="digit"]:checked ~ * {
-            --second-number-decimal-shift: 10;
-            --second-number-decimal-display: pad-1;
-        }
-
-        input[name="second-number-decimal-point"]:checked ~ * > input[name*="second-number"][name*="digit"]:checked ~ * {
-            --second-number-decimal-shift: 100;
-            --second-number-decimal-display: pad-2;
-        }
-        
-        input[name="second-number-decimal-point"]:checked ~ * > * > input[name*="second-number"][name*="digit"]:checked ~ * {
-            --second-number-decimal-shift: 1000;
-            --second-number-decimal-display: pad-3;
-        }
-        
-        input[name="second-number-decimal-point"]:checked ~ * > * > * > input[name*="second-number"][name*="digit"]:checked ~ * {
-            --second-number-decimal-shift: 10000;
-            --second-number-decimal-display: pad-4;
-        }
-
-        .determine-numbers { --second-number: calc(var(--second-number-initial) / var(--second-number-decimal-shift)); }
+        .set-second-number { 
+            --second-number: var(--number);
+            --number-decimal-shift: 1;
+            --number-decimal-display: no-zero;
+         }
 
         /* Calculation */
 
         @supports (-moz-appearance:none) {
-            input#operation-plus:checked ~ .operation-catch .determine-numbers {
+            input#operation-plus:checked ~ .set-operation .determine-numbers {
                 --output-integer: calc(var(--first-number) + var(--second-number));
             }
 
-            input#operation-minus:checked ~ .operation-catch .determine-numbers {
+            input#operation-minus:checked ~ .set-operation .determine-numbers {
                 --output-integer: calc(var(--first-number) - var(--second-number));
             }
 
-            input#operation-multiplication:checked ~ .operation-catch .determine-numbers {
+            input#operation-multiplication:checked ~ .set-operation .determine-numbers {
                 --output-integer: calc(var(--first-number) * var(--second-number));
             }
         
-            input#operation-divison:checked ~ .operation-catch .determine-numbers {
+            input#operation-divison:checked ~ .set-operation .determine-numbers {
                 --output-integer: calc(var(--first-number) / var(--second-number));
             }
         }
 
         @supports not (-moz-appearance:none) {
-            input#operation-divison:checked ~ .operation-catch .determine-numbers {
+            input#operation-divison:checked ~ .set-operation .determine-numbers {
                 --base-calc: calc(var(--first-number) / var(--second-number));
             }
 
-            input#operation-plus:checked ~ .operation-catch .determine-numbers {
+            input#operation-plus:checked ~ .set-operation .determine-numbers {
                 --base-calc: calc(var(--first-number) + var(--second-number));
             }
 
-            input#operation-minus:checked ~ .operation-catch .determine-numbers {
+            input#operation-minus:checked ~ .set-operation .determine-numbers {
                 --base-calc: calc(var(--first-number) - var(--second-number));
             }
 
-            input#operation-multiplication:checked ~ .operation-catch .determine-numbers {
+            input#operation-multiplication:checked ~ .set-operation .determine-numbers {
                 --base-calc: calc(var(--first-number) * var(--second-number));
             }
 
             .determine-numbers {
                 /* Use abs and add negative sign manually later. Ths is becuase we cant have -0 so cant show number between -1 and 0*/
                 --abs-base-calc: max(var(--base-calc), -1 * var(--base-calc));
-                --property-output-integer: calc(var(--abs-base-calc) - 0.5);
-                --output-integer: var(--property-output-integer); 
+                --property-integer: calc(var(--abs-base-calc) - 0.49999);
+                --output-integer: var(--property-integer); 
                 --x: calc(var(--abs-base-calc) * var(--decimal-shift)); 
-                --property-output-decimal: calc(var(--x) - (var(--property-output-integer) * var(--decimal-shift)));
-                --output-decimal: var(--property-output-decimal);
+                --property-decimal: calc(var(--x) - (var(--property-integer) * var(--decimal-shift)));
+                --output-decimal: var(--property-decimal);
 
                 --sign-base-calc: calc(var( --abs-base-calc) / var(--base-calc));
                 --shifted-sign-base-cal: calc(var(--sign-base-calc) - 1);
             }
         }
 
-        .determine-numbers > .answer-display > .integer {
+        .answer-display > .integer {
             counter-increment: output-integer var(--output-integer)
         }     
 
-        input[name="second-number-first-digit"]:checked ~ * .determine-numbers > .answer-display > .integer::after {
+        input[name="second-number-first-digit"]:checked ~ * .answer-display > .integer::after {
             content: counter(output-integer);
         }
 
         @supports not (-moz-appearance:none) {
-            .determine-numbers > .answer-display > .negative-sign {
+            .answer-display > .negative-sign {
                 counter-increment: output-sign var(--shifted-sign-base-cal);
             }
 
-            .determine-numbers > .answer-display > .negative-sign::after {
+            .answer-display > .negative-sign::after {
                 content: counter(output-sign, output-sign);
             }
 
-            .determine-numbers > .answer-display > .decimal {
+            .answer-display > .decimal {
                 counter-increment: output-decimal var(--output-decimal)
             }     
 
-            input[name="second-number-first-digit"]:checked ~ * .determine-numbers > .answer-display > .decimal::after {
+            input[name="second-number-first-digit"]:checked ~ * .answer-display > .decimal::after {
                 content: "." counter(output-decimal, pad-7);
             }
         }
@@ -688,76 +634,57 @@
             /* to remove gap between spans */
             font-size: 0px;
             z-index: 500;
+            padding-left: 15px;
         }
 
-        .answer-display > span {
+        .display { font-size: 0px; }
+
+        .display > span {
             font-size: 30px;
-        }
-
-        .input-display > span {
-            font-size: 0px;
-        }
-
-        .input-display > span > span {
-            font-size: 36px;
         }
 
         .operation {
             font-size: 36px !important;
         }
 
-        .input-display > .first-number {
-            --property-first-number-integer: calc(var(--first-number) - 0.5);
-            --first-number-integer: var(--property-first-number-integer); 
-            --y: calc(var(--first-number) * var(--first-number-decimal-shift)); 
-            --property-first-number-decimal: calc(var(--y) - (var(--property-first-number-integer) * var(--first-number-decimal-shift)));
-            --first-number-decimal: var(--property-first-number-decimal);
+        .number-display {
+            counter-reset: number-integer number-decimal;
+            --property-integer: calc(var(--number) - 0.5);
+            --number-integer: var(--property-integer); 
+            --y: calc(var(--number) * var(--number-decimal-shift)); 
+            --property-decimal: calc(var(--y) - (var(--property-integer) * var(--number-decimal-shift)));
+            --number-decimal: var(--property-decimal);
         }
         
-        .input-display > .first-number > .integer {
-           counter-increment: first-number-integer var(--first-number-integer);
+        .number-display > .integer {
+           counter-increment: number-integer var(--number-integer);
         }
 
-        input[name="first-number-first-digit"]:checked ~ * .input-display > .first-number > .integer::after {
-            content: counter(first-number-integer)
-        }
-
-        .input-display > .first-number > .decimal {
-           counter-increment: first-number-decimal var(--first-number-decimal);
-        }
-
-        input[name="first-number-decimal-point"]:checked ~ * .input-display > .first-number > .decimal::after {
-            content: "." counter(first-number-decimal, var(--first-number-decimal-display));
-        }
-
-        input[name="operation"]#operation-plus:checked ~ * .input-display > .operation::after { content: "\2008 +"; }
-        input[name="operation"]#operation-minus:checked ~ * .input-display > .operation::after { content: "\2008 -"; }
-        input[name="operation"]#operation-divison:checked ~ * .input-display > .operation::after { content: "\2008 ÷"; }
-        input[name="operation"]#operation-multiplication:checked ~ * .input-display > .operation::after { content: "\2008 ×"; }
         
-        .input-display > .second-number {
-            --property-second-number-integer: calc(var(--second-number) - 0.5);
-            --second-number-integer: var(--property-second-number-integer); 
-            --y: calc(var(--second-number) * var(--second-number-decimal-shift)); 
-            --property-second-number-decimal: calc(var(--y) - (var(--property-second-number-integer) * var(--second-number-decimal-shift)));
-            --second-number-decimal: var(--property-second-number-decimal);
+        .number-display > .decimal {
+            counter-increment: number-decimal var(--number-decimal);
         }
 
-        .input-display > .second-number > .integer {
-           counter-increment: second-number-integer var(--second-number-integer);
+        input[name="first-number-first-digit"]:checked ~ * .first-number-display > .integer::after {
+            content: counter(number-integer)
         }
 
-        input[name="second-number-first-digit"]:checked ~ * .input-display > .second-number > .integer::after {
-            content: counter(second-number-integer)
+        input[name="first-number-decimal-point"]:checked ~ * .first-number-display > .decimal::after {
+            content: "." counter(number-decimal, var(--number-decimal-display));
         }
 
-        .input-display > .second-number > .decimal {
-           counter-increment: second-number-decimal var(--second-number-decimal);
+        input[name="second-number-first-digit"]:checked ~ * .second-number-display > .integer::after {
+            content: counter(number-integer)
         }
 
-        input[name="second-number-decimal-point"]:checked ~ * .input-display > .second-number > .decimal::after {
-            content: "." counter(second-number-decimal, var(--second-number-decimal-display));
+        input[name="second-number-decimal-point"]:checked ~ * .second-number-display > .decimal::after {
+            content: "." counter(number-decimal, var(--number-decimal-display));
         }
+
+        input[name="operation"]#operation-plus:checked ~ * .operation::after { content: "\2008 +"; }
+        input[name="operation"]#operation-minus:checked ~ * .operation::after { content: "\2008 -"; }
+        input[name="operation"]#operation-divison:checked ~ * .operation::after { content: "\2008 ÷"; }
+        input[name="operation"]#operation-multiplication:checked ~ * .operation::after { content: "\2008 ×"; }
    
         @font-face {
             font-family: 'Orbitron';
@@ -842,7 +769,7 @@
             width: 30px;
         }
 
-        .display {
+        .first-number-display {
             margin-left: 10px;
         }
 
