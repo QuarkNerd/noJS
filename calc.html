@@ -501,50 +501,28 @@
 
         /* Calculation */
 
-        @supports (-moz-appearance:none) {
-            input#operation-plus:checked ~ .set-operation .determine-numbers {
-                --output-integer: calc(var(--first-number) + var(--second-number));
-            }
 
-            input#operation-minus:checked ~ .set-operation .determine-numbers {
-                --output-integer: calc(var(--first-number) - var(--second-number));
-            }
-
-            input#operation-multiplication:checked ~ .set-operation .determine-numbers {
-                --output-integer: calc(var(--first-number) * var(--second-number));
-            }
-        
-            input#operation-divison:checked ~ .set-operation .determine-numbers {
-                --output-integer: calc(var(--first-number) / var(--second-number));
-            }
+        input#operation-divison:checked ~ .set-operation .determine-numbers {
+            --number: calc(var(--first-number) / var(--second-number));
         }
 
-        @supports not (-moz-appearance:none) {
-            input#operation-divison:checked ~ .set-operation .determine-numbers {
-                --number: calc(var(--first-number) / var(--second-number));
-            }
-
-            input#operation-plus:checked ~ .set-operation .determine-numbers {
-                --number: calc(var(--first-number) + var(--second-number));
-            }
-
-            input#operation-minus:checked ~ .set-operation .determine-numbers {
-                --number: calc(var(--first-number) - var(--second-number));
-            }
-
-            input#operation-multiplication:checked ~ .set-operation .determine-numbers {
-                --number: calc(var(--first-number) * var(--second-number));
-            }
-
+        input#operation-plus:checked ~ .set-operation .determine-numbers {
+            --number: calc(var(--first-number) + var(--second-number));
         }
 
+        input#operation-minus:checked ~ .set-operation .determine-numbers {
+            --number: calc(var(--first-number) - var(--second-number));
+        }
+
+        input#operation-multiplication:checked ~ .set-operation .determine-numbers {
+            --number: calc(var(--first-number) * var(--second-number));
+        }
 
         input[name="second-number-first-digit"]:checked ~ * .answer-display > .integer::after {
             content: counter(number-integer);
         }
 
         @supports not (-moz-appearance:none) {
-
             input[name="second-number-first-digit"]:checked ~ * .answer-display > .decimal::after {
                 content: "." counter(number-decimal, pad-7);
             }
@@ -564,7 +542,12 @@
 
         input[name="second-number-decimal-point"]:checked ~ * label[for^="second-number-decimal-point"] { display: none; }
         input[name="first-number-decimal-point"]:checked ~ * label[for^="first-number-decimal-point"] { display: none; }
-        @supports (-moz-appearance:none) { label[for*="-decimal-point"] { display: none; } }
+        @supports (-moz-appearance:none) { 
+            label[for$="first-digit-0"],
+            label[for*="-decimal-point"] { 
+                display: none; 
+            } 
+        }
 
             /* operation */
         .operation-pad {
@@ -628,6 +611,10 @@
 
             --sign-number: calc(var( --abs-number) / var(--number));
             --shifted-sign-base-cal: calc(var(--sign-number) - 1);
+        }
+
+        @supports (-moz-appearance: none) { 
+            .number-display { --number-interger: var(--number); }
         }
         
         .number-display > .integer {
