@@ -530,7 +530,9 @@
         }
 
         @supports not (-moz-appearance:none) {
-            input[name="equals"]:checked ~ * .answer-display > .decimal::after {
+            input[name="operation"]#operation-divison:checked ~ input[name="equals"]:checked ~ * .answer-display > .decimal::after,
+            input[name$="decimal-point"]:checked ~ * input[name="equals"]:checked ~ * .answer-display > .decimal::after,
+            input[name="equals"]:checked ~ * input[name$="decimal-point"]:checked ~ * .answer-display > .decimal::after {
                 content: "." counter(number-decimal, pad-7);
             }
         }
