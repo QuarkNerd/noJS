@@ -151,6 +151,7 @@
                                 <input class="operation" type="radio" name="operation" id="operation-minus" />
                                 <input class="operation" type="radio" name="operation" id="operation-divison" />
                                 <input class="operation" type="radio" name="operation" id="operation-multiplication" />
+                                <input class="equals" type="radio" name="equals" id="equals" />
                                 <!-- second-number -->
                                 <div class="set-operation set-number second-number-first-digit">
                                     <input type="radio" name="second-number-first-digit" id="second-number-first-digit-0" />
@@ -295,6 +296,9 @@
                                                         <label for="second-number-decimal-point-4">.</label>
                                                     </div>
                                                     <span class="set-digit set-fifth-digit set-second-number-fifth-digit">
+                                                        <div class="divide-by-zero">
+                                                            Wow, aren't you clever? Testing to see if divide by zero works. Well everytime you divide by zero, someone kicks a dog.
+                                                        </div>
                                                         <div class="numbers-pad only-reset">
                                                             <a href="./calc.html">
                                                                 <label for="reset">C</label>
@@ -316,11 +320,14 @@
                                                                 </span>
                                                             </span>
                                                         </span>
-                                                        <div class="operation-pad">
+                                                        <div class="operation-pad regular-pad">
                                                             <label class="operation" for="operation-plus">+</label>
                                                             <label class="operation" for="operation-minus">-</label>
                                                             <label class="operation" for="operation-divison">÷</label>
                                                             <label class="operation" for="operation-multiplication">×</label>
+                                                        </div>
+                                                        <div class="operation-pad equals-pad">
+                                                            <label for="equals">=</label>
                                                         </div>
                                                     </span>
                                                 </span>
@@ -518,12 +525,14 @@
             --number: calc(var(--first-number) * var(--second-number));
         }
 
-        input[name="second-number-first-digit"]:checked ~ * .answer-display > .integer::after {
+        input[name="equals"]:checked ~ * .answer-display > .integer::after {
             content: counter(number-integer);
         }
 
         @supports not (-moz-appearance:none) {
-            input[name="second-number-first-digit"]:checked ~ * .answer-display > .decimal::after {
+            input[name="operation"]#operation-divison:checked ~ input[name="equals"]:checked ~ * .answer-display > .decimal::after,
+            input[name$="decimal-point"]:checked ~ * input[name="equals"]:checked ~ * .answer-display > .decimal::after,
+            input[name="equals"]:checked ~ * input[name$="decimal-point"]:checked ~ * .answer-display > .decimal::after {
                 content: "." counter(number-decimal, pad-7);
             }
         }
@@ -540,6 +549,8 @@
             display: block;
         }
 
+        input[name="equals"]:checked ~ * .numbers-pad.only-reset { display: block }
+
         input[name="second-number-decimal-point"]:checked ~ * label[for^="second-number-decimal-point"] { display: none; }
         input[name="first-number-decimal-point"]:checked ~ * label[for^="first-number-decimal-point"] { display: none; }
         @supports (-moz-appearance:none) { 
@@ -554,26 +565,26 @@
             display: none;
         }
 
-        input[name="first-number-first-digit"]:checked ~ * .operation-pad {
+        input[name="first-number-first-digit"]:checked ~ * .operation-pad.regular-pad {
             display: block;
         }
 
-        input[name="operation"]:checked ~ * .operation-pad {
+        input[name="operation"]:checked ~ * .operation-pad.regular-pad {
             display: none !important;
         }
+
+        input[name="second-number-first-digit"]:checked ~ * .operation-pad.equals-pad { display: block; }
+
+        input[name="equals"]:checked ~ * .operation-pad.equals-pad { display: none }
 
             /* reset button */
         .numbers-pad.only-reset {
             display: none;
         }
 
-        input[name="first-number-fifth-digit"]:checked ~ * > .numbers-pad.only-reset {
-            display: block;
-        }
-    
         /* only allow 4 digits in second number if multiplicatin selected because counters are limited to 32bit */
-        input#operation-multiplication:checked ~ * input[name="second-number-fourth-digit"]:checked ~ * .numbers-pad.only-reset
-        {
+        input#operation-multiplication:checked ~ * input[name="second-number-fourth-digit"]:checked ~ * .numbers-pad.only-reset,
+        input[name="first-number-fifth-digit"]:checked ~ * > .numbers-pad.only-reset {
             display: block;
         }
 
@@ -629,22 +640,16 @@
             counter-increment: number-sign var(--shifted-sign-base-cal);
         }
 
-        .number-display > .negative-sign::after {
+        input[name="equals"]:checked ~ * .number-display > .negative-sign::after {
             content: counter(number-sign, number-sign);
         }
 
-        input[name="first-number-first-digit"]:checked ~ * .first-number-display > .integer::after {
-            content: counter(number-integer)
-        }
-
-        input[name="first-number-decimal-point"]:checked ~ * .first-number-display > .decimal::after {
-            content: "." counter(number-decimal, var(--number-decimal-display));
-        }
-
+        input[name="first-number-first-digit"]:checked ~ * .first-number-display > .integer::after,
         input[name="second-number-first-digit"]:checked ~ * .second-number-display > .integer::after {
             content: counter(number-integer)
         }
 
+        input[name="first-number-decimal-point"]:checked ~ * .first-number-display > .decimal::after,
         input[name="second-number-decimal-point"]:checked ~ * .second-number-display > .decimal::after {
             content: "." counter(number-decimal, var(--number-decimal-display));
         }
@@ -654,6 +659,28 @@
         input[name="operation"]#operation-divison:checked ~ * .operation::after { content: "\2008 ÷"; }
         input[name="operation"]#operation-multiplication:checked ~ * .operation::after { content: "\2008 ×"; }
    
+        input[id^="second-number"][id$="1"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
+        input[id^="second-number"][id$="2"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
+        input[id^="second-number"][id$="3"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
+        input[id^="second-number"][id$="4"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
+        input[id^="second-number"][id$="5"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
+        input[id^="second-number"][id$="6"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
+        input[id^="second-number"][id$="7"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
+        input[id^="second-number"][id$="8"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
+        input[id^="second-number"][id$="9"][id*="digit"]:checked ~ * ~ * .divide-by-zero
+        { display: none !important; }
+        .divide-by-zero { display: none; }
+
+        input[name="operation"]#operation-divison:checked ~ input[name="equals"]:checked ~ * .divide-by-zero { display: block; }
+
+        .divide-by-zero {
+            position: absolute;
+            background-color: darkgray;
+            height: 300px;
+            padding: 0 3px;
+            z-index: 2;
+        }
+
         @font-face {
             font-family: 'Orbitron';
             font-style: normal;
