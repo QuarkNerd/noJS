@@ -297,7 +297,7 @@
                                                     </div>
                                                     <span class="set-digit set-fifth-digit set-second-number-fifth-digit">
                                                         <div class="divide-by-zero">
-                                                            Wow, aren't you clever? Testing to see if divide by zero works. Well everytime you divide by zero, someone kicks a dog.
+                                                            Wow, aren't you clever? Testing to see if divide by zero works!! Well, everytime you divide by zero, a puppy dies.
                                                         </div>
                                                         <div class="numbers-pad only-reset">
                                                             <a href="./calc.html">
@@ -479,17 +479,17 @@
             --number-decimal-display: pad-1;
         }
 
-        input[name$="number-decimal-point"]:checked ~ * > input[name*="number"][name*="digit"]:checked ~ * {
+        input[name$="number-decimal-point"]:checked ~ .set-digit > input[name*="number"][name*="digit"]:checked ~ * {
             --number-decimal-shift: 100;
             --number-decimal-display: pad-2;
         }
         
-        input[name$="number-decimal-point"]:checked ~ * > * > input[name*="number"][name*="digit"]:checked ~ * {
+        input[name$="number-decimal-point"]:checked ~ .set-digit > .set-digit > input[name*="number"][name*="digit"]:checked ~ * {
             --number-decimal-shift: 1000;
             --number-decimal-display: pad-3;
         }
         
-        input[name$="number-decimal-point"]:checked ~ * > * > * > input[name*="number"][name*="digit"]:checked ~ * {
+        input[name$="number-decimal-point"]:checked ~ .set-digit > .set-digit > .set-digit > input[name*="number"][name*="digit"]:checked ~ * {
             --number-decimal-shift: 10000;
             --number-decimal-display: pad-4;
         }
@@ -607,9 +607,9 @@
 
         .display { font-size: 0px; }
 
-        .display > span {
-            font-size: 30px;
-        }
+        .display > span { font-size: 36px; }
+
+        .display.answer-display > span { font-size: 30px; }
 
         .number-display {
             counter-reset: number-integer number-decimal;
@@ -641,7 +641,7 @@
         }
 
         input[name="equals"]:checked ~ * .number-display > .negative-sign::after {
-            content: counter(number-sign, number-sign);
+            content: "= " counter(number-sign, number-sign);
         }
 
         input[name="first-number-first-digit"]:checked ~ * .first-number-display > .integer::after,
@@ -675,10 +675,15 @@
 
         .divide-by-zero {
             position: absolute;
-            background-color: darkgray;
-            height: 300px;
-            padding: 0 3px;
+            margin: 0 8px;
             z-index: 2;
+            
+            height: 318px;
+            background-color: darkgray;
+            border-radius: 15px;
+
+            text-align: center;
+            padding: 5px;
         }
 
         @font-face {
