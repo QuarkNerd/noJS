@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <link rel=“canonical” href=“https://quarknerd.github.io/noJS/calc.html/” />
+    </head>
     <body>
+        <input type="checkbox" id="show-info"/>
         <form class="calculator">
+            <label for="show-info"> ? </label>
             <div class="pad"> </div>
             <input type="radio" name="first-number-first-digit" id="first-number-first-digit-0" />
             <input type="radio" name="first-number-first-digit" id="first-number-first-digit-1" />
@@ -296,8 +301,11 @@
                                                         <label for="second-number-decimal-point-4">.</label>
                                                     </div>
                                                     <span class="set-digit set-fifth-digit set-second-number-fifth-digit">
-                                                        <div class="divide-by-zero">
+                                                        <div class="message divide-by-zero">
                                                             Wow, aren't you clever? Testing to see if divide by zero works!! Well, everytime you divide by zero, a puppy dies.
+                                                        </div>
+                                                        <div class="message info">
+                                                            Thanks for checking out my calculator. It works best in Chromium browsers. <a href="https://blog.scottlogic.com/2022/01/20/noJS-making-a-calculator-in-pure-css-html.html">See how I made it</a>.
                                                         </div>
                                                         <div class="numbers-pad only-reset">
                                                             <a href="./calc.html">
@@ -343,18 +351,7 @@
         </form>
     </body>
     <style>
-        .span {
-            font-size: 0;
-            margin: 0;
-        }
-
         @property --property-integer {
-            syntax: '<integer>';
-            initial-value: 0;
-            inherits: true;
-        }
-
-        @property --property-decimal {
             syntax: '<integer>';
             initial-value: 0;
             inherits: true;
@@ -399,8 +396,7 @@
 
         @counter-style number-sign {
             system: numeric;
-            symbols: "" "ERROR" "";
-            range: -2 0
+            symbols: "" "";
         }
 
         body {
@@ -615,13 +611,10 @@
             counter-reset: number-integer number-decimal;
             --abs-number: max(var(--number), -1 * var(--number));
             --property-integer: calc(var(--abs-number) - 0.4999999);
-            --number-integer: var(--property-integer); 
-            --x: calc(var(--abs-number) * var(--number-decimal-shift)); 
-            --property-decimal: calc(var(--x) - (var(--property-integer) * var(--number-decimal-shift)));
-            --number-decimal: var(--property-decimal);
+            --number-integer: var(--property-integer);
+            --number-decimal: calc((var(--abs-number) - var(--property-integer)) * var(--number-decimal-shift));
 
             --sign-number: calc(var( --abs-number) / var(--number));
-            --shifted-sign-base-cal: calc(var(--sign-number) - 1);
         }
 
         @supports (-moz-appearance: none) { 
@@ -637,7 +630,7 @@
         }
 
         .number-display > .negative-sign {
-            counter-increment: number-sign var(--shifted-sign-base-cal);
+            counter-increment: number-sign var(--sign-number);
         }
 
         input[name="equals"]:checked ~ * .number-display > .negative-sign::after {
@@ -673,7 +666,7 @@
 
         input[name="operation"]#operation-divison:checked ~ input[name="equals"]:checked ~ * .divide-by-zero { display: block; }
 
-        .divide-by-zero {
+        .message {
             position: absolute;
             margin: 0 8px;
             z-index: 2;
@@ -776,6 +769,30 @@
         a {
             width: 10px;
             text-decoration: none !important;
+        }
+
+        .info {
+            display: none;
+        }
+
+        input#show-info:checked ~ * .info {
+            display: block;
+        }
+
+        label[for="show-info"] {
+            display: inline-block;
+            position: fixed;
+            right: 10px;
+            top: 10px;
+            margin: 0;
+
+            height: 30px;
+            width: 30px;
+            border-radius: 15px;
+
+            color: white;
+            font-size: 10px;
+            line-height: 30px;
         }
     </style>
 </html>
