@@ -525,7 +525,7 @@
             content: counter(number-integer);
         }
 
-        @supports not (-moz-appearance:none) {
+        @supports not ((-moz-appearance: none) or (-webkit-appearance: none)) {
             input[name="operation"]#operation-divison:checked ~ input[name="equals"]:checked ~ * .answer-display > .decimal::after,
             input[name$="decimal-point"]:checked ~ * input[name="equals"]:checked ~ * .answer-display > .decimal::after,
             input[name="equals"]:checked ~ * input[name$="decimal-point"]:checked ~ * .answer-display > .decimal::after {
@@ -549,7 +549,7 @@
 
         input[name="second-number-decimal-point"]:checked ~ * label[for^="second-number-decimal-point"] { display: none; }
         input[name="first-number-decimal-point"]:checked ~ * label[for^="first-number-decimal-point"] { display: none; }
-        @supports (-moz-appearance:none) { 
+        @supports (-moz-appearance: none) or (-webkit-appearance: none) { 
             label[for$="first-digit-0"],
             label[for*="-decimal-point"] { 
                 display: none; 
@@ -607,24 +607,29 @@
 
         .display.answer-display > span { font-size: 30px; }
 
-        .number-display {
-            counter-reset: number-integer number-decimal;
-            --abs-number: max(var(--number), -1 * var(--number));
-            --property-integer: calc(var(--abs-number) - 0.4999999);
-            --number-integer: var(--property-integer);
-            --number-decimal: calc((var(--abs-number) - var(--property-integer)) * var(--number-decimal-shift));
+        @supports not ((-moz-appearance: none) or (-webkit-appearance: none)) { 
+            .number-display {
+                counter-reset: number-integer number-decimal;
+                --abs-number: max(var(--number), -1 * var(--number));
+                --property-integer: calc(var(--abs-number) - 0.4999999);
+                --number-integer: var(--property-integer);
+                --number-decimal: calc((var(--abs-number) - var(--property-integer)) * var(--number-decimal-shift));
+                
+                --sign-number: calc(var( --abs-number) / var(--number));
+            }
 
-            --sign-number: calc(var( --abs-number) / var(--number));
-        }
-
-        @supports (-moz-appearance: none) { 
-            .number-display { --number-interger: var(--number); }
+            .number-display > .integer {
+                counter-increment: number-integer var(--number);
+            }
         }
         
-        .number-display > .integer {
-           counter-increment: number-integer var(--number-integer);
+        @supports (-moz-appearance: none) or (-webkit-appearance: none)  { 
+            .number-display > .integer {
+                counter-reset: number-integer;
+                counter-increment: number-integer var(--number);
+            }
         }
-        
+          
         .number-display > .decimal {
             counter-increment: number-decimal var(--number-decimal);
         }
