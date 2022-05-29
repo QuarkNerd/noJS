@@ -141,10 +141,15 @@
                                     <label for="reset">C</label>
                                 </div>
 
-                                <input class="operation" type="radio" name="operation" id="operation-plus" />
-                                <input class="operation" type="radio" name="operation" id="operation-minus" />
-                                <input class="operation" type="radio" name="operation" id="operation-divison" />
-                                <input class="operation" type="radio" name="operation" id="operation-multiplication" />
+                                <input type="radio" class="trig" name="operation" id="operation-sin" />
+                                <input type="radio" class="trig" name="operation" id="operation-cos" />
+                                <input type="radio" class="trig" name="operation" id="operation-tan" />
+
+                                <input type="radio" name="operation" id="operation-plus" />
+                                <input type="radio" name="operation" id="operation-minus" />
+                                <input type="radio" name="operation" id="operation-divison" />
+                                <input type="radio" name="operation" id="operation-multiplication" />
+
                                 <input class="equals" type="radio" name="equals" id="equals" />
                                 <!-- second-number -->
                                 <div class="set-operation set-number second-number-first-digit">
@@ -299,20 +304,29 @@
                                                                 <span class="decimal"></span>
                                                             </span>
                                                             <span class="set-second-number">
-                                                                <span class="determine-numbers">
-                                                                    <div class="number-display display answer-display">
-                                                                        <span class="negative-sign"></span>
-                                                                        <span class="integer"></span>
-                                                                        <span class="decimal"></span>
-                                                                    </div>
+                                                                <span class="determine-sin">
+                                                                    <span class="determine-cos">
+                                                                        <span class="determine-numbers">
+                                                                            <div class="number-display display answer-display">
+                                                                                <span class="negative-sign"></span>
+                                                                                <span class="integer"></span>
+                                                                                <span class="decimal"></span>
+                                                                            </div>
+                                                                        </span>
+                                                                    </span>
                                                                 </span>
                                                             </span>
                                                         </span>
+                                                        <div class="operation-pad trig-pad">
+                                                            <label for="operation-sin">sin</label>
+                                                            <label for="operation-cos">cos</label>
+                                                            <label for="operation-tan">tan</label>
+                                                        </div>
                                                         <div class="operation-pad regular-pad">
-                                                            <label class="operation" for="operation-plus">+</label>
-                                                            <label class="operation" for="operation-minus">-</label>
                                                             <label class="operation" for="operation-divison">÷</label>
                                                             <label class="operation" for="operation-multiplication">×</label>
+                                                            <label class="operation" for="operation-minus">-</label>
+                                                            <label class="operation" for="operation-plus">+</label>
                                                         </div>
                                                         <div class="operation-pad equals-pad">
                                                             <label for="equals">=</label>
@@ -391,6 +405,9 @@
             --number-decimal-display: no-zero;
             --second-number-decimal-shift: 1;
             --second-number-decimal-display: no-zero;
+            --pi: 3.141592653589793238462643383279502884197169399375105820974944;
+            --tau: calc(var(--pi) * 2);
+            --half-pi: calc(var(--pi) / 2);
         }
 
         .reset-number-counters {
@@ -527,6 +544,55 @@
 
         /* Calculation */
 
+        .determine-sin { --trig-input: var(--second-number) }
+
+        .determine-cos { --trig-input: calc(var(--second-number) + var(--pi) / 2) }
+
+        .determine-sin,
+        .determine-cos {
+
+            --property-integer: calc((var(--trig-input) / var(--tau)) - 0.49999999999);
+            --number-mod-tau: calc(var(--trig-input) - (var(--property-integer) * var(--tau)));
+
+            --number-mod-tau-minus-pi: calc(var(--number-mod-tau) - var(--pi));
+            --neg-mod-number-mod-tau-minus-pi: min(var(--number-mod-tau-minus-pi), -1 * var(--number-mod-tau-minus-pi));
+            --sign-modifier: calc(var(--number-mod-tau-minus-pi) / var(--neg-mod-number-mod-tau-minus-pi));
+
+            --fold-along-x-equals-pi: min(var(--tau) - var(--number-mod-tau), var(--number-mod-tau));
+            --z: min(var(--pi) - var(--fold-along-x-equals-pi), var(--fold-along-x-equals-pi));
+
+            --z-2: calc(var(--z) * var(--z));
+            --z-3: calc(var(--z) * var(--z-2));
+            --z-5: calc(var(--z-3) * var(--z-2));
+            --z-7: calc(var(--z-5) * var(--z-2));
+            --z-9: calc(var(--z-7) * var(--z-2));
+
+            --trig-output: calc(
+            var(--sign-modifier) * 
+                (
+                    var(--z)
+                    - var(--z-3) / 6
+                    + var(--z-5) / 120
+                    - var(--z-7) / 5040
+                    + var(--z-9) / 362880
+                    )
+            )
+        }
+
+        .determine-sin { --sin: var(--trig-output); }
+        .determine-cos { --cos: var(--trig-output); }
+
+        input#operation-sin:checked ~ .set-operation .determine-numbers {
+            --number: var(--sin);
+        }
+
+        input#operation-cos:checked ~ .set-operation .determine-numbers {
+            --number: var(--cos);
+        }
+
+        input#operation-tan:checked ~ .set-operation .determine-numbers {
+            --number: calc(var(--sin) / var(--cos))
+        }
 
         input#operation-divison:checked ~ .set-operation .determine-numbers {
             --number: calc(var(--first-number) / var(--second-number));
@@ -550,6 +616,7 @@
 
         
         #reduced-functions:not(:checked) ~ form input[name="operation"]#operation-divison:checked ~ input[name="equals"]:checked ~ * .answer-display > .decimal::after,
+        #reduced-functions:not(:checked) ~ form input[name="operation"].trig:checked ~ input[name="equals"]:checked ~ * .answer-display > .decimal::after,
         #reduced-functions:not(:checked) ~ form input[name$="decimal-point"]:checked ~ * input[name="equals"]:checked ~ * .answer-display > .decimal::after,
         #reduced-functions:not(:checked) ~ form input[name="equals"]:checked ~ * input[name$="decimal-point"]:checked ~ * .answer-display > .decimal::after {
             content: "." counter(number-decimal, pad-7);
@@ -578,7 +645,8 @@
         } 
 
             /* operation */
-        .operation-pad {
+        .regular-pad,
+        .equals-pad {
             display: none;
         }
 
@@ -586,7 +654,8 @@
             display: block;
         }
 
-        input[name="operation"]:checked ~ * .operation-pad.regular-pad {
+        input[name="operation"]:checked ~ * .operation-pad.regular-pad,
+        input[name="operation"]:checked ~ * .operation-pad.trig-pad {
             display: none !important;
         }
 
@@ -626,10 +695,10 @@
         #reduced-functions:not(:checked) ~ form .number-display {
             counter-reset: number-integer number-decimal;
             --abs-number: max(var(--number), -1 * var(--number));
-            --property-integer: calc(var(--abs-number) - 0.4999999);
+            --property-integer: calc(var(--abs-number) - 0.49999999999);
             --number-integer: var(--property-integer);
             --number-decimal: calc((var(--abs-number) - var(--property-integer)) * var(--number-decimal-shift));
-            
+
             --sign-number: calc(var( --abs-number) / var(--number));
         }
 
@@ -668,11 +737,14 @@
             content: "." counter(number-decimal, var(--number-decimal-display));
         }
 
+        input[name="operation"]#operation-sin:checked ~ * .operation::after { content: "sin\2008"; }
+        input[name="operation"]#operation-cos:checked ~ * .operation::after { content: "cos\2008"; }
+        input[name="operation"]#operation-tan:checked ~ * .operation::after { content: "tan\2008"; }
         input[name="operation"]#operation-plus:checked ~ * .operation::after { content: "\2008 +"; }
         input[name="operation"]#operation-minus:checked ~ * .operation::after { content: "\2008 -"; }
         input[name="operation"]#operation-divison:checked ~ * .operation::after { content: "\2008 ÷"; }
         input[name="operation"]#operation-multiplication:checked ~ * .operation::after { content: "\2008 ×"; }
-   
+        
         input[id^="second-number"][id$="1"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
         input[id^="second-number"][id$="2"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
         input[id^="second-number"][id$="3"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
@@ -783,6 +855,10 @@
             z-index: 1;
 
             width: 30px;
+        }
+
+        .operation-pad.trig-pad {
+            top: 85px;
         }
 
         .first-number-display {
