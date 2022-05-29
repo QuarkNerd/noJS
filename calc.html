@@ -298,7 +298,7 @@
                                                             </a>
                                                         </div>
                                                         <span class="set-number">
-                                                            <span class="operation"></span>
+                                                            <span class="operation-display"></span>
                                                             <span class="number-display display second-number-display">
                                                                 <span class="integer"></span>
                                                                 <span class="decimal"></span>
@@ -686,8 +686,10 @@
             padding-left: 15px;
         }
 
+        span.set-number,
         .display { font-size: 0px; }
-
+        
+        .operation-display,
         .display > span { font-size: 36px; }
 
         .display.answer-display > span { font-size: 30px; }
@@ -737,13 +739,13 @@
             content: "." counter(number-decimal, var(--number-decimal-display));
         }
 
-        input[name="operation"]#operation-sin:checked ~ * .operation::after { content: "sin\2008"; }
-        input[name="operation"]#operation-cos:checked ~ * .operation::after { content: "cos\2008"; }
-        input[name="operation"]#operation-tan:checked ~ * .operation::after { content: "tan\2008"; }
-        input[name="operation"]#operation-plus:checked ~ * .operation::after { content: "\2008 +"; }
-        input[name="operation"]#operation-minus:checked ~ * .operation::after { content: "\2008 -"; }
-        input[name="operation"]#operation-divison:checked ~ * .operation::after { content: "\2008 ÷"; }
-        input[name="operation"]#operation-multiplication:checked ~ * .operation::after { content: "\2008 ×"; }
+        input[name="operation"]#operation-sin:checked ~ * .operation-display::after { content: "sin\2008"; }
+        input[name="operation"]#operation-cos:checked ~ * .operation-display::after { content: "cos\2008"; }
+        input[name="operation"]#operation-tan:checked ~ * .operation-display::after { content: "tan\2008"; }
+        input[name="operation"]#operation-plus:checked ~ * .operation-display::after { content: "\2008 + "; }
+        input[name="operation"]#operation-minus:checked ~ * .operation-display::after { content: "\2008 - "; }
+        input[name="operation"]#operation-divison:checked ~ * .operation-display::after { content: "\2008 ÷ "; }
+        input[name="operation"]#operation-multiplication:checked ~ * .operation-display::after { content: "\2008 × "; }
         
         input[id^="second-number"][id$="1"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
         input[id^="second-number"][id$="2"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
