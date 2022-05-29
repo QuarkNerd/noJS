@@ -141,9 +141,9 @@
                                     <label for="reset">C</label>
                                 </div>
 
-                                <input type="radio" class="trig" name="operation" id="operation-sin" />
-                                <input type="radio" class="trig" name="operation" id="operation-cos" />
-                                <input type="radio" class="trig" name="operation" id="operation-tan" />
+                                <input type="radio" name="operation-trig" id="operation-sin" />
+                                <input type="radio" name="operation-trig" id="operation-cos" />
+                                <input type="radio" name="operation-trig" id="operation-tan" />
 
                                 <input type="radio" name="operation" id="operation-plus" />
                                 <input type="radio" name="operation" id="operation-minus" />
@@ -545,8 +545,10 @@
         /* Calculation */
 
         .determine-sin { --trig-input: var(--second-number) }
-
         .determine-cos { --trig-input: calc(var(--second-number) + var(--pi) / 2) }
+
+        input#operation-minus:checked ~ * .determine-sin { --trig-input: calc(-1 * var(--second-number)) }
+        input#operation-minus:checked ~ * .determine-cos { --trig-input: calc(-1 * var(--second-number) + var(--pi) / 2) }
 
         .determine-sin,
         .determine-cos {
@@ -566,6 +568,7 @@
             --z-5: calc(var(--z-3) * var(--z-2));
             --z-7: calc(var(--z-5) * var(--z-2));
             --z-9: calc(var(--z-7) * var(--z-2));
+            --z-11: calc(var(--z-9) * var(--z-2));
 
             --trig-output: calc(
             var(--sign-modifier) * 
@@ -575,24 +578,13 @@
                     + var(--z-5) / 120
                     - var(--z-7) / 5040
                     + var(--z-9) / 362880
+                    - var(--z-11) / 39916800
                     )
             )
         }
 
         .determine-sin { --sin: var(--trig-output); }
         .determine-cos { --cos: var(--trig-output); }
-
-        input#operation-sin:checked ~ .set-operation .determine-numbers {
-            --number: var(--sin);
-        }
-
-        input#operation-cos:checked ~ .set-operation .determine-numbers {
-            --number: var(--cos);
-        }
-
-        input#operation-tan:checked ~ .set-operation .determine-numbers {
-            --number: calc(var(--sin) / var(--cos))
-        }
 
         input#operation-divison:checked ~ .set-operation .determine-numbers {
             --number: calc(var(--first-number) / var(--second-number));
@@ -614,9 +606,20 @@
             content: counter(number-integer);
         }
 
+        input#operation-sin:checked ~ .set-operation .determine-numbers {
+            --number: var(--sin);
+        }
+
+        input#operation-cos:checked ~ .set-operation .determine-numbers {
+            --number: var(--cos);
+        }
+
+        input#operation-tan:checked ~ .set-operation .determine-numbers {
+            --number: calc(var(--sin) / var(--cos))
+        }
         
         #reduced-functions:not(:checked) ~ form input[name="operation"]#operation-divison:checked ~ input[name="equals"]:checked ~ * .answer-display > .decimal::after,
-        #reduced-functions:not(:checked) ~ form input[name="operation"].trig:checked ~ input[name="equals"]:checked ~ * .answer-display > .decimal::after,
+        #reduced-functions:not(:checked) ~ form input[name="operation-trig"]:checked ~ input[name="equals"]:checked ~ * .answer-display > .decimal::after,
         #reduced-functions:not(:checked) ~ form input[name$="decimal-point"]:checked ~ * input[name="equals"]:checked ~ * .answer-display > .decimal::after,
         #reduced-functions:not(:checked) ~ form input[name="equals"]:checked ~ * input[name$="decimal-point"]:checked ~ * .answer-display > .decimal::after {
             content: "." counter(number-decimal, pad-7);
@@ -630,6 +633,7 @@
 
         input[name$="digit"]:checked ~ * > .numbers-pad { display: block; }
 
+        input[name="operation-trig"]:checked ~ * .numbers-pad.second-number-first, 
         input[name="operation"]:checked ~ * .numbers-pad.second-number-first {
             display: block;
         }
@@ -650,18 +654,23 @@
             display: none;
         }
 
+        input[name="operation-trig"]:checked ~ * .operation-pad.regular-pad,
         input[name="first-number-first-digit"]:checked ~ * .operation-pad.regular-pad {
             display: block;
         }
 
         input[name="operation"]:checked ~ * .operation-pad.regular-pad,
-        input[name="operation"]:checked ~ * .operation-pad.trig-pad {
-            display: none !important;
+        input[name="operation-trig"]:checked ~ * .operation-pad.trig-pad {
+            display: none;
+        }
+
+        input[name="operation-trig"]:checked ~ * .operation-pad.regular-pad :not([for="operation-minus"]) {
+            display: none;
         }
 
         input[name="second-number-first-digit"]:checked ~ * .operation-pad.equals-pad { display: block; }
 
-        input[name="equals"]:checked ~ * .operation-pad.equals-pad { display: none }
+        input[name="equals"]:checked ~ * .operation-pad { display: none !important }
 
             /* reset button */
         .numbers-pad.only-reset {
@@ -701,7 +710,7 @@
             --number-integer: var(--property-integer);
             --number-decimal: calc((var(--abs-number) - var(--property-integer)) * var(--number-decimal-shift));
 
-            --sign-number: calc(var( --abs-number) / var(--number));
+            --sign-number: calc(var(--number) * 100000000000);
         }
 
         #reduced-functions:not(:checked) ~ form .number-display > .integer {
@@ -739,13 +748,16 @@
             content: "." counter(number-decimal, var(--number-decimal-display));
         }
 
-        input[name="operation"]#operation-sin:checked ~ * .operation-display::after { content: "sin\2008"; }
-        input[name="operation"]#operation-cos:checked ~ * .operation-display::after { content: "cos\2008"; }
-        input[name="operation"]#operation-tan:checked ~ * .operation-display::after { content: "tan\2008"; }
-        input[name="operation"]#operation-plus:checked ~ * .operation-display::after { content: "\2008 + "; }
-        input[name="operation"]#operation-minus:checked ~ * .operation-display::after { content: "\2008 - "; }
-        input[name="operation"]#operation-divison:checked ~ * .operation-display::after { content: "\2008 ÷ "; }
-        input[name="operation"]#operation-multiplication:checked ~ * .operation-display::after { content: "\2008 × "; }
+        input#operation-sin:checked ~ * .operation-display::after { content: "sin\2008"; }
+        input#operation-cos:checked ~ * .operation-display::after { content: "cos\2008"; }
+        input#operation-tan:checked ~ * .operation-display::after { content: "tan\2008"; }
+        input#operation-plus:checked ~ * .operation-display::after { content: "\2008 + "; }
+        input#operation-minus:checked ~ * .operation-display::after { content: "\2008 - "; }
+        input#operation-divison:checked ~ * .operation-display::after { content: "\2008 ÷ "; }
+        input#operation-multiplication:checked ~ * .operation-display::after { content: "\2008 × "; }
+        input#operation-sin:checked ~ input#operation-minus:checked ~ * .operation-display { content: "sin\2008 -"; }
+        input#operation-cos:checked ~ input#operation-minus:checked ~ * .operation-display::after { content: "cos\2008 -"; }
+        input#operation-tan:checked ~ input#operation-minus:checked ~ * .operation-display::after { content: "tan\2008 -"; }
         
         input[id^="second-number"][id$="1"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
         input[id^="second-number"][id$="2"][id*="digit"]:checked ~ * ~ * .divide-by-zero,
@@ -857,6 +869,10 @@
             z-index: 1;
 
             width: 30px;
+        }
+
+        input[name="operation-trig"]:checked ~ * .operation-pad.regular-pad {
+            bottom: 79px;
         }
 
         .operation-pad.trig-pad {
