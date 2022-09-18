@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <div class="symbol-O">
-            <img src="./crowsant.png">
-            
-            <div>  
-                <audio
-                    controls
-                    src="./croissant.mp3">
-                </audio>
+        <div class="main">
+            <div class="board">
+
+            </div>
+
+
+
+            <div class="symbol-O">
+                <img src="./crowsant.png">
+                <div>  
+                    <audio
+                        controls
+                        src="./croissant.mp3">
+                    </audio>
+                </div>
             </div>
         </div>
     </body>
     <style>
+        .board {
+            display: grid;
+
+        }
+
         .symbol-O div {
             position: relative;
             top: 180px;
@@ -37,7 +49,5 @@
             top: -11px;
             left: -11px;
         }
-        
-
      </style>
 </html>
