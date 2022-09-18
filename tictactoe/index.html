@@ -3,7 +3,15 @@
     <body>
         <div class="main">
             <div class="board">
-
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
 
 
@@ -20,10 +28,23 @@
         </div>
     </body>
     <style>
-        .board {
-            display: grid;
-
+        .main {
+            --grid-colour: limegreen
         }
+
+        .board {
+            display: inline-grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+            background-color: var(--grid-colour);
+            gap: 30px;
+        }
+
+        .board > div {
+            background-color: black;
+            width: 120px;
+            height: 120px;
+        } 
 
         .symbol-O div {
             position: relative;
