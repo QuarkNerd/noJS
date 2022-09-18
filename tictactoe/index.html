@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="symbol-O">
+            <img src="./crowsant.png">
+            
+            <div>  
+                <audio
+                    controls
+                    src="./croissant.mp3">
+                </audio>
+            </div>
+        </div>
+    </body>
+    <style>
+        .symbol-O div {
+            position: relative;
+            top: 180px;
+            left: 110px;
+            
+            border-radius: 20px;
+            height: 30px;
+            width: 30px;
+            
+            transform: scale(7);
+            overflow: hidden;
+        }
+
+        .symbol-O img {
+            z-index: 1;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .symbol-O div audio {
+            position: absolute;
+            top: -11px;
+            left: -11px;
+        }
+        
+
+     </style>
+</html>
