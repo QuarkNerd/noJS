@@ -204,18 +204,18 @@
 
         /* gameplay logic */
 
-        form:has(> input:checked) + div label[for^="X"],
-        form:has(> input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
-        form:has(> input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
-        form:has(> input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"]
+        form:has(input:checked) + div label[for^="X"],
+        form:has(input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
+        form:has(input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
+        form:has(input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"]
         {
             display: none;
         }
 
-        form:has(> input:checked ~ input:checked) + div label[for^="X"],
-        form:has(> input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
-        form:has(> input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
-        form:has(> input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"]
+        form:has(input:checked ~ input:checked) + div label[for^="X"],
+        form:has(input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
+        form:has(input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
+        form:has(input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"]
         {
             display: inline-block;
         }
@@ -226,24 +226,24 @@
             display: none;
         }
 
-        form:has(> #X-1:checked) + div .board-square-1 .symbol-X, 
-        form:has(> #X-2:checked) + div .board-square-2 .symbol-X, 
-        form:has(> #X-3:checked) + div .board-square-3 .symbol-X, 
-        form:has(> #X-4:checked) + div .board-square-4 .symbol-X, 
-        form:has(> #X-5:checked) + div .board-square-5 .symbol-X, 
-        form:has(> #X-6:checked) + div .board-square-6 .symbol-X, 
-        form:has(> #X-7:checked) + div .board-square-7 .symbol-X, 
-        form:has(> #X-8:checked) + div .board-square-8 .symbol-X, 
-        form:has(> #X-9:checked) + div .board-square-9 .symbol-X,
-        form:has(> #O-1:checked) + div .board-square-1 .symbol-O, 
-        form:has(> #O-2:checked) + div .board-square-2 .symbol-O, 
-        form:has(> #O-3:checked) + div .board-square-3 .symbol-O, 
-        form:has(> #O-4:checked) + div .board-square-4 .symbol-O, 
-        form:has(> #O-5:checked) + div .board-square-5 .symbol-O, 
-        form:has(> #O-6:checked) + div .board-square-6 .symbol-O, 
-        form:has(> #O-7:checked) + div .board-square-7 .symbol-O, 
-        form:has(> #O-8:checked) + div .board-square-8 .symbol-O, 
-        form:has(> #O-9:checked) + div .board-square-9 .symbol-O
+        form:has(#X-1:checked) + div .board-square-1 .symbol-X, 
+        form:has(#X-2:checked) + div .board-square-2 .symbol-X, 
+        form:has(#X-3:checked) + div .board-square-3 .symbol-X, 
+        form:has(#X-4:checked) + div .board-square-4 .symbol-X, 
+        form:has(#X-5:checked) + div .board-square-5 .symbol-X, 
+        form:has(#X-6:checked) + div .board-square-6 .symbol-X, 
+        form:has(#X-7:checked) + div .board-square-7 .symbol-X, 
+        form:has(#X-8:checked) + div .board-square-8 .symbol-X, 
+        form:has(#X-9:checked) + div .board-square-9 .symbol-X,
+        form:has(#O-1:checked) + div .board-square-1 .symbol-O, 
+        form:has(#O-2:checked) + div .board-square-2 .symbol-O, 
+        form:has(#O-3:checked) + div .board-square-3 .symbol-O, 
+        form:has(#O-4:checked) + div .board-square-4 .symbol-O, 
+        form:has(#O-5:checked) + div .board-square-5 .symbol-O, 
+        form:has(#O-6:checked) + div .board-square-6 .symbol-O, 
+        form:has(#O-7:checked) + div .board-square-7 .symbol-O, 
+        form:has(#O-8:checked) + div .board-square-8 .symbol-O, 
+        form:has(#O-9:checked) + div .board-square-9 .symbol-O
         {
             display: block;
         }
