@@ -2,25 +2,25 @@
 <html>
     <body>
         <form class="calculator">
-            <input type="reset" id="reset">
-            <input type="radio" id="O-1" name="1" />
             <input type="radio" id="X-1" name="1" />
-            <input type="radio" id="O-2" name="2" />
             <input type="radio" id="X-2" name="2" />
-            <input type="radio" id="O-3" name="3" />
             <input type="radio" id="X-3" name="3" />
-            <input type="radio" id="O-4" name="4" />
             <input type="radio" id="X-4" name="4" />
-            <input type="radio" id="O-5" name="5" />
             <input type="radio" id="X-5" name="5" />
-            <input type="radio" id="O-6" name="6" />
             <input type="radio" id="X-6" name="6" />
-            <input type="radio" id="O-7" name="7" />
             <input type="radio" id="X-7" name="7" />
-            <input type="radio" id="O-8" name="8" />
             <input type="radio" id="X-8" name="8" />
-            <input type="radio" id="O-9" name="9" />
             <input type="radio" id="X-9" name="9" />
+            <input type="radio" id="O-1" name="1" />
+            <input type="radio" id="O-2" name="2" />
+            <input type="radio" id="O-3" name="3" />
+            <input type="radio" id="O-4" name="4" />
+            <input type="radio" id="O-5" name="5" />
+            <input type="radio" id="O-6" name="6" />
+            <input type="radio" id="O-7" name="7" />
+            <input type="radio" id="O-8" name="8" />
+            <input type="radio" id="O-9" name="9" />
+            <input type="reset" id="reset">
         </form>
         <div class="main">
             <div class="board">
@@ -132,6 +132,10 @@
         .main {
             --grid-colour: limegreen;
             --grid-box: black;
+
+            --has-X-won: 0;
+            --has-O-won: 0;
+            --is-board-full: 0;
         }
 
         .board {
@@ -244,5 +248,27 @@
             display: block;
         }
 
+        /* end-game detection */
+
+        form:has(input[id^="X"]:nth-of-type(3n-2):checked + input:checked + input:checked) + .main,
+        form:has(input[id^="X"]:checked + * + * + input:checked + * + * + input[id^="X"]:checked) + .main,
+        form:has(input#X-1:checked, input#X-5:checked, input#X-9:checked) + .main,
+        form:has(input#X-3:checked, input#X-5:checked, input#X-7:checked) + .main
+        {
+            --has-X-won: 1;
+        }
+
+        form:has(input[id^="O"]:nth-of-type(3n+7):checked + input:checked + input:checked) + .main,
+        form:has(input[id^="O"]:checked + * + * + input:checked + * + * + input[id^="O"]:checked) + .main,
+        form:has(input#O-1:checked, input#O-5:checked, input#O-9:checked) + .main,
+        form:has(input#O-3:checked, input#O-5:checked, input#O-7:checked) + .main
+        {
+            --has-O-won: 1;
+        }
+
+        form:has(input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + .main
+        {
+            --is-board-full: 1;
+        }
      </style>
 </html>
