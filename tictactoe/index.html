@@ -1,35 +1,137 @@
 <!DOCTYPE html>
 <html>
     <body>
+        <form class="calculator">
+            <input type="reset" id="reset">
+            <input type="radio" id="O-1" name="1" />
+            <input type="radio" id="X-1" name="1" />
+            <input type="radio" id="O-2" name="2" />
+            <input type="radio" id="X-2" name="2" />
+            <input type="radio" id="O-3" name="3" />
+            <input type="radio" id="X-3" name="3" />
+            <input type="radio" id="O-4" name="4" />
+            <input type="radio" id="X-4" name="4" />
+            <input type="radio" id="O-5" name="5" />
+            <input type="radio" id="X-5" name="5" />
+            <input type="radio" id="O-6" name="6" />
+            <input type="radio" id="X-6" name="6" />
+            <input type="radio" id="O-7" name="7" />
+            <input type="radio" id="X-7" name="7" />
+            <input type="radio" id="O-8" name="8" />
+            <input type="radio" id="X-8" name="8" />
+            <input type="radio" id="O-9" name="9" />
+            <input type="radio" id="X-9" name="9" />
+        </form>
         <div class="main">
             <div class="board">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-
-
-
-            <div class="symbol-O">
-                <img src="./crowsant.png">
-                <div>  
-                    <audio
-                        controls
-                        src="./croissant.mp3">
-                    </audio>
+                <div class="board-square board-square-1">
+                    <label for="O-1"></label>
+                    <label for="X-1"></label>
+                    <div class="symbol-X">🥐</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-2">
+                    <label for="O-2"></label>
+                    <label for="X-2"></label>
+                    <div class="symbol-X">🥐</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-3">
+                    <label for="O-3"></label>
+                    <label for="X-3"></label>
+                    <div class="symbol-X">🥐</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-4">
+                    <label for="O-4"></label>
+                    <label for="X-4"></label>
+                    <div class="symbol-X">🥐</div>
+                    <div class="symbol-O">
+                    <img src="./crowsant.png">
+                    <div>  
+                        <audio controls src="./croissant.mp3"></audio>
+                    </div>
+                </div>
+                </div>
+                <div class="board-square board-square-5">
+                    <label for="O-5"></label>
+                    <label for="X-5"></label>
+                    <div class="symbol-X">🥐</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-6">
+                    <label for="O-6"></label>
+                    <label for="X-6"></label>
+                    <div class="symbol-X">🥐</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-7">
+                    <label for="O-7"></label>
+                    <label for="X-7"></label>
+                    <div class="symbol-X">🥐</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-8">
+                    <label for="O-8"></label>
+                    <label for="X-8"></label>
+                    <div class="symbol-X">🥐</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-9">
+                    <label for="O-9"></label>
+                    <label for="X-9"></label>
+                    <div class="symbol-X">🥐</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </body>
     <style>
+
+        /* base styles */
         .main {
-            --grid-colour: limegreen
+            --grid-colour: limegreen;
+            --grid-box: black;
         }
 
         .board {
@@ -40,29 +142,54 @@
             gap: 30px;
         }
 
-        .board > div {
-            background-color: black;
+        .board-square {
+            position: relative;
+
+            background-color: var(--grid-box);
             width: 120px;
             height: 120px;
-        } 
+        }
+
+        .board-square > * {
+            display: inline-block;
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+        }
+
+        .symbol-X {
+            line-height: 120px;
+            font-size: 60px;
+
+            text-align: center;
+        }
+        
+        .symbol-X p {
+            margin: auto 0;
+        }
 
         .symbol-O div {
-            position: relative;
-            top: 180px;
-            left: 110px;
+            position: absolute;
+            top: 50px;
+            left: 45px;
             
-            border-radius: 20px;
             height: 30px;
             width: 30px;
+            border-radius: 20px;
+            transform: scale(1.6);
             
-            transform: scale(7);
             overflow: hidden;
         }
 
         .symbol-O img {
             z-index: 1;
-            position: absolute;
+            position: relative;
             pointer-events: none;
+
+            display: block;
+            width: 45%;
+            margin: 25px auto;
         }
 
         .symbol-O div audio {
@@ -70,5 +197,52 @@
             top: -11px;
             left: -11px;
         }
+
+        /* gameplay logic */
+
+        form:has(> input:checked) + div label[for^="X"],
+        form:has(> input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
+        form:has(> input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
+        form:has(> input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"]
+        {
+            display: none;
+        }
+
+        form:has(> input:checked ~ input:checked) + div label[for^="X"],
+        form:has(> input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
+        form:has(> input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
+        form:has(> input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"]
+        {
+            display: inline-block;
+        }
+
+        .board-square > .symbol-O,
+        .board-square > .symbol-X
+        {
+            display: none;
+        }
+
+        form:has(> #X-1:checked) + div .board-square-1 .symbol-X, 
+        form:has(> #X-2:checked) + div .board-square-2 .symbol-X, 
+        form:has(> #X-3:checked) + div .board-square-3 .symbol-X, 
+        form:has(> #X-4:checked) + div .board-square-4 .symbol-X, 
+        form:has(> #X-5:checked) + div .board-square-5 .symbol-X, 
+        form:has(> #X-6:checked) + div .board-square-6 .symbol-X, 
+        form:has(> #X-7:checked) + div .board-square-7 .symbol-X, 
+        form:has(> #X-8:checked) + div .board-square-8 .symbol-X, 
+        form:has(> #X-9:checked) + div .board-square-9 .symbol-X,
+        form:has(> #O-1:checked) + div .board-square-1 .symbol-O, 
+        form:has(> #O-2:checked) + div .board-square-2 .symbol-O, 
+        form:has(> #O-3:checked) + div .board-square-3 .symbol-O, 
+        form:has(> #O-4:checked) + div .board-square-4 .symbol-O, 
+        form:has(> #O-5:checked) + div .board-square-5 .symbol-O, 
+        form:has(> #O-6:checked) + div .board-square-6 .symbol-O, 
+        form:has(> #O-7:checked) + div .board-square-7 .symbol-O, 
+        form:has(> #O-8:checked) + div .board-square-8 .symbol-O, 
+        form:has(> #O-9:checked) + div .board-square-9 .symbol-O
+        {
+            display: block;
+        }
+
      </style>
 </html>
