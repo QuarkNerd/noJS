@@ -136,6 +136,8 @@
             --has-X-won: 0;
             --has-O-won: 0;
             --is-board-full: 0;
+
+            --is-game-over: max(var(--has-O-won), var(--has-X-won), var(--is-board-full));
         }
 
         .board {
@@ -160,6 +162,10 @@
 
             width: 100%;
             height: 100%;
+        }
+
+        label {
+            transform: scale(calc(1 - var(--is-game-over)));
         }
 
         .symbol-X {
