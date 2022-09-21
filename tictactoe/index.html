@@ -205,17 +205,17 @@
         /* gameplay logic */
 
         form:has(input:checked) + div label[for^="X"],
-        form:has(input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
-        form:has(input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
-        form:has(input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"]
+        form:has(input[id^="X"]:checked ~ input[id^="X"]:checked) + div label[for^="X"],
+        form:has(input[id^="X"]:checked ~ input[id^="X"]:checked ~ input[id^="X"]:checked) + div label[for^="X"],
+        form:has(input[id^="X"]:checked ~ input[id^="X"]:checked ~ input[id^="X"]:checked ~ input[id^="X"]:checked) + div label[for^="X"]
         {
             display: none;
         }
 
-        form:has(input:checked ~ input:checked) + div label[for^="X"],
-        form:has(input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
-        form:has(input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"],
-        form:has(input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + div label[for^="X"]
+        form:has(input[id^="O"]:checked) + div label[for^="X"],
+        form:has(input[id^="O"]:checked ~ input[id^="O"]:checked) + div label[for^="X"],
+        form:has(input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked) + div label[for^="X"],
+        form:has(input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked) + div label[for^="X"]
         {
             display: inline-block;
         }
@@ -252,16 +252,16 @@
 
         form:has(input[id^="X"]:nth-of-type(3n-2):checked + input:checked + input:checked) + .main,
         form:has(input[id^="X"]:checked + * + * + input:checked + * + * + input[id^="X"]:checked) + .main,
-        form:has(input#X-1:checked, input#X-5:checked, input#X-9:checked) + .main,
-        form:has(input#X-3:checked, input#X-5:checked, input#X-7:checked) + .main
+        form:has(input#X-1:checked ~ input#X-5:checked ~ input#X-9:checked) + .main,
+        form:has(input#X-3:checked ~ input#X-5:checked ~ input#X-7:checked) + .main
         {
             --has-X-won: 1;
         }
 
         form:has(input[id^="O"]:nth-of-type(3n+7):checked + input:checked + input:checked) + .main,
         form:has(input[id^="O"]:checked + * + * + input:checked + * + * + input[id^="O"]:checked) + .main,
-        form:has(input#O-1:checked, input#O-5:checked, input#O-9:checked) + .main,
-        form:has(input#O-3:checked, input#O-5:checked, input#O-7:checked) + .main
+        form:has(input#O-1:checked ~ input#O-5:checked ~ input#O-9:checked) + .main,
+        form:has(input#O-3:checked ~ input#O-5:checked ~ input#O-7:checked) + .main
         {
             --has-O-won: 1;
         }
