@@ -126,11 +126,15 @@
             </div>
 
             <div class="state-display">
-                <div class="x-to-play"></div>
-                <div class="y-to-play"></div>
-                <div class="x-won"></div>
-                <div class="y-won"></div>
-                <div class="draw"></div>
+                <div class="x-to-play">🥐 to play</div>
+                <div class="o-to-play">
+                    <img src="./crowsant.png"> to play
+                    </div>
+                <div class="x-won">🥐 has won!</div>
+                <div class="o-won">
+                    <img src="./crowsant.png"> has won!
+                </div>
+                <div class="draw">It's a draw!</div>
             </div>
         </div>
     </body>
@@ -141,6 +145,7 @@
             background: lightgrey;
             --grid-colour: limegreen;
             --grid-box: black;
+            --grid-square-size: 120px;
 
             --has-x-just-played: 0;
             --has-X-won: 0;
@@ -149,7 +154,7 @@
             
             --is-game-over: max(var(--has-O-won), var(--has-X-won), var(--is-board-full));
             --is-game-on: calc(1 - var(--is-game-over));
-            --is-draw: calc(var(--is-game-over) - var(--has-X-won) - var(--has-O-won));
+            --has-draw: calc(var(--is-game-over) - var(--has-X-won) - var(--has-O-won));
             
             --is-X-to-play: calc(var(--is-game-on)*(1 - var(--has-x-just-played)));
             --is-O-to-play: calc(var(--is-game-on)*var(--has-x-just-played));
@@ -161,31 +166,38 @@
         }
 
         .board {
-            display: inline-grid;
+            margin: 0 auto;
+
+            width: fit-content;
+
+            display: grid;
             grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
 
             background-color: var(--grid-colour);
-            gap: 30px;
+            border: 10px solid var(--grid-colour);
         }
 
         .board-square {
             position: relative;
 
             background-color: var(--grid-box);
-            width: 120px;
-            height: 120px;
+            width: var(--grid-square-size);
+            height: var(--grid-square-size);
         }
 
-        .board-square > * {
+        .board-square > *,
+        .symbol-O
+        {
             display: inline-block;
             position: absolute;
 
-            width: 100%;
-            height: 100%;
+            width: var(--grid-square-size);
+            height: var(--grid-square-size);
         }
 
         .symbol-X {
-            line-height: 120px;
+            line-height: var(--grid-square-size);
             font-size: 60px;
 
             text-align: center;
@@ -224,6 +236,35 @@
             left: -11px;
         }
 
+        .state-display {
+            position: relative;
+            height: 60px;
+            width: 500px;
+
+            margin: 20px;
+
+            border: 10px solid var(--grid-colour);
+            background: var(--grid-box);
+            color: white;
+
+            font-size: 50px;
+            line-height: 60px;
+        }
+        
+        .state-display > div {
+            position: absolute;
+            left: 0px;
+            width: 100%;
+
+            text-align: center;
+        }
+
+        .state-display img {
+            position: relative;
+            top: 5px;
+            height: 45px;
+        }
+
         /* gameplay logic */
 
         body:has(input:checked),
@@ -240,20 +281,6 @@
         body:has(input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked)
         {
             --has-x-just-played: 0;
-        }
-
-        label[for^="X"] {
-            transform: scale(var(--is-X-to-play));
-        }
-
-        label[for^="O"] {
-            transform: scale(var(--is-O-to-play));
-        }
-
-        .board-square > .symbol-O,
-        .board-square > .symbol-X
-        {
-            display: none;
         }
 
         form:has(#X-1:checked) + div .board-square-1 .symbol-X, 
@@ -299,6 +326,33 @@
         body:has(input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked)
         {
             --is-board-full: 1;
+        }
+
+        /* display logic */
+        .board-square > .symbol-O,
+        .board-square > .symbol-X
+        {
+            display: none;
+        }
+
+        .x-to-play, label[for^="X"] {
+            transform: scale(var(--is-X-to-play));
+        }
+
+        .o-to-play, label[for^="O"] {
+            transform: scale(var(--is-O-to-play));
+        }
+        
+        .x-won {
+            transform: scale(var(--has-X-won));
+        }
+
+        .o-won {
+            transform: scale(var(--has-O-won));
+        }
+
+        .draw {
+            transform: scale(var(--has-draw));
         }
      </style>
 </html>
