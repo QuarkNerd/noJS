@@ -125,22 +125,34 @@
                 </div>
             </div>
 
-            
+            <div class="state-display">
+                <div class="x-to-play"></div>
+                <div class="y-to-play"></div>
+                <div class="x-won"></div>
+                <div class="y-won"></div>
+                <div class="draw"></div>
+            </div>
         </div>
     </body>
     <style>
 
         /* base styles */
         body {
+            background: lightgrey;
             --grid-colour: limegreen;
             --grid-box: black;
-            
+
+            --has-x-just-played: 0;
             --has-X-won: 0;
             --has-O-won: 0;
             --is-board-full: 0;
             
             --is-game-over: max(var(--has-O-won), var(--has-X-won), var(--is-board-full));
-            background: lightgrey;
+            --is-game-on: calc(1 - var(--is-game-over));
+            --is-draw: calc(var(--is-game-over) - var(--has-X-won) - var(--has-O-won));
+            
+            --is-X-to-play: calc(var(--is-game-on)*(1 - var(--has-x-just-played)));
+            --is-O-to-play: calc(var(--is-game-on)*var(--has-x-just-played));
         }
 
         .main {
@@ -170,10 +182,6 @@
 
             width: 100%;
             height: 100%;
-        }
-
-        label {
-            transform: scale(calc(1 - var(--is-game-over)));
         }
 
         .symbol-X {
@@ -218,20 +226,28 @@
 
         /* gameplay logic */
 
-        form:has(input:checked) + div label[for^="X"],
-        form:has(input[id^="X"]:checked ~ input[id^="X"]:checked) + div label[for^="X"],
-        form:has(input[id^="X"]:checked ~ input[id^="X"]:checked ~ input[id^="X"]:checked) + div label[for^="X"],
-        form:has(input[id^="X"]:checked ~ input[id^="X"]:checked ~ input[id^="X"]:checked ~ input[id^="X"]:checked) + div label[for^="X"]
+        body:has(input:checked),
+        body:has(input[id^="X"]:checked ~ input[id^="X"]:checked),
+        body:has(input[id^="X"]:checked ~ input[id^="X"]:checked ~ input[id^="X"]:checked),
+        body:has(input[id^="X"]:checked ~ input[id^="X"]:checked ~ input[id^="X"]:checked ~ input[id^="X"]:checked)
         {
-            display: none;
+            --has-x-just-played: 1;
         }
 
-        form:has(input[id^="O"]:checked) + div label[for^="X"],
-        form:has(input[id^="O"]:checked ~ input[id^="O"]:checked) + div label[for^="X"],
-        form:has(input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked) + div label[for^="X"],
-        form:has(input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked) + div label[for^="X"]
+        body:has(input[id^="O"]:checked),
+        body:has(input[id^="O"]:checked ~ input[id^="O"]:checked),
+        body:has(input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked),
+        body:has(input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked)
         {
-            display: inline-block;
+            --has-x-just-played: 0;
+        }
+
+        label[for^="X"] {
+            transform: scale(var(--is-X-to-play));
+        }
+
+        label[for^="O"] {
+            transform: scale(var(--is-O-to-play));
         }
 
         .board-square > .symbol-O,
