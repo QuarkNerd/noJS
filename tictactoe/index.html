@@ -124,20 +124,28 @@
                     </div>
                 </div>
             </div>
+
+            
         </div>
     </body>
     <style>
 
         /* base styles */
-        .main {
+        body {
             --grid-colour: limegreen;
             --grid-box: black;
-
+            
             --has-X-won: 0;
             --has-O-won: 0;
             --is-board-full: 0;
-
+            
             --is-game-over: max(var(--has-O-won), var(--has-X-won), var(--is-board-full));
+            background: lightgrey;
+        }
+
+        .main {
+            width: fit-content;
+            margin: 10px auto;
         }
 
         .board {
@@ -256,23 +264,23 @@
 
         /* end-game detection */
 
-        form:has(input[id^="X"]:nth-of-type(3n-2):checked + input:checked + input:checked) + .main,
-        form:has(input[id^="X"]:checked + * + * + input:checked + * + * + input[id^="X"]:checked) + .main,
-        form:has(input#X-1:checked ~ input#X-5:checked ~ input#X-9:checked) + .main,
-        form:has(input#X-3:checked ~ input#X-5:checked ~ input#X-7:checked) + .main
+        body:has(input[id^="X"]:nth-of-type(3n-2):checked + input:checked + input:checked),
+        body:has(input[id^="X"]:checked + * + * + input:checked + * + * + input[id^="X"]:checked),
+        body:has(input#X-1:checked ~ input#X-5:checked ~ input#X-9:checked),
+        body:has(input#X-3:checked ~ input#X-5:checked ~ input#X-7:checked)
         {
             --has-X-won: 1;
         }
 
-        form:has(input[id^="O"]:nth-of-type(3n+7):checked + input:checked + input:checked) + .main,
-        form:has(input[id^="O"]:checked + * + * + input:checked + * + * + input[id^="O"]:checked) + .main,
-        form:has(input#O-1:checked ~ input#O-5:checked ~ input#O-9:checked) + .main,
-        form:has(input#O-3:checked ~ input#O-5:checked ~ input#O-7:checked) + .main
+        body:has(input[id^="O"]:nth-of-type(3n+7):checked + input:checked + input:checked),
+        body:has(input[id^="O"]:checked + * + * + input:checked + * + * + input[id^="O"]:checked),
+        body:has(input#O-1:checked ~ input#O-5:checked ~ input#O-9:checked),
+        body:has(input#O-3:checked ~ input#O-5:checked ~ input#O-7:checked)
         {
             --has-O-won: 1;
         }
 
-        form:has(input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked) + .main
+        body:has(input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked)
         {
             --is-board-full: 1;
         }
