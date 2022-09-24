@@ -141,8 +141,25 @@
                     Reset
                 </label>
                 
-                <div class="button">
-
+                <div class="button random">
+                    <label for="X-1"></label>
+                    <label for="X-2"></label>
+                    <label for="X-3"></label>
+                    <label for="X-4"></label>
+                    <label for="X-5"></label>
+                    <label for="X-6"></label>
+                    <label for="X-7"></label>
+                    <label for="X-8"></label>
+                    <label for="X-9"></label>
+                    <label for="O-1"></label>
+                    <label for="O-2"></label>
+                    <label for="O-3"></label>
+                    <label for="O-4"></label>
+                    <label for="O-5"></label>
+                    <label for="O-6"></label>
+                    <label for="O-7"></label>
+                    <label for="O-8"></label>
+                    <label for="O-9"></label>
                 </div>
             </div>
         </div>
@@ -271,6 +288,7 @@
             width: 100%;
 
             text-align: center;
+            overflow: hidden;
         }
 
         .state-display img {
@@ -291,6 +309,14 @@
             background: var(--grid-box);
             border: 10px solid var(--grid-colour);
             text-align: center;
+        }
+
+        .random > label {
+            display: block;
+
+            width: 180px;
+            height: 60px;
+
         }
 
         /* gameplay logic */
@@ -363,6 +389,19 @@
             display: none;
         }
 
+        body:has([id$="1"]:checked) label[for$="1"],
+        body:has([id$="2"]:checked) label[for$="2"],
+        body:has([id$="3"]:checked) label[for$="3"],
+        body:has([id$="4"]:checked) label[for$="4"],
+        body:has([id$="5"]:checked) label[for$="5"],
+        body:has([id$="6"]:checked) label[for$="6"],
+        body:has([id$="7"]:checked) label[for$="7"],
+        body:has([id$="8"]:checked) label[for$="8"],
+        body:has([id$="9"]:checked) label[for$="9"]
+        {
+            display: none;
+        }
+
         .x-to-play, label[for^="X"] {
             transform: scale(var(--is-X-to-play));
         }
@@ -382,5 +421,19 @@
         .draw {
             transform: scale(var(--has-draw));
         }
+
+        
+        /* audio {
+            animation: 40s linear 0s infinite alternate sun-rise;
+        }
+
+        @keyframes sun-rise {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-110vh);
+            }
+        } */
      </style>
 </html>
