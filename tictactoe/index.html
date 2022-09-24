@@ -311,28 +311,6 @@
             --has-x-just-played: 0;
         }
 
-        form:has(#X-1:checked) + div .board-square-1 .symbol-X, 
-        form:has(#X-2:checked) + div .board-square-2 .symbol-X, 
-        form:has(#X-3:checked) + div .board-square-3 .symbol-X, 
-        form:has(#X-4:checked) + div .board-square-4 .symbol-X, 
-        form:has(#X-5:checked) + div .board-square-5 .symbol-X, 
-        form:has(#X-6:checked) + div .board-square-6 .symbol-X, 
-        form:has(#X-7:checked) + div .board-square-7 .symbol-X, 
-        form:has(#X-8:checked) + div .board-square-8 .symbol-X, 
-        form:has(#X-9:checked) + div .board-square-9 .symbol-X,
-        form:has(#O-1:checked) + div .board-square-1 .symbol-O, 
-        form:has(#O-2:checked) + div .board-square-2 .symbol-O, 
-        form:has(#O-3:checked) + div .board-square-3 .symbol-O, 
-        form:has(#O-4:checked) + div .board-square-4 .symbol-O, 
-        form:has(#O-5:checked) + div .board-square-5 .symbol-O, 
-        form:has(#O-6:checked) + div .board-square-6 .symbol-O, 
-        form:has(#O-7:checked) + div .board-square-7 .symbol-O, 
-        form:has(#O-8:checked) + div .board-square-8 .symbol-O, 
-        form:has(#O-9:checked) + div .board-square-9 .symbol-O
-        {
-            display: block;
-        }
-
         /* end-game detection */
 
         body:has(input[id^="X"]:nth-of-type(3n-2):checked + input:checked + input:checked),
@@ -357,6 +335,28 @@
         }
 
         /* display logic */
+        body:has(#X-1:checked) .board-square-1 .symbol-X,
+        body:has(#X-2:checked) .board-square-2 .symbol-X,
+        body:has(#X-3:checked) .board-square-3 .symbol-X,
+        body:has(#X-4:checked) .board-square-4 .symbol-X,
+        body:has(#X-5:checked) .board-square-5 .symbol-X,
+        body:has(#X-6:checked) .board-square-6 .symbol-X,
+        body:has(#X-7:checked) .board-square-7 .symbol-X,
+        body:has(#X-8:checked) .board-square-8 .symbol-X,
+        body:has(#X-9:checked) .board-square-9 .symbol-X,
+        body:has(#O-1:checked) .board-square-1 .symbol-O,
+        body:has(#O-2:checked) .board-square-2 .symbol-O,
+        body:has(#O-3:checked) .board-square-3 .symbol-O,
+        body:has(#O-4:checked) .board-square-4 .symbol-O,
+        body:has(#O-5:checked) .board-square-5 .symbol-O,
+        body:has(#O-6:checked) .board-square-6 .symbol-O,
+        body:has(#O-7:checked) .board-square-7 .symbol-O,
+        body:has(#O-8:checked) .board-square-8 .symbol-O,
+        body:has(#O-9:checked) .board-square-9 .symbol-O
+        {
+            display: block;
+        }
+
         .board-square > .symbol-O,
         .board-square > .symbol-X
         {
