@@ -126,11 +126,11 @@
             </div>
 
             <div class="state-display">
-                <div class="x-to-play">🥐 to play</div>
+                <div class="x-to-play">🥐to play</div>
                 <div class="o-to-play">
                     <img src="./crowsant.png"> to play
                     </div>
-                <div class="x-won">🥐 has won!</div>
+                <div class="x-won">🥐has won!</div>
                 <div class="o-won">
                     <img src="./crowsant.png"> has won!
                 </div>
@@ -171,15 +171,17 @@
     </body>
     <style>
 
-        /* base styles */
         body {
             background: lightgrey;
             color: white;
-            font-size: 50px;
+            font-size: 40px;
             
             --grid-colour: limegreen;
             --grid-box: black;
             --grid-square-size: 120px;
+
+            --button-width: 180px;
+            --button-height: 60px;
             
             --has-x-just-played: 0;
             --has-X-won: 0;
@@ -194,6 +196,7 @@
             --is-O-to-play: calc(var(--is-game-on)*var(--has-x-just-played));
         }
         
+        /* base styles */
         form {
             display: none;
         }
@@ -210,7 +213,7 @@
 
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 30px;
+            gap: 20px;
 
             background-color: var(--grid-colour);
             border: 10px solid var(--grid-colour);
@@ -276,7 +279,7 @@
 
         .state-display {
             position: relative;
-            height: 60px;
+            height: var(--button-height);
             width: 500px;
 
             margin: 20px 0;
@@ -284,7 +287,7 @@
             border: 10px solid var(--grid-colour);
             background: var(--grid-box);
 
-            line-height: 60px;
+            line-height: var(--button-height);
         }
         
         .state-display > div {
@@ -308,8 +311,9 @@
         }
 
         .button {
-            height: 60px;
-            width: 180px;
+            height: var(--button-height);
+            line-height: var(--button-height);
+            width: var(--button-width);
 
             background: var(--grid-box);
             border: 10px solid var(--grid-colour);
@@ -423,30 +427,32 @@
 
         .random {
             overflow: hidden;
+            transform: scale(calc(1 - var(--is-game-over)));
         }
 
         .random div {
             display: grid;
-            width: 180px;
+            width: var(--button-width);
             animation: 0.1s linear 0s infinite normal moving-button;
         }
 
         .random div:hover {
+            /* this is neede because if a label moves away while the user is clicking, the click fails */
             animation-play-state: paused;
         }
 
         .random .O {
-            height: calc(60px * 9 * var(--is-O-to-play));
+            height: calc(var(--button-height) * 9 * var(--is-O-to-play));
         }
         
         .random .X {
-            height: calc(60px * 9 * var(--is-X-to-play));
+            height: calc(var(--button-height) * 9 * var(--is-X-to-play));
         }
 
 
         .random label {
             display: block;
-            width: 180px;
+            width: var(--button-width);
         }
         
         @keyframes moving-button {
@@ -454,7 +460,7 @@
                 transform: translateY(0);
             }
             to {
-                transform: translateY(calc(60px * -8));
+                transform: translateY(calc(var(--button-height) * -8));
             }
         }
 
