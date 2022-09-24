@@ -142,24 +142,29 @@
                 </label>
                 
                 <div class="button random">
-                    <label for="X-1"></label>
-                    <label for="X-2"></label>
-                    <label for="X-3"></label>
-                    <label for="X-4"></label>
-                    <label for="X-5"></label>
-                    <label for="X-6"></label>
-                    <label for="X-7"></label>
-                    <label for="X-8"></label>
-                    <label for="X-9"></label>
-                    <label for="O-1"></label>
-                    <label for="O-2"></label>
-                    <label for="O-3"></label>
-                    <label for="O-4"></label>
-                    <label for="O-5"></label>
-                    <label for="O-6"></label>
-                    <label for="O-7"></label>
-                    <label for="O-8"></label>
-                    <label for="O-9"></label>
+                    Random
+                    <div class="X">
+                        <label for="X-1"></label>
+                        <label for="X-2"></label>
+                        <label for="X-3"></label>
+                        <label for="X-4"></label>
+                        <label for="X-5"></label>
+                        <label for="X-6"></label>
+                        <label for="X-7"></label>
+                        <label for="X-8"></label>
+                        <label for="X-9"></label>
+                    </div>
+                    <div class="O">
+                        <label for="O-1"></label>
+                        <label for="O-2"></label>
+                        <label for="O-3"></label>
+                        <label for="O-4"></label>
+                        <label for="O-5"></label>
+                        <label for="O-6"></label>
+                        <label for="O-7"></label>
+                        <label for="O-8"></label>
+                        <label for="O-9"></label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -171,11 +176,11 @@
             background: lightgrey;
             color: white;
             font-size: 50px;
-
+            
             --grid-colour: limegreen;
             --grid-box: black;
             --grid-square-size: 120px;
-
+            
             --has-x-just-played: 0;
             --has-X-won: 0;
             --has-O-won: 0;
@@ -188,7 +193,7 @@
             --is-X-to-play: calc(var(--is-game-on)*(1 - var(--has-x-just-played)));
             --is-O-to-play: calc(var(--is-game-on)*var(--has-x-just-played));
         }
-
+        
         form {
             display: none;
         }
@@ -311,14 +316,6 @@
             text-align: center;
         }
 
-        .random > label {
-            display: block;
-
-            width: 180px;
-            height: 60px;
-
-        }
-
         /* gameplay logic */
 
         body:has(input:checked),
@@ -383,12 +380,6 @@
             display: block;
         }
 
-        .board-square > .symbol-O,
-        .board-square > .symbol-X
-        {
-            display: none;
-        }
-
         body:has([id$="1"]:checked) label[for$="1"],
         body:has([id$="2"]:checked) label[for$="2"],
         body:has([id$="3"]:checked) label[for$="3"],
@@ -398,6 +389,12 @@
         body:has([id$="7"]:checked) label[for$="7"],
         body:has([id$="8"]:checked) label[for$="8"],
         body:has([id$="9"]:checked) label[for$="9"]
+        {
+            display: none;
+        }
+
+        .board-square > .symbol-O,
+        .board-square > .symbol-X
         {
             display: none;
         }
@@ -422,18 +419,53 @@
             transform: scale(var(--has-draw));
         }
 
-        
-        /* audio {
-            animation: 40s linear 0s infinite alternate sun-rise;
+        /* Random placement button */
+
+        .random {
+            overflow: hidden;
         }
 
-        @keyframes sun-rise {
+        .random div {
+            display: grid;
+            width: 180px;
+            animation: 0.1s linear 0s infinite normal moving-button;
+        }
+
+        .random div:hover {
+            animation-play-state: paused;
+        }
+
+        .random .O {
+            height: calc(60px * 9 * var(--is-O-to-play));
+        }
+        
+        .random .X {
+            height: calc(60px * 9 * var(--is-X-to-play));
+        }
+
+
+        .random label {
+            display: block;
+            width: 180px;
+        }
+        
+        @keyframes moving-button {
             from {
-                transform: translateX(0);
+                transform: translateY(0);
             }
             to {
-                transform: translateX(-110vh);
+                transform: translateY(calc(60px * -8));
             }
-        } */
+        }
+
+        /* [for$="1"] { background-color: red; }
+        [for$="2"] { background-color: green; }
+        [for$="3"] { background-color: black; }
+        [for$="4"] { background-color: blue; }
+        [for$="5"] { background-color: violet; }
+        [for$="6"] { background-color: yellow; }
+        [for$="7"] { background-color: orange }
+        [for$="8"] { background-color: olivedrab; }
+        [for$="9"] { background-color: purple; } */
      </style>
 </html>
