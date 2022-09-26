@@ -175,10 +175,12 @@
             background: lightgrey;
             color: white;
             font-size: 40px;
+            user-select: none;
             
             --grid-colour: limegreen;
             --grid-box: black;
             --grid-square-size: 120px;
+            --grid-board-border-radius: 30px;
 
             --button-width: 180px;
             --button-height: 60px;
@@ -216,16 +218,31 @@
             gap: 20px;
 
             background-color: var(--grid-colour);
-            border: 10px solid var(--grid-colour);
+            border: 15px solid var(--grid-colour);
+            border-radius: var(--grid-board-border-radius);
         }
-
+        
         .board-square {
             position: relative;
-
+            
             background-color: var(--grid-box);
             width: var(--grid-square-size);
             height: var(--grid-square-size);
+            transition: transform calc(1.5s / var(--is-game-on));
         }
+
+        .board-square:hover {
+            background-color: rgb(calc(87 * var(--is-game-on)), calc(87 * var(--is-game-on)), calc(87 * var(--is-game-on)));
+            transform: scale(1.1) rotate(360deg);
+        }
+        
+        .board-square-1 { border-radius: var(--grid-board-border-radius) 0 0 0;}
+
+        .board-square-3 { border-radius: 0 var(--grid-board-border-radius) 0 0;}
+
+        .board-square-7 { border-radius: 0 0 0 var(--grid-board-border-radius); }
+
+        .board-square-9 { border-radius: 0 0 var(--grid-board-border-radius) 0;}
 
         .board-square > *,
         .symbol-O
@@ -283,6 +300,7 @@
             width: 500px;
 
             margin: 20px 0;
+            border-radius: 15px;
 
             border: 10px solid var(--grid-colour);
             background: var(--grid-box);
@@ -318,7 +336,16 @@
             background: var(--grid-box);
             border: 10px solid var(--grid-colour);
             text-align: center;
+
+            border-radius: 15px;
+            box-shadow: 5px 5px 5px 0px #000000;
         }
+        
+        .button:active {
+            box-shadow: none;
+            transform: scale(0.96);
+        }
+
 
         /* gameplay logic */
 
