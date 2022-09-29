@@ -23,6 +23,48 @@
             <input type="reset" id="reset">
         </form>
         <div class="main">
+            <div class="state-display">
+                <div class="x-to-play">🥐to play</div>
+                <div class="o-to-play">
+                    <img src="./crowsant.png"> to play
+                    </div>
+                <div class="x-won">🥐has won!</div>
+                <div class="o-won">
+                    <img src="./crowsant.png"> has won!
+                </div>
+                <div class="draw">It's a draw!</div>
+            </div>
+            <div class="button-holder">
+                <label for="reset" class="button">
+                    Restart
+                </label>
+                
+                <div class="button random">
+                    Random
+                    <div class="X">
+                        <label for="X-1"></label>
+                        <label for="X-2"></label>
+                        <label for="X-3"></label>
+                        <label for="X-4"></label>
+                        <label for="X-5"></label>
+                        <label for="X-6"></label>
+                        <label for="X-7"></label>
+                        <label for="X-8"></label>
+                        <label for="X-9"></label>
+                    </div>
+                    <div class="O">
+                        <label for="O-1"></label>
+                        <label for="O-2"></label>
+                        <label for="O-3"></label>
+                        <label for="O-4"></label>
+                        <label for="O-5"></label>
+                        <label for="O-6"></label>
+                        <label for="O-7"></label>
+                        <label for="O-8"></label>
+                        <label for="O-9"></label>
+                    </div>
+                </div>
+            </div>
             <div class="board">
                 <div class="board-square board-square-1">
                     <label for="O-1"></label>
@@ -124,49 +166,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="state-display">
-                <div class="x-to-play">🥐to play</div>
-                <div class="o-to-play">
-                    <img src="./crowsant.png"> to play
-                    </div>
-                <div class="x-won">🥐has won!</div>
-                <div class="o-won">
-                    <img src="./crowsant.png"> has won!
-                </div>
-                <div class="draw">It's a draw!</div>
-            </div>
-            <div class="button-holder">
-                <label for="reset" class="button">
-                    Reset
-                </label>
-                
-                <div class="button random">
-                    Random
-                    <div class="X">
-                        <label for="X-1"></label>
-                        <label for="X-2"></label>
-                        <label for="X-3"></label>
-                        <label for="X-4"></label>
-                        <label for="X-5"></label>
-                        <label for="X-6"></label>
-                        <label for="X-7"></label>
-                        <label for="X-8"></label>
-                        <label for="X-9"></label>
-                    </div>
-                    <div class="O">
-                        <label for="O-1"></label>
-                        <label for="O-2"></label>
-                        <label for="O-3"></label>
-                        <label for="O-4"></label>
-                        <label for="O-5"></label>
-                        <label for="O-6"></label>
-                        <label for="O-7"></label>
-                        <label for="O-8"></label>
-                        <label for="O-9"></label>
-                    </div>
-                </div>
-            </div>
         </div>
     </body>
     <style>
@@ -174,14 +173,14 @@
         body {
             background: lightgrey;
             color: white;
-            font-size: 40px;
+            font-size: 30px;
             user-select: none;
             
             --grid-colour: limegreen;
             --grid-box: black;
             --grid-square-size: 120px;
             --grid-board-border-radius: 30px;
-            --box-shadow: 5px 5px 5px 0px #000000;
+            --box-shadow: 1px 8px 5px 0px #000000;
 
             --button-width: 120px;
             --button-height: 30px;
@@ -298,8 +297,8 @@
 
         .state-display {
             position: relative;
-            height: 60px;
-            width: 500px;
+            height: 40px;
+            width: 440px;
 
             margin: 20px 0;
 
@@ -307,7 +306,7 @@
             background: var(--grid-box);
             box-shadow: var(--box-shadow);
 
-            line-height: 60px;
+            line-height: 40px;
         }
         
         .state-display > div {
@@ -322,7 +321,7 @@
         .state-display img {
             position: relative;
             top: 5px;
-            height: 45px;
+            height: 30px;
         }
 
         .button-holder {
@@ -344,7 +343,7 @@
         
         .button:active {
             box-shadow: inset 0px 0px 0px 4px var(--grid-colour);
-            transform: scale(0.96);
+            transform: scale(0.9) translateY(5px);
         }
 
 
