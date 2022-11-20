@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <form class="calculator">
+        <form>
             <input type="radio" id="X-1" name="1" />
             <input type="radio" id="X-2" name="2" />
             <input type="radio" id="X-3" name="3" />
@@ -35,37 +35,35 @@
                 <div class="draw">It's a draw!</div>
             </div>
             <div class="button-panel">
-                <label class="button-holder" for="reset">
-                    <div class="button">
-                        Restart
-                    </div>
+                <label class="button" for="reset">
+                    Restart
                 </label>
                 
-                <div class="button-holder">
-                    <div class="button random">
+                <div class="random-button-holder">
+                    <div class="button">
                         Random
-                        <div class="X">
-                            <label for="X-1"></label>
-                            <label for="X-2"></label>
-                            <label for="X-3"></label>
-                            <label for="X-4"></label>
-                            <label for="X-5"></label>
-                            <label for="X-6"></label>
-                            <label for="X-7"></label>
-                            <label for="X-8"></label>
-                            <label for="X-9"></label>
-                        </div>
-                        <div class="O">
-                            <label for="O-1"></label>
-                            <label for="O-2"></label>
-                            <label for="O-3"></label>
-                            <label for="O-4"></label>
-                            <label for="O-5"></label>
-                            <label for="O-6"></label>
-                            <label for="O-7"></label>
-                            <label for="O-8"></label>
-                            <label for="O-9"></label>
-                        </div>
+                    </div>
+                    <div class="X random">
+                        <label for="X-1"></label>
+                        <label for="X-2"></label>
+                        <label for="X-3"></label>
+                        <label for="X-4"></label>
+                        <label for="X-5"></label>
+                        <label for="X-6"></label>
+                        <label for="X-7"></label>
+                        <label for="X-8"></label>
+                        <label for="X-9"></label>
+                    </div>
+                    <div class="O random">
+                        <label for="O-1"></label>
+                        <label for="O-2"></label>
+                        <label for="O-3"></label>
+                        <label for="O-4"></label>
+                        <label for="O-5"></label>
+                        <label for="O-6"></label>
+                        <label for="O-7"></label>
+                        <label for="O-8"></label>
+                        <label for="O-9"></label>
                     </div>
                 </div>
             </div>
@@ -460,27 +458,24 @@
         }
 
         /* Random placement button */
-
+        
         .random {
-            transform: scale(var(--is-game-on));
-        }
-
-        .random div {
             display: grid;
             width: var(--button-width);
             animation: 0.1s linear 0s infinite normal moving-button;
+            transform: scale(var(--is-game-on));
         }
 
-        .random div:hover {
+        .random:hover {
             /* this is neede because if a label moves away while the user is clicking, the click fails */
             animation-play-state: paused;
         }
 
-        .random .O {
+        .random.O {
             height: calc(var(--button-height) * 9 * var(--is-O-to-play));
         }
         
-        .random .X {
+        .random.X {
             height: calc(var(--button-height) * 9 * var(--is-X-to-play));
         }
 
@@ -490,8 +485,10 @@
             width: var(--button-width);
         }
         
-        .button-holder:has(.button.random) {
-            overflow: none;
+        .random-button-holder {
+            height: var(--button-height);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
         }
 
         @keyframes moving-button {
