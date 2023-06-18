@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>NoJS Calculator</title>
         <link rel=“canonical” href=“https://quarknerd.github.io/noJS/calc.html/” />
     </head>
     <body>
@@ -306,16 +307,12 @@
                                                                 <span class="decimal"></span>
                                                             </span>
                                                             <span class="set-second-number">
-                                                                <span class="determine-sin">
-                                                                    <span class="determine-cos">
-                                                                        <span class="determine-numbers">
-                                                                            <div class="number-display display answer-display">
-                                                                                <span class="negative-sign"></span>
-                                                                                <span class="integer"></span>
-                                                                                <span class="decimal"></span>
-                                                                            </div>
-                                                                        </span>
-                                                                    </span>
+                                                                <span class="determine-numbers">
+                                                                    <div class="number-display display answer-display">
+                                                                        <span class="negative-sign"></span>
+                                                                        <span class="integer"></span>
+                                                                        <span class="decimal"></span>
+                                                                    </div>
                                                                 </span>
                                                             </span>
                                                         </span>
@@ -546,48 +543,6 @@
 
         /* Calculation */
 
-        .determine-sin { --trig-input: var(--second-number) }
-        .determine-cos { --trig-input: calc(var(--second-number) + var(--pi) / 2) }
-
-        input#operation-minus:checked ~ * .determine-sin { --trig-input: calc(-1 * var(--second-number)) }
-        input#operation-minus:checked ~ * .determine-cos { --trig-input: calc(-1 * var(--second-number) + var(--pi) / 2) }
-
-        .determine-sin,
-        .determine-cos {
-
-            --property-integer: calc((var(--trig-input) / var(--tau)) - 0.49999999999);
-            --number-mod-tau: calc(var(--trig-input) - (var(--property-integer) * var(--tau)));
-
-            --number-mod-tau-minus-pi: calc(var(--number-mod-tau) - var(--pi));
-            --neg-mod-number-mod-tau-minus-pi: min(var(--number-mod-tau-minus-pi), -1 * var(--number-mod-tau-minus-pi));
-            --sign-modifier: calc(var(--number-mod-tau-minus-pi) / var(--neg-mod-number-mod-tau-minus-pi));
-
-            --fold-along-x-equals-pi: min(var(--tau) - var(--number-mod-tau), var(--number-mod-tau));
-            --z: min(var(--pi) - var(--fold-along-x-equals-pi), var(--fold-along-x-equals-pi));
-
-            --z-2: calc(var(--z) * var(--z));
-            --z-3: calc(var(--z) * var(--z-2));
-            --z-5: calc(var(--z-3) * var(--z-2));
-            --z-7: calc(var(--z-5) * var(--z-2));
-            --z-9: calc(var(--z-7) * var(--z-2));
-            --z-11: calc(var(--z-9) * var(--z-2));
-
-            --trig-output: calc(
-            var(--sign-modifier) * 
-                (
-                    var(--z)
-                    - var(--z-3) / 6
-                    + var(--z-5) / 120
-                    - var(--z-7) / 5040
-                    + var(--z-9) / 362880
-                    - var(--z-11) / 39916800
-                    )
-            )
-        }
-
-        .determine-sin { --sin: var(--trig-output); }
-        .determine-cos { --cos: var(--trig-output); }
-
         input#operation-divison:checked ~ .set-operation .determine-numbers {
             --number: calc(var(--first-number) / var(--second-number));
         }
@@ -609,15 +564,15 @@
         }
 
         input#operation-sin:checked ~ .set-operation .determine-numbers {
-            --number: var(--sin);
+            --number: calc(sin(var(--second-number)));
         }
 
         input#operation-cos:checked ~ .set-operation .determine-numbers {
-            --number: var(--cos);
+            --number: calc(cos(var(--second-number)));
         }
 
         input#operation-tan:checked ~ .set-operation .determine-numbers {
-            --number: calc(var(--sin) / var(--cos))
+            --number: calc(tan(var(--second-number)));
         }
         
         #reduced-functions:not(:checked) ~ form input[name="operation"]#operation-divison:checked ~ input[name="equals"]:checked ~ * .answer-display > .decimal::after,
@@ -679,8 +634,12 @@
             display: none;
         }
 
-        /* only allow 4 digits in second number if multiplicatin selected because counters are limited to 32bit */
+        /* only allow 4 digits in second number if multiplicatin selected because counters are limited to 32bit 
+           Any value greater than x.9999999 but less than x + 1, causes issues with my method of seperating integer from
+           decimals. In theory it could be fixed by multiplying by 10^7 and rounding but this also causes the 32bit issue,
+           therefore, trig functions ae limited in digits. This isn't guaranteed to stop the error but stops some cases */
         input#operation-multiplication:checked ~ * input[name="second-number-fourth-digit"]:checked ~ * .numbers-pad.only-reset,
+        input[name="operation-trig"]:checked ~ * input[name="second-number-fourth-digit"]:checked ~ * .numbers-pad.only-reset,
         input[name="first-number-fifth-digit"]:checked ~ * > .numbers-pad.only-reset {
             display: block;
         }
@@ -708,7 +667,7 @@
         #reduced-functions:not(:checked) ~ form .number-display {
             counter-reset: number-integer number-decimal;
             --abs-number: max(var(--number), -1 * var(--number));
-            --property-integer: calc(var(--abs-number) - 0.49999999999);
+            --property-integer: calc(var(--abs-number) - 0.5);
             --number-integer: var(--property-integer);
             --number-decimal: calc((var(--abs-number) - var(--property-integer)) * var(--number-decimal-shift));
 
