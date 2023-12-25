@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel=“canonical” href=“https://quarknerd.github.io/noJS/AOC-2023-Day6.html/” />
+</head>
+
+<!-- Use code for name and id
+iA-B-dC-vD
+A = which set of input (1,2,3,4)
+B = t for time, d for distance
+C = identifies which digit of input it is
+D = actual digit (0,1,2,3,4,5,6,7) -->
+
+<!-- Each set-number assumes a 4 digit input, 
+so for 2 digit numbers we only provide the 3rd and 4th, keeping 1 and 2 at 0 -->
+
+<body>
+    Solves part one of advent of code 2023 day 6 using html and css only
+    Use buttons to input the input. Part two is broken, and I don't know why.
+    Click <a href="https://quarknerd.github.io/noJS/"> here </a> for more css things.
+    Click <a href="https://github.com/QuarkNerd/adventOfCode/tree/master/2023"> here </a> for more of my AOC solutions.
+    <form class="calculator">
+        Time: 1 <br>
+        <div class="numbers-pad">
+            <input checked type="radio" name="i1-t-d3" id="i1-t-d3-v0" /><label for="i1-t-d3-v0">0</label>
+            <input type="radio" name="i1-t-d3" id="i1-t-d3-v1" /><label for="i1-t-d3-v1">1</label>
+            <input type="radio" name="i1-t-d3" id="i1-t-d3-v2" /><label for="i1-t-d3-v2">2</label>
+            <input type="radio" name="i1-t-d3" id="i1-t-d3-v3" /><label for="i1-t-d3-v3">3</label>
+            <input type="radio" name="i1-t-d3" id="i1-t-d3-v4" /><label for="i1-t-d3-v4">4</label>
+            <input type="radio" name="i1-t-d3" id="i1-t-d3-v5" /><label for="i1-t-d3-v5">5</label>
+            <input type="radio" name="i1-t-d3" id="i1-t-d3-v6" /><label for="i1-t-d3-v6">6</label>
+            <input type="radio" name="i1-t-d3" id="i1-t-d3-v7" /><label for="i1-t-d3-v7">7</label>
+            <input type="radio" name="i1-t-d3" id="i1-t-d3-v8" /><label for="i1-t-d3-v8">8</label>
+            <input type="radio" name="i1-t-d3" id="i1-t-d3-v9" /><label for="i1-t-d3-v9">9</label>
+        </div>
+        <div class="reset-all-digits set-digit set-third-digit">
+            <div class="numbers-pad">
+                <input checked type="radio" name="i1-t-d4" id="i1-t-d4-v0" /><label for="i1-t-d4-v0">0</label>
+                <input type="radio" name="i1-t-d4" id="i1-t-d4-v1" /><label for="i1-t-d4-v1">1</label>
+                <input type="radio" name="i1-t-d4" id="i1-t-d4-v2" /><label for="i1-t-d4-v2">2</label>
+                <input type="radio" name="i1-t-d4" id="i1-t-d4-v3" /><label for="i1-t-d4-v3">3</label>
+                <input type="radio" name="i1-t-d4" id="i1-t-d4-v4" /><label for="i1-t-d4-v4">4</label>
+                <input type="radio" name="i1-t-d4" id="i1-t-d4-v5" /><label for="i1-t-d4-v5">5</label>
+                <input type="radio" name="i1-t-d4" id="i1-t-d4-v6" /><label for="i1-t-d4-v6">6</label>
+                <input type="radio" name="i1-t-d4" id="i1-t-d4-v7" /><label for="i1-t-d4-v7">7</label>
+                <input type="radio" name="i1-t-d4" id="i1-t-d4-v8" /><label for="i1-t-d4-v8">8</label>
+                <input type="radio" name="i1-t-d4" id="i1-t-d4-v9" /><label for="i1-t-d4-v9">9</label>
+            </div>
+            <div class="set-input-time-i1 set-digit set-fourth-digit set-number">
+                <div class="display-number"></div>
+                Distance: 1 <br>
+                <div class="numbers-pad">
+                    <input checked type="radio" name="i1-d-d1" id="i1-d-d1-v0" /><label for="i1-d-d1-v0">0</label>
+                    <input type="radio" name="i1-d-d1" id="i1-d-d1-v1" /><label for="i1-d-d1-v1">1</label>
+                    <input type="radio" name="i1-d-d1" id="i1-d-d1-v2" /><label for="i1-d-d1-v2">2</label>
+                    <input type="radio" name="i1-d-d1" id="i1-d-d1-v3" /><label for="i1-d-d1-v3">3</label>
+                    <input type="radio" name="i1-d-d1" id="i1-d-d1-v4" /><label for="i1-d-d1-v4">4</label>
+                    <input type="radio" name="i1-d-d1" id="i1-d-d1-v5" /><label for="i1-d-d1-v5">5</label>
+                    <input type="radio" name="i1-d-d1" id="i1-d-d1-v6" /><label for="i1-d-d1-v6">6</label>
+                    <input type="radio" name="i1-d-d1" id="i1-d-d1-v7" /><label for="i1-d-d1-v7">7</label>
+                    <input type="radio" name="i1-d-d1" id="i1-d-d1-v8" /><label for="i1-d-d1-v8">8</label>
+                    <input type="radio" name="i1-d-d1" id="i1-d-d1-v9" /><label for="i1-d-d1-v9">9</label>
+                </div>
+                <div class="reset-all-digits set-digit set-first-digit">
+                    <div class="numbers-pad">
+                        <input checked type="radio" name="i1-d-d2" id="i1-d-d2-v0" /><label for="i1-d-d2-v0">0</label>
+                        <input type="radio" name="i1-d-d2" id="i1-d-d2-v1" /><label for="i1-d-d2-v1">1</label>
+                        <input type="radio" name="i1-d-d2" id="i1-d-d2-v2" /><label for="i1-d-d2-v2">2</label>
+                        <input type="radio" name="i1-d-d2" id="i1-d-d2-v3" /><label for="i1-d-d2-v3">3</label>
+                        <input type="radio" name="i1-d-d2" id="i1-d-d2-v4" /><label for="i1-d-d2-v4">4</label>
+                        <input type="radio" name="i1-d-d2" id="i1-d-d2-v5" /><label for="i1-d-d2-v5">5</label>
+                        <input type="radio" name="i1-d-d2" id="i1-d-d2-v6" /><label for="i1-d-d2-v6">6</label>
+                        <input type="radio" name="i1-d-d2" id="i1-d-d2-v7" /><label for="i1-d-d2-v7">7</label>
+                        <input type="radio" name="i1-d-d2" id="i1-d-d2-v8" /><label for="i1-d-d2-v8">8</label>
+                        <input type="radio" name="i1-d-d2" id="i1-d-d2-v9" /><label for="i1-d-d2-v9">9</label>
+                    </div>
+                    <div class="set-digit set-second-digit">
+                        <div class="numbers-pad">
+                            <input checked type="radio" name="i1-d-d3" id="i1-d-d3-v0" /><label
+                                for="i1-d-d3-v0">0</label>
+                            <input type="radio" name="i1-d-d3" id="i1-d-d3-v1" /><label for="i1-d-d3-v1">1</label>
+                            <input type="radio" name="i1-d-d3" id="i1-d-d3-v2" /><label for="i1-d-d3-v2">2</label>
+                            <input type="radio" name="i1-d-d3" id="i1-d-d3-v3" /><label for="i1-d-d3-v3">3</label>
+                            <input type="radio" name="i1-d-d3" id="i1-d-d3-v4" /><label for="i1-d-d3-v4">4</label>
+                            <input type="radio" name="i1-d-d3" id="i1-d-d3-v5" /><label for="i1-d-d3-v5">5</label>
+                            <input type="radio" name="i1-d-d3" id="i1-d-d3-v6" /><label for="i1-d-d3-v6">6</label>
+                            <input type="radio" name="i1-d-d3" id="i1-d-d3-v7" /><label for="i1-d-d3-v7">7</label>
+                            <input type="radio" name="i1-d-d3" id="i1-d-d3-v8" /><label for="i1-d-d3-v8">8</label>
+                            <input type="radio" name="i1-d-d3" id="i1-d-d3-v9" /><label for="i1-d-d3-v9">9</label>
+                        </div>
+                        <div class="set-digit set-third-digit">
+                            <div class="numbers-pad">
+                                <input checked type="radio" name="i1-d-d4" id="i1-d-d4-v0" /><label
+                                    for="i1-d-d4-v0">0</label>
+                                <input type="radio" name="i1-d-d4" id="i1-d-d4-v1" /><label for="i1-d-d4-v1">1</label>
+                                <input type="radio" name="i1-d-d4" id="i1-d-d4-v2" /><label for="i1-d-d4-v2">2</label>
+                                <input type="radio" name="i1-d-d4" id="i1-d-d4-v3" /><label for="i1-d-d4-v3">3</label>
+                                <input type="radio" name="i1-d-d4" id="i1-d-d4-v4" /><label for="i1-d-d4-v4">4</label>
+                                <input type="radio" name="i1-d-d4" id="i1-d-d4-v5" /><label for="i1-d-d4-v5">5</label>
+                                <input type="radio" name="i1-d-d4" id="i1-d-d4-v6" /><label for="i1-d-d4-v6">6</label>
+                                <input type="radio" name="i1-d-d4" id="i1-d-d4-v7" /><label for="i1-d-d4-v7">7</label>
+                                <input type="radio" name="i1-d-d4" id="i1-d-d4-v8" /><label for="i1-d-d4-v8">8</label>
+                                <input type="radio" name="i1-d-d4" id="i1-d-d4-v9" /><label for="i1-d-d4-v9">9</label>
+                            </div>
+                            <div class="set-input-distance-i1 set-digit set-fourth-digit set-number">
+                                <div class="display-number"></div>
+                                <div class="determine-combinations-i1">
+                                    <div class="display-number"></div>
+                                    Time: 2 <br>
+                                    <div class="numbers-pad">
+                                        <input checked type="radio" name="i2-t-d3" id="i2-t-d3-v0" /><label
+                                            for="i2-t-d3-v0">0</label>
+                                        <input type="radio" name="i2-t-d3" id="i2-t-d3-v1" /><label
+                                            for="i2-t-d3-v1">1</label>
+                                        <input type="radio" name="i2-t-d3" id="i2-t-d3-v2" /><label
+                                            for="i2-t-d3-v2">2</label>
+                                        <input type="radio" name="i2-t-d3" id="i2-t-d3-v3" /><label
+                                            for="i2-t-d3-v3">3</label>
+                                        <input type="radio" name="i2-t-d3" id="i2-t-d3-v4" /><label
+                                            for="i2-t-d3-v4">4</label>
+                                        <input type="radio" name="i2-t-d3" id="i2-t-d3-v5" /><label
+                                            for="i2-t-d3-v5">5</label>
+                                        <input type="radio" name="i2-t-d3" id="i2-t-d3-v6" /><label
+                                            for="i2-t-d3-v6">6</label>
+                                        <input type="radio" name="i2-t-d3" id="i2-t-d3-v7" /><label
+                                            for="i2-t-d3-v7">7</label>
+                                        <input type="radio" name="i2-t-d3" id="i2-t-d3-v8" /><label
+                                            for="i2-t-d3-v8">8</label>
+                                        <input type="radio" name="i2-t-d3" id="i2-t-d3-v9" /><label
+                                            for="i2-t-d3-v9">9</label>
+                                    </div>
+                                    <div class="reset-all-digits set-digit set-third-digit">
+                                        <div class="numbers-pad">
+                                            <input checked type="radio" name="i2-t-d4" id="i2-t-d4-v0" /><label
+                                                for="i2-t-d4-v0">0</label>
+                                            <input type="radio" name="i2-t-d4" id="i2-t-d4-v1" /><label
+                                                for="i2-t-d4-v1">1</label>
+                                            <input type="radio" name="i2-t-d4" id="i2-t-d4-v2" /><label
+                                                for="i2-t-d4-v2">2</label>
+                                            <input type="radio" name="i2-t-d4" id="i2-t-d4-v3" /><label
+                                                for="i2-t-d4-v3">3</label>
+                                            <input type="radio" name="i2-t-d4" id="i2-t-d4-v4" /><label
+                                                for="i2-t-d4-v4">4</label>
+                                            <input type="radio" name="i2-t-d4" id="i2-t-d4-v5" /><label
+                                                for="i2-t-d4-v5">5</label>
+                                            <input type="radio" name="i2-t-d4" id="i2-t-d4-v6" /><label
+                                                for="i2-t-d4-v6">6</label>
+                                            <input type="radio" name="i2-t-d4" id="i2-t-d4-v7" /><label
+                                                for="i2-t-d4-v7">7</label>
+                                            <input type="radio" name="i2-t-d4" id="i2-t-d4-v8" /><label
+                                                for="i2-t-d4-v8">8</label>
+                                            <input type="radio" name="i2-t-d4" id="i2-t-d4-v9" /><label
+                                                for="i2-t-d4-v9">9</label>
+                                        </div>
+                                        <div class="set-input-time-i2 set-digit set-fourth-digit set-number">
+                                            <div class="display-number"></div>
+                                            Distance: 2 <br>
+                                            <div class="numbers-pad">
+                                                <input checked type="radio" name="i2-d-d1" id="i2-d-d1-v0" /><label
+                                                    for="i2-d-d1-v0">0</label>
+                                                <input type="radio" name="i2-d-d1" id="i2-d-d1-v1" /><label
+                                                    for="i2-d-d1-v1">1</label>
+                                                <input type="radio" name="i2-d-d1" id="i2-d-d1-v2" /><label
+                                                    for="i2-d-d1-v2">2</label>
+                                                <input type="radio" name="i2-d-d1" id="i2-d-d1-v3" /><label
+                                                    for="i2-d-d1-v3">3</label>
+                                                <input type="radio" name="i2-d-d1" id="i2-d-d1-v4" /><label
+                                                    for="i2-d-d1-v4">4</label>
+                                                <input type="radio" name="i2-d-d1" id="i2-d-d1-v5" /><label
+                                                    for="i2-d-d1-v5">5</label>
+                                                <input type="radio" name="i2-d-d1" id="i2-d-d1-v6" /><label
+                                                    for="i2-d-d1-v6">6</label>
+                                                <input type="radio" name="i2-d-d1" id="i2-d-d1-v7" /><label
+                                                    for="i2-d-d1-v7">7</label>
+                                                <input type="radio" name="i2-d-d1" id="i2-d-d1-v8" /><label
+                                                    for="i2-d-d1-v8">8</label>
+                                                <input type="radio" name="i2-d-d1" id="i2-d-d1-v9" /><label
+                                                    for="i2-d-d1-v9">9</label>
+                                            </div>
+                                            <div class="reset-all-digits set-digit set-first-digit">
+                                                <div class="numbers-pad">
+                                                    <input checked type="radio" name="i2-d-d2" id="i2-d-d2-v0" /><label
+                                                        for="i2-d-d2-v0">0</label>
+                                                    <input type="radio" name="i2-d-d2" id="i2-d-d2-v1" /><label
+                                                        for="i2-d-d2-v1">1</label>
+                                                    <input type="radio" name="i2-d-d2" id="i2-d-d2-v2" /><label
+                                                        for="i2-d-d2-v2">2</label>
+                                                    <input type="radio" name="i2-d-d2" id="i2-d-d2-v3" /><label
+                                                        for="i2-d-d2-v3">3</label>
+                                                    <input type="radio" name="i2-d-d2" id="i2-d-d2-v4" /><label
+                                                        for="i2-d-d2-v4">4</label>
+                                                    <input type="radio" name="i2-d-d2" id="i2-d-d2-v5" /><label
+                                                        for="i2-d-d2-v5">5</label>
+                                                    <input type="radio" name="i2-d-d2" id="i2-d-d2-v6" /><label
+                                                        for="i2-d-d2-v6">6</label>
+                                                    <input type="radio" name="i2-d-d2" id="i2-d-d2-v7" /><label
+                                                        for="i2-d-d2-v7">7</label>
+                                                    <input type="radio" name="i2-d-d2" id="i2-d-d2-v8" /><label
+                                                        for="i2-d-d2-v8">8</label>
+                                                    <input type="radio" name="i2-d-d2" id="i2-d-d2-v9" /><label
+                                                        for="i2-d-d2-v9">9</label>
+                                                </div>
+                                                <div class="set-digit set-second-digit">
+                                                    <div class="numbers-pad">
+                                                        <input checked type="radio" name="i2-d-d3"
+                                                            id="i2-d-d3-v0" /><label for="i2-d-d3-v0">0</label>
+                                                        <input type="radio" name="i2-d-d3" id="i2-d-d3-v1" /><label
+                                                            for="i2-d-d3-v1">1</label>
+                                                        <input type="radio" name="i2-d-d3" id="i2-d-d3-v2" /><label
+                                                            for="i2-d-d3-v2">2</label>
+                                                        <input type="radio" name="i2-d-d3" id="i2-d-d3-v3" /><label
+                                                            for="i2-d-d3-v3">3</label>
+                                                        <input type="radio" name="i2-d-d3" id="i2-d-d3-v4" /><label
+                                                            for="i2-d-d3-v4">4</label>
+                                                        <input type="radio" name="i2-d-d3" id="i2-d-d3-v5" /><label
+                                                            for="i2-d-d3-v5">5</label>
+                                                        <input type="radio" name="i2-d-d3" id="i2-d-d3-v6" /><label
+                                                            for="i2-d-d3-v6">6</label>
+                                                        <input type="radio" name="i2-d-d3" id="i2-d-d3-v7" /><label
+                                                            for="i2-d-d3-v7">7</label>
+                                                        <input type="radio" name="i2-d-d3" id="i2-d-d3-v8" /><label
+                                                            for="i2-d-d3-v8">8</label>
+                                                        <input type="radio" name="i2-d-d3" id="i2-d-d3-v9" /><label
+                                                            for="i2-d-d3-v9">9</label>
+                                                    </div>
+                                                    <div class="set-digit set-third-digit">
+                                                        <div class="numbers-pad">
+                                                            <input checked type="radio" name="i2-d-d4"
+                                                                id="i2-d-d4-v0" /><label for="i2-d-d4-v0">0</label>
+                                                            <input type="radio" name="i2-d-d4" id="i2-d-d4-v1" /><label
+                                                                for="i2-d-d4-v1">1</label>
+                                                            <input type="radio" name="i2-d-d4" id="i2-d-d4-v2" /><label
+                                                                for="i2-d-d4-v2">2</label>
+                                                            <input type="radio" name="i2-d-d4" id="i2-d-d4-v3" /><label
+                                                                for="i2-d-d4-v3">3</label>
+                                                            <input type="radio" name="i2-d-d4" id="i2-d-d4-v4" /><label
+                                                                for="i2-d-d4-v4">4</label>
+                                                            <input type="radio" name="i2-d-d4" id="i2-d-d4-v5" /><label
+                                                                for="i2-d-d4-v5">5</label>
+                                                            <input type="radio" name="i2-d-d4" id="i2-d-d4-v6" /><label
+                                                                for="i2-d-d4-v6">6</label>
+                                                            <input type="radio" name="i2-d-d4" id="i2-d-d4-v7" /><label
+                                                                for="i2-d-d4-v7">7</label>
+                                                            <input type="radio" name="i2-d-d4" id="i2-d-d4-v8" /><label
+                                                                for="i2-d-d4-v8">8</label>
+                                                            <input type="radio" name="i2-d-d4" id="i2-d-d4-v9" /><label
+                                                                for="i2-d-d4-v9">9</label>
+                                                        </div>
+                                                        <div
+                                                            class="set-input-distance-i2 set-digit set-fourth-digit set-number">
+                                                            <div class="display-number"></div>
+                                                            <div class="determine-combinations-i2">
+                                                                <div class="display-number"></div>
+                                                                Time: 3 <br>
+                                                                <div class="numbers-pad">
+                                                                    <input checked type="radio" name="i3-t-d3"
+                                                                        id="i3-t-d3-v0" /><label
+                                                                        for="i3-t-d3-v0">0</label>
+                                                                    <input type="radio" name="i3-t-d3"
+                                                                        id="i3-t-d3-v1" /><label
+                                                                        for="i3-t-d3-v1">1</label>
+                                                                    <input type="radio" name="i3-t-d3"
+                                                                        id="i3-t-d3-v2" /><label
+                                                                        for="i3-t-d3-v2">2</label>
+                                                                    <input type="radio" name="i3-t-d3"
+                                                                        id="i3-t-d3-v3" /><label
+                                                                        for="i3-t-d3-v3">3</label>
+                                                                    <input type="radio" name="i3-t-d3"
+                                                                        id="i3-t-d3-v4" /><label
+                                                                        for="i3-t-d3-v4">4</label>
+                                                                    <input type="radio" name="i3-t-d3"
+                                                                        id="i3-t-d3-v5" /><label
+                                                                        for="i3-t-d3-v5">5</label>
+                                                                    <input type="radio" name="i3-t-d3"
+                                                                        id="i3-t-d3-v6" /><label
+                                                                        for="i3-t-d3-v6">6</label>
+                                                                    <input type="radio" name="i3-t-d3"
+                                                                        id="i3-t-d3-v7" /><label
+                                                                        for="i3-t-d3-v7">7</label>
+                                                                    <input type="radio" name="i3-t-d3"
+                                                                        id="i3-t-d3-v8" /><label
+                                                                        for="i3-t-d3-v8">8</label>
+                                                                    <input type="radio" name="i3-t-d3"
+                                                                        id="i3-t-d3-v9" /><label
+                                                                        for="i3-t-d3-v9">9</label>
+                                                                </div>
+                                                                <div class="reset-all-digits set-digit set-third-digit">
+                                                                    <div class="numbers-pad">
+                                                                        <input checked type="radio" name="i3-t-d4"
+                                                                            id="i3-t-d4-v0" /><label
+                                                                            for="i3-t-d4-v0">0</label>
+                                                                        <input type="radio" name="i3-t-d4"
+                                                                            id="i3-t-d4-v1" /><label
+                                                                            for="i3-t-d4-v1">1</label>
+                                                                        <input type="radio" name="i3-t-d4"
+                                                                            id="i3-t-d4-v2" /><label
+                                                                            for="i3-t-d4-v2">2</label>
+                                                                        <input type="radio" name="i3-t-d4"
+                                                                            id="i3-t-d4-v3" /><label
+                                                                            for="i3-t-d4-v3">3</label>
+                                                                        <input type="radio" name="i3-t-d4"
+                                                                            id="i3-t-d4-v4" /><label
+                                                                            for="i3-t-d4-v4">4</label>
+                                                                        <input type="radio" name="i3-t-d4"
+                                                                            id="i3-t-d4-v5" /><label
+                                                                            for="i3-t-d4-v5">5</label>
+                                                                        <input type="radio" name="i3-t-d4"
+                                                                            id="i3-t-d4-v6" /><label
+                                                                            for="i3-t-d4-v6">6</label>
+                                                                        <input type="radio" name="i3-t-d4"
+                                                                            id="i3-t-d4-v7" /><label
+                                                                            for="i3-t-d4-v7">7</label>
+                                                                        <input type="radio" name="i3-t-d4"
+                                                                            id="i3-t-d4-v8" /><label
+                                                                            for="i3-t-d4-v8">8</label>
+                                                                        <input type="radio" name="i3-t-d4"
+                                                                            id="i3-t-d4-v9" /><label
+                                                                            for="i3-t-d4-v9">9</label>
+                                                                    </div>
+                                                                    <div
+                                                                        class="set-input-time-i3 set-digit set-fourth-digit set-number">
+                                                                        <div class="display-number"></div>
+                                                                        Distance: 3 <br>
+                                                                        <div class="numbers-pad">
+                                                                            <input checked type="radio" name="i3-d-d1"
+                                                                                id="i3-d-d1-v0" /><label
+                                                                                for="i3-d-d1-v0">0</label>
+                                                                            <input type="radio" name="i3-d-d1"
+                                                                                id="i3-d-d1-v1" /><label
+                                                                                for="i3-d-d1-v1">1</label>
+                                                                            <input type="radio" name="i3-d-d1"
+                                                                                id="i3-d-d1-v2" /><label
+                                                                                for="i3-d-d1-v2">2</label>
+                                                                            <input type="radio" name="i3-d-d1"
+                                                                                id="i3-d-d1-v3" /><label
+                                                                                for="i3-d-d1-v3">3</label>
+                                                                            <input type="radio" name="i3-d-d1"
+                                                                                id="i3-d-d1-v4" /><label
+                                                                                for="i3-d-d1-v4">4</label>
+                                                                            <input type="radio" name="i3-d-d1"
+                                                                                id="i3-d-d1-v5" /><label
+                                                                                for="i3-d-d1-v5">5</label>
+                                                                            <input type="radio" name="i3-d-d1"
+                                                                                id="i3-d-d1-v6" /><label
+                                                                                for="i3-d-d1-v6">6</label>
+                                                                            <input type="radio" name="i3-d-d1"
+                                                                                id="i3-d-d1-v7" /><label
+                                                                                for="i3-d-d1-v7">7</label>
+                                                                            <input type="radio" name="i3-d-d1"
+                                                                                id="i3-d-d1-v8" /><label
+                                                                                for="i3-d-d1-v8">8</label>
+                                                                            <input type="radio" name="i3-d-d1"
+                                                                                id="i3-d-d1-v9" /><label
+                                                                                for="i3-d-d1-v9">9</label>
+                                                                        </div>
+                                                                        <div
+                                                                            class="reset-all-digits set-digit set-first-digit">
+                                                                            <div class="numbers-pad">
+                                                                                <input checked type="radio"
+                                                                                    name="i3-d-d2"
+                                                                                    id="i3-d-d2-v0" /><label
+                                                                                    for="i3-d-d2-v0">0</label>
+                                                                                <input type="radio" name="i3-d-d2"
+                                                                                    id="i3-d-d2-v1" /><label
+                                                                                    for="i3-d-d2-v1">1</label>
+                                                                                <input type="radio" name="i3-d-d2"
+                                                                                    id="i3-d-d2-v2" /><label
+                                                                                    for="i3-d-d2-v2">2</label>
+                                                                                <input type="radio" name="i3-d-d2"
+                                                                                    id="i3-d-d2-v3" /><label
+                                                                                    for="i3-d-d2-v3">3</label>
+                                                                                <input type="radio" name="i3-d-d2"
+                                                                                    id="i3-d-d2-v4" /><label
+                                                                                    for="i3-d-d2-v4">4</label>
+                                                                                <input type="radio" name="i3-d-d2"
+                                                                                    id="i3-d-d2-v5" /><label
+                                                                                    for="i3-d-d2-v5">5</label>
+                                                                                <input type="radio" name="i3-d-d2"
+                                                                                    id="i3-d-d2-v6" /><label
+                                                                                    for="i3-d-d2-v6">6</label>
+                                                                                <input type="radio" name="i3-d-d2"
+                                                                                    id="i3-d-d2-v7" /><label
+                                                                                    for="i3-d-d2-v7">7</label>
+                                                                                <input type="radio" name="i3-d-d2"
+                                                                                    id="i3-d-d2-v8" /><label
+                                                                                    for="i3-d-d2-v8">8</label>
+                                                                                <input type="radio" name="i3-d-d2"
+                                                                                    id="i3-d-d2-v9" /><label
+                                                                                    for="i3-d-d2-v9">9</label>
+                                                                            </div>
+                                                                            <div class="set-digit set-second-digit">
+                                                                                <div class="numbers-pad">
+                                                                                    <input checked type="radio"
+                                                                                        name="i3-d-d3"
+                                                                                        id="i3-d-d3-v0" /><label
+                                                                                        for="i3-d-d3-v0">0</label>
+                                                                                    <input type="radio" name="i3-d-d3"
+                                                                                        id="i3-d-d3-v1" /><label
+                                                                                        for="i3-d-d3-v1">1</label>
+                                                                                    <input type="radio" name="i3-d-d3"
+                                                                                        id="i3-d-d3-v2" /><label
+                                                                                        for="i3-d-d3-v2">2</label>
+                                                                                    <input type="radio" name="i3-d-d3"
+                                                                                        id="i3-d-d3-v3" /><label
+                                                                                        for="i3-d-d3-v3">3</label>
+                                                                                    <input type="radio" name="i3-d-d3"
+                                                                                        id="i3-d-d3-v4" /><label
+                                                                                        for="i3-d-d3-v4">4</label>
+                                                                                    <input type="radio" name="i3-d-d3"
+                                                                                        id="i3-d-d3-v5" /><label
+                                                                                        for="i3-d-d3-v5">5</label>
+                                                                                    <input type="radio" name="i3-d-d3"
+                                                                                        id="i3-d-d3-v6" /><label
+                                                                                        for="i3-d-d3-v6">6</label>
+                                                                                    <input type="radio" name="i3-d-d3"
+                                                                                        id="i3-d-d3-v7" /><label
+                                                                                        for="i3-d-d3-v7">7</label>
+                                                                                    <input type="radio" name="i3-d-d3"
+                                                                                        id="i3-d-d3-v8" /><label
+                                                                                        for="i3-d-d3-v8">8</label>
+                                                                                    <input type="radio" name="i3-d-d3"
+                                                                                        id="i3-d-d3-v9" /><label
+                                                                                        for="i3-d-d3-v9">9</label>
+                                                                                </div>
+                                                                                <div class="set-digit set-third-digit">
+                                                                                    <div class="numbers-pad">
+                                                                                        <input checked type="radio"
+                                                                                            name="i3-d-d4"
+                                                                                            id="i3-d-d4-v0" /><label
+                                                                                            for="i3-d-d4-v0">0</label>
+                                                                                        <input type="radio"
+                                                                                            name="i3-d-d4"
+                                                                                            id="i3-d-d4-v1" /><label
+                                                                                            for="i3-d-d4-v1">1</label>
+                                                                                        <input type="radio"
+                                                                                            name="i3-d-d4"
+                                                                                            id="i3-d-d4-v2" /><label
+                                                                                            for="i3-d-d4-v2">2</label>
+                                                                                        <input type="radio"
+                                                                                            name="i3-d-d4"
+                                                                                            id="i3-d-d4-v3" /><label
+                                                                                            for="i3-d-d4-v3">3</label>
+                                                                                        <input type="radio"
+                                                                                            name="i3-d-d4"
+                                                                                            id="i3-d-d4-v4" /><label
+                                                                                            for="i3-d-d4-v4">4</label>
+                                                                                        <input type="radio"
+                                                                                            name="i3-d-d4"
+                                                                                            id="i3-d-d4-v5" /><label
+                                                                                            for="i3-d-d4-v5">5</label>
+                                                                                        <input type="radio"
+                                                                                            name="i3-d-d4"
+                                                                                            id="i3-d-d4-v6" /><label
+                                                                                            for="i3-d-d4-v6">6</label>
+                                                                                        <input type="radio"
+                                                                                            name="i3-d-d4"
+                                                                                            id="i3-d-d4-v7" /><label
+                                                                                            for="i3-d-d4-v7">7</label>
+                                                                                        <input type="radio"
+                                                                                            name="i3-d-d4"
+                                                                                            id="i3-d-d4-v8" /><label
+                                                                                            for="i3-d-d4-v8">8</label>
+                                                                                        <input type="radio"
+                                                                                            name="i3-d-d4"
+                                                                                            id="i3-d-d4-v9" /><label
+                                                                                            for="i3-d-d4-v9">9</label>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="set-input-distance-i3 set-digit set-fourth-digit set-number">
+                                                                                        <div class="display-number">
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="determine-combinations-i3">
+                                                                                            <div class="display-number">
+                                                                                            </div>
+                                                                                            Time: 4 <br>
+                                                                                            <div class="numbers-pad">
+                                                                                                <input checked
+                                                                                                    type="radio"
+                                                                                                    name="i4-t-d3"
+                                                                                                    id="i4-t-d3-v0" /><label
+                                                                                                    for="i4-t-d3-v0">0</label>
+                                                                                                <input type="radio"
+                                                                                                    name="i4-t-d3"
+                                                                                                    id="i4-t-d3-v1" /><label
+                                                                                                    for="i4-t-d3-v1">1</label>
+                                                                                                <input type="radio"
+                                                                                                    name="i4-t-d3"
+                                                                                                    id="i4-t-d3-v2" /><label
+                                                                                                    for="i4-t-d3-v2">2</label>
+                                                                                                <input type="radio"
+                                                                                                    name="i4-t-d3"
+                                                                                                    id="i4-t-d3-v3" /><label
+                                                                                                    for="i4-t-d3-v3">3</label>
+                                                                                                <input type="radio"
+                                                                                                    name="i4-t-d3"
+                                                                                                    id="i4-t-d3-v4" /><label
+                                                                                                    for="i4-t-d3-v4">4</label>
+                                                                                                <input type="radio"
+                                                                                                    name="i4-t-d3"
+                                                                                                    id="i4-t-d3-v5" /><label
+                                                                                                    for="i4-t-d3-v5">5</label>
+                                                                                                <input type="radio"
+                                                                                                    name="i4-t-d3"
+                                                                                                    id="i4-t-d3-v6" /><label
+                                                                                                    for="i4-t-d3-v6">6</label>
+                                                                                                <input type="radio"
+                                                                                                    name="i4-t-d3"
+                                                                                                    id="i4-t-d3-v7" /><label
+                                                                                                    for="i4-t-d3-v7">7</label>
+                                                                                                <input type="radio"
+                                                                                                    name="i4-t-d3"
+                                                                                                    id="i4-t-d3-v8" /><label
+                                                                                                    for="i4-t-d3-v8">8</label>
+                                                                                                <input type="radio"
+                                                                                                    name="i4-t-d3"
+                                                                                                    id="i4-t-d3-v9" /><label
+                                                                                                    for="i4-t-d3-v9">9</label>
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="reset-all-digits set-digit set-third-digit">
+                                                                                                <div
+                                                                                                    class="numbers-pad">
+                                                                                                    <input checked
+                                                                                                        type="radio"
+                                                                                                        name="i4-t-d4"
+                                                                                                        id="i4-t-d4-v0" /><label
+                                                                                                        for="i4-t-d4-v0">0</label>
+                                                                                                    <input type="radio"
+                                                                                                        name="i4-t-d4"
+                                                                                                        id="i4-t-d4-v1" /><label
+                                                                                                        for="i4-t-d4-v1">1</label>
+                                                                                                    <input type="radio"
+                                                                                                        name="i4-t-d4"
+                                                                                                        id="i4-t-d4-v2" /><label
+                                                                                                        for="i4-t-d4-v2">2</label>
+                                                                                                    <input type="radio"
+                                                                                                        name="i4-t-d4"
+                                                                                                        id="i4-t-d4-v3" /><label
+                                                                                                        for="i4-t-d4-v3">3</label>
+                                                                                                    <input type="radio"
+                                                                                                        name="i4-t-d4"
+                                                                                                        id="i4-t-d4-v4" /><label
+                                                                                                        for="i4-t-d4-v4">4</label>
+                                                                                                    <input type="radio"
+                                                                                                        name="i4-t-d4"
+                                                                                                        id="i4-t-d4-v5" /><label
+                                                                                                        for="i4-t-d4-v5">5</label>
+                                                                                                    <input type="radio"
+                                                                                                        name="i4-t-d4"
+                                                                                                        id="i4-t-d4-v6" /><label
+                                                                                                        for="i4-t-d4-v6">6</label>
+                                                                                                    <input type="radio"
+                                                                                                        name="i4-t-d4"
+                                                                                                        id="i4-t-d4-v7" /><label
+                                                                                                        for="i4-t-d4-v7">7</label>
+                                                                                                    <input type="radio"
+                                                                                                        name="i4-t-d4"
+                                                                                                        id="i4-t-d4-v8" /><label
+                                                                                                        for="i4-t-d4-v8">8</label>
+                                                                                                    <input type="radio"
+                                                                                                        name="i4-t-d4"
+                                                                                                        id="i4-t-d4-v9" /><label
+                                                                                                        for="i4-t-d4-v9">9</label>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="set-input-time-i4 set-digit set-fourth-digit set-number">
+                                                                                                    <div
+                                                                                                        class="display-number">
+                                                                                                    </div>
+                                                                                                    Distance: 4 <br>
+                                                                                                    <div
+                                                                                                        class="numbers-pad">
+                                                                                                        <input checked
+                                                                                                            type="radio"
+                                                                                                            name="i4-d-d1"
+                                                                                                            id="i4-d-d1-v0" /><label
+                                                                                                            for="i4-d-d1-v0">0</label>
+                                                                                                        <input
+                                                                                                            type="radio"
+                                                                                                            name="i4-d-d1"
+                                                                                                            id="i4-d-d1-v1" /><label
+                                                                                                            for="i4-d-d1-v1">1</label>
+                                                                                                        <input
+                                                                                                            type="radio"
+                                                                                                            name="i4-d-d1"
+                                                                                                            id="i4-d-d1-v2" /><label
+                                                                                                            for="i4-d-d1-v2">2</label>
+                                                                                                        <input
+                                                                                                            type="radio"
+                                                                                                            name="i4-d-d1"
+                                                                                                            id="i4-d-d1-v3" /><label
+                                                                                                            for="i4-d-d1-v3">3</label>
+                                                                                                        <input
+                                                                                                            type="radio"
+                                                                                                            name="i4-d-d1"
+                                                                                                            id="i4-d-d1-v4" /><label
+                                                                                                            for="i4-d-d1-v4">4</label>
+                                                                                                        <input
+                                                                                                            type="radio"
+                                                                                                            name="i4-d-d1"
+                                                                                                            id="i4-d-d1-v5" /><label
+                                                                                                            for="i4-d-d1-v5">5</label>
+                                                                                                        <input
+                                                                                                            type="radio"
+                                                                                                            name="i4-d-d1"
+                                                                                                            id="i4-d-d1-v6" /><label
+                                                                                                            for="i4-d-d1-v6">6</label>
+                                                                                                        <input
+                                                                                                            type="radio"
+                                                                                                            name="i4-d-d1"
+                                                                                                            id="i4-d-d1-v7" /><label
+                                                                                                            for="i4-d-d1-v7">7</label>
+                                                                                                        <input
+                                                                                                            type="radio"
+                                                                                                            name="i4-d-d1"
+                                                                                                            id="i4-d-d1-v8" /><label
+                                                                                                            for="i4-d-d1-v8">8</label>
+                                                                                                        <input
+                                                                                                            type="radio"
+                                                                                                            name="i4-d-d1"
+                                                                                                            id="i4-d-d1-v9" /><label
+                                                                                                            for="i4-d-d1-v9">9</label>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="reset-all-digits set-digit set-first-digit">
+                                                                                                        <div
+                                                                                                            class="numbers-pad">
+                                                                                                            <input
+                                                                                                                checked
+                                                                                                                type="radio"
+                                                                                                                name="i4-d-d2"
+                                                                                                                id="i4-d-d2-v0" /><label
+                                                                                                                for="i4-d-d2-v0">0</label>
+                                                                                                            <input
+                                                                                                                type="radio"
+                                                                                                                name="i4-d-d2"
+                                                                                                                id="i4-d-d2-v1" /><label
+                                                                                                                for="i4-d-d2-v1">1</label>
+                                                                                                            <input
+                                                                                                                type="radio"
+                                                                                                                name="i4-d-d2"
+                                                                                                                id="i4-d-d2-v2" /><label
+                                                                                                                for="i4-d-d2-v2">2</label>
+                                                                                                            <input
+                                                                                                                type="radio"
+                                                                                                                name="i4-d-d2"
+                                                                                                                id="i4-d-d2-v3" /><label
+                                                                                                                for="i4-d-d2-v3">3</label>
+                                                                                                            <input
+                                                                                                                type="radio"
+                                                                                                                name="i4-d-d2"
+                                                                                                                id="i4-d-d2-v4" /><label
+                                                                                                                for="i4-d-d2-v4">4</label>
+                                                                                                            <input
+                                                                                                                type="radio"
+                                                                                                                name="i4-d-d2"
+                                                                                                                id="i4-d-d2-v5" /><label
+                                                                                                                for="i4-d-d2-v5">5</label>
+                                                                                                            <input
+                                                                                                                type="radio"
+                                                                                                                name="i4-d-d2"
+                                                                                                                id="i4-d-d2-v6" /><label
+                                                                                                                for="i4-d-d2-v6">6</label>
+                                                                                                            <input
+                                                                                                                type="radio"
+                                                                                                                name="i4-d-d2"
+                                                                                                                id="i4-d-d2-v7" /><label
+                                                                                                                for="i4-d-d2-v7">7</label>
+                                                                                                            <input
+                                                                                                                type="radio"
+                                                                                                                name="i4-d-d2"
+                                                                                                                id="i4-d-d2-v8" /><label
+                                                                                                                for="i4-d-d2-v8">8</label>
+                                                                                                            <input
+                                                                                                                type="radio"
+                                                                                                                name="i4-d-d2"
+                                                                                                                id="i4-d-d2-v9" /><label
+                                                                                                                for="i4-d-d2-v9">9</label>
+                                                                                                        </div>
+                                                                                                        <div
+                                                                                                            class="set-digit set-second-digit">
+                                                                                                            <div
+                                                                                                                class="numbers-pad">
+                                                                                                                <input
+                                                                                                                    checked
+                                                                                                                    type="radio"
+                                                                                                                    name="i4-d-d3"
+                                                                                                                    id="i4-d-d3-v0" /><label
+                                                                                                                    for="i4-d-d3-v0">0</label>
+                                                                                                                <input
+                                                                                                                    type="radio"
+                                                                                                                    name="i4-d-d3"
+                                                                                                                    id="i4-d-d3-v1" /><label
+                                                                                                                    for="i4-d-d3-v1">1</label>
+                                                                                                                <input
+                                                                                                                    type="radio"
+                                                                                                                    name="i4-d-d3"
+                                                                                                                    id="i4-d-d3-v2" /><label
+                                                                                                                    for="i4-d-d3-v2">2</label>
+                                                                                                                <input
+                                                                                                                    type="radio"
+                                                                                                                    name="i4-d-d3"
+                                                                                                                    id="i4-d-d3-v3" /><label
+                                                                                                                    for="i4-d-d3-v3">3</label>
+                                                                                                                <input
+                                                                                                                    type="radio"
+                                                                                                                    name="i4-d-d3"
+                                                                                                                    id="i4-d-d3-v4" /><label
+                                                                                                                    for="i4-d-d3-v4">4</label>
+                                                                                                                <input
+                                                                                                                    type="radio"
+                                                                                                                    name="i4-d-d3"
+                                                                                                                    id="i4-d-d3-v5" /><label
+                                                                                                                    for="i4-d-d3-v5">5</label>
+                                                                                                                <input
+                                                                                                                    type="radio"
+                                                                                                                    name="i4-d-d3"
+                                                                                                                    id="i4-d-d3-v6" /><label
+                                                                                                                    for="i4-d-d3-v6">6</label>
+                                                                                                                <input
+                                                                                                                    type="radio"
+                                                                                                                    name="i4-d-d3"
+                                                                                                                    id="i4-d-d3-v7" /><label
+                                                                                                                    for="i4-d-d3-v7">7</label>
+                                                                                                                <input
+                                                                                                                    type="radio"
+                                                                                                                    name="i4-d-d3"
+                                                                                                                    id="i4-d-d3-v8" /><label
+                                                                                                                    for="i4-d-d3-v8">8</label>
+                                                                                                                <input
+                                                                                                                    type="radio"
+                                                                                                                    name="i4-d-d3"
+                                                                                                                    id="i4-d-d3-v9" /><label
+                                                                                                                    for="i4-d-d3-v9">9</label>
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                class="set-digit set-third-digit">
+                                                                                                                <div
+                                                                                                                    class="numbers-pad">
+                                                                                                                    <input
+                                                                                                                        checked
+                                                                                                                        type="radio"
+                                                                                                                        name="i4-d-d4"
+                                                                                                                        id="i4-d-d4-v0" /><label
+                                                                                                                        for="i4-d-d4-v0">0</label>
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        name="i4-d-d4"
+                                                                                                                        id="i4-d-d4-v1" /><label
+                                                                                                                        for="i4-d-d4-v1">1</label>
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        name="i4-d-d4"
+                                                                                                                        id="i4-d-d4-v2" /><label
+                                                                                                                        for="i4-d-d4-v2">2</label>
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        name="i4-d-d4"
+                                                                                                                        id="i4-d-d4-v3" /><label
+                                                                                                                        for="i4-d-d4-v3">3</label>
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        name="i4-d-d4"
+                                                                                                                        id="i4-d-d4-v4" /><label
+                                                                                                                        for="i4-d-d4-v4">4</label>
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        name="i4-d-d4"
+                                                                                                                        id="i4-d-d4-v5" /><label
+                                                                                                                        for="i4-d-d4-v5">5</label>
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        name="i4-d-d4"
+                                                                                                                        id="i4-d-d4-v6" /><label
+                                                                                                                        for="i4-d-d4-v6">6</label>
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        name="i4-d-d4"
+                                                                                                                        id="i4-d-d4-v7" /><label
+                                                                                                                        for="i4-d-d4-v7">7</label>
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        name="i4-d-d4"
+                                                                                                                        id="i4-d-d4-v8" /><label
+                                                                                                                        for="i4-d-d4-v8">8</label>
+                                                                                                                    <input
+                                                                                                                        type="radio"
+                                                                                                                        name="i4-d-d4"
+                                                                                                                        id="i4-d-d4-v9" /><label
+                                                                                                                        for="i4-d-d4-v9">9</label>
+                                                                                                                </div>
+                                                                                                                <div
+                                                                                                                    class="set-input-distance-i4 set-digit set-fourth-digit set-number">
+                                                                                                                    <div
+                                                                                                                        class="display-number">
+                                                                                                                    </div>
+                                                                                                                    <div
+                                                                                                                        class="determine-combinations-i4">
+                                                                                                                        <div
+                                                                                                                            class="display-number">
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                            class="determine-part-one">
+                                                                                                                            <div
+                                                                                                                                class="display-number">
+                                                                                                                                Part
+                                                                                                                                one:
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                            class="determine-part-two-time">
+                                                                                                                            <div
+                                                                                                                                class="determine-part-two-distance">
+                                                                                                                                <div
+                                                                                                                                    class="determine-combinations">
+                                                                                                                                    <div
+                                                                                                                                        class="override-part-two">
+                                                                                                                                        <div
+                                                                                                                                            class="display-number">
+                                                                                                                                            Part
+                                                                                                                                            two
+                                                                                                                                            answer
+                                                                                                                                            (WIP,
+                                                                                                                                            incorrect):
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <br>
+</body>
+<style>
+    @property --property-integer-lower {
+        syntax: '<integer>';
+        initial-value: 0;
+        inherits: true;
+    }
+
+    @property --property-integer-higher {
+        syntax: '<integer>';
+        initial-value: 0;
+        inherits: true;
+    }
+
+    body {
+        counter-reset: number;
+        --initial-guess: 20;
+    }
+
+    /* styles */
+    input {
+        display: none;
+    }
+
+    label {
+        display: inline-block;
+        height: 25px;
+        width: 25px;
+        background-color: lightgray;
+
+        text-align: center;
+        line-height: 25px;
+        cursor: pointer;
+
+    }
+
+    input:checked+label {
+        background-color: green;
+    }
+
+    /* logic */
+
+    .reset-all-digits {
+        --first-digit: 0;
+        --second-digit: 0;
+        --third-digit: 0;
+        --fourth-digit: 0;
+    }
+
+    .numbers-pad:has([id$=v0]:checked)~.set-digit {
+        --digit: 0;
+    }
+
+    .numbers-pad:has([id$=v1]:checked)~.set-digit {
+        --digit: 1;
+    }
+
+    .numbers-pad:has([id$=v2]:checked)~.set-digit {
+        --digit: 2;
+    }
+
+    .numbers-pad:has([id$=v3]:checked)~.set-digit {
+        --digit: 3;
+    }
+
+    .numbers-pad:has([id$=v4]:checked)~.set-digit {
+        --digit: 4;
+    }
+
+    .numbers-pad:has([id$=v5]:checked)~.set-digit {
+        --digit: 5;
+    }
+
+    .numbers-pad:has([id$=v6]:checked)~.set-digit {
+        --digit: 6;
+    }
+
+    .numbers-pad:has([id$=v7]:checked)~.set-digit {
+        --digit: 7;
+    }
+
+    .numbers-pad:has([id$=v8]:checked)~.set-digit {
+        --digit: 8;
+    }
+
+    .numbers-pad:has([id$=v9]:checked)~.set-digit {
+        --digit: 9;
+    }
+
+    .set-first-digit {
+        --first-digit: var(--digit)
+    }
+
+    .set-second-digit {
+        --second-digit: var(--digit)
+    }
+
+    .set-third-digit {
+        --third-digit: var(--digit)
+    }
+
+    .set-fourth-digit {
+        --fourth-digit: var(--digit)
+    }
+
+    .set-number {
+        --number: calc(1000*var(--first-digit) + 100*var(--second-digit) + 10*var(--third-digit) + var(--fourth-digit));
+        --first-set: calc(clamp(0, var(--first-digit), 1));
+        --second-set: calc(clamp(0, var(--second-digit), 1));
+        --third-set: calc(clamp(0, var(--third-digit), 1));
+        --fourth-set: calc(clamp(0, var(--fourth-digit), 1));
+        --magnitude: calc(max(10000 * var(--first-set), 1000 * var(--second-set), 100 * var(--third-set), 10 * var(--fourth-set)));
+        /* --magnitude: 100; */
+    }
+
+    [class^=set-input-time] {
+        --input-time: var(--number)
+    }
+
+    [class^=set-input-distance] {
+        --input-distance: var(--number)
+    }
+
+    .set-input-time-i1 {
+        --input-time-1: var(--number);
+    }
+
+    .set-input-distance-i1 {
+        --input-distance-1: var(--number)
+    }
+
+    .set-input-time-i2 {
+        --input-time-2: var(--number);
+        --input-time-2-magnitude: var(--magnitude);
+    }
+
+    .set-input-distance-i2 {
+        --input-distance-2: var(--number);
+        --input-distance-2-magnitude: var(--magnitude);
+    }
+
+    .set-input-time-i3 {
+        --input-time-3: var(--number);
+        --input-time-3-magnitude: var(--magnitude);
+    }
+
+    .set-input-distance-i3 {
+        --input-distance-3: var(--number);
+        --input-distance-3-magnitude: var(--magnitude);
+    }
+
+    .set-input-time-i4 {
+        --input-time-4: var(--number);
+        --input-time-4-magnitude: var(--magnitude);
+    }
+
+    .set-input-distance-i4 {
+        --input-distance-4: var(--number);
+        --input-distance-4-magnitude: var(--magnitude);
+    }
+
+    [class^=determine-combinations] {
+        --discriminant: calc(var(--input-time)*var(--input-time) - 4*var(--input-distance));
+        --iter01: calc((var(--initial-guess) + (var(--discriminant) / var(--initial-guess)))/2);
+        --iter02: calc((var(--iter01) + (var(--discriminant) / var(--iter01)))/2);
+        --iter03: calc((var(--iter02) + (var(--discriminant) / var(--iter02)))/2);
+        --iter04: calc((var(--iter03) + (var(--discriminant) / var(--iter03)))/2);
+        --iter05: calc((var(--iter04) + (var(--discriminant) / var(--iter04)))/2);
+        --iter06: calc((var(--iter05) + (var(--discriminant) / var(--iter05)))/2);
+        --iter07: calc((var(--iter06) + (var(--discriminant) / var(--iter06)))/2);
+        --iter08: calc((var(--iter07) + (var(--discriminant) / var(--iter07)))/2);
+        --iter09: calc((var(--iter08) + (var(--discriminant) / var(--iter08)))/2);
+        --iter10: calc((var(--iter09) + (var(--discriminant) / var(--iter09)))/2);
+        --iter11: calc((var(--iter10) + (var(--discriminant) / var(--iter10)))/2);
+        --iter12: calc((var(--iter11) + (var(--discriminant) / var(--iter11)))/2);
+        --iter13: calc((var(--iter12) + (var(--discriminant) / var(--iter12)))/2);
+        /* add iterations */
+        --property-integer-lower: calc((var(--input-time) - var(--iter13) + 1.00001) / 2);
+        --property-integer-higher: calc((var(--input-time) + var(--iter13) - 1.00001) / 2);
+
+        --number: calc(var(--property-integer-higher) - var(--property-integer-lower) + 1);
+    }
+
+    .determine-combinations-i1 {
+        --combinations-1: var(--number)
+    }
+
+    .determine-combinations-i2 {
+        --combinations-2: var(--number)
+    }
+
+    .determine-combinations-i3 {
+        --combinations-3: var(--number)
+    }
+
+    .determine-combinations-i4 {
+        --combinations-4: var(--number)
+    }
+
+    .override-part-two {
+        /* attempt to simplify calculation due to rounding error in large number */
+        /* --number: calc(var(--iter12)); */
+    }
+
+    .determine-part-one {
+        --number: calc(var(--combinations-1) * var(--combinations-2) * var(--combinations-3) * var(--combinations-4))
+    }
+
+    .determine-part-two-time {
+        --input-time: calc(var(--input-time-4) + var(--input-time-4-magnitude)*(var(--input-time-3) + var(--input-time-3-magnitude)*(var(--input-time-2) + var(--input-time-2-magnitude)*(var(--input-time-1)))));
+    }
+
+    .determine-part-two-distance {
+        --initial-guess: 10000000;
+        --input-distance: calc(var(--input-distance-4) + var(--input-distance-4-magnitude)*(var(--input-distance-3) + var(--input-distance-3-magnitude)*(var(--input-distance-2) + var(--input-distance-2-magnitude)*(var(--input-distance-1)))));
+    }
+
+    .display-number {
+        counter-reset: number;
+        counter-increment: number var(--number);
+    }
+
+    .display-number::after {
+        content: counter(number);
+    }
+</style>
+
+</html>
