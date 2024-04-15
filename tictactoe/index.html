@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title >NoJS TicTacToe</title>
+        <link rel=“canonical” href=“https://quarknerd.github.io/noJS/tictactoe.html/” />
+    </head>
+    <body>
+        <form>
+            <input type="radio" id="X-1" name="1" />
+            <input type="radio" id="X-2" name="2" />
+            <input type="radio" id="X-3" name="3" />
+            <input type="radio" id="X-4" name="4" />
+            <input type="radio" id="X-5" name="5" />
+            <input type="radio" id="X-6" name="6" />
+            <input type="radio" id="X-7" name="7" />
+            <input type="radio" id="X-8" name="8" />
+            <input type="radio" id="X-9" name="9" />
+            <input type="radio" id="O-1" name="1" />
+            <input type="radio" id="O-2" name="2" />
+            <input type="radio" id="O-3" name="3" />
+            <input type="radio" id="O-4" name="4" />
+            <input type="radio" id="O-5" name="5" />
+            <input type="radio" id="O-6" name="6" />
+            <input type="radio" id="O-7" name="7" />
+            <input type="radio" id="O-8" name="8" />
+            <input type="radio" id="O-9" name="9" />
+            <input type="reset" id="reset">
+        </form>
+        <div class="main">
+            <div class="state-display">
+                <div class="x-to-play">❌to play</div>
+                <div class="o-to-play">
+                    <img src="./crowsant.png"> to play
+                    </div>
+                <div class="x-won">❌has won!</div>
+                <div class="o-won">
+                    <img src="./crowsant.png"> has won!
+                </div>
+                <div class="draw">It's a draw!</div>
+            </div>
+            <div class="button-panel">
+                <label class="button" for="reset">
+                    Restart
+                </label>
+                
+                <div class="random-button-holder">
+                    <div class="button">
+                        Random
+                    </div>
+                    <div class="X random">
+                        <label for="X-1"></label>
+                        <label for="X-2"></label>
+                        <label for="X-3"></label>
+                        <label for="X-4"></label>
+                        <label for="X-5"></label>
+                        <label for="X-6"></label>
+                        <label for="X-7"></label>
+                        <label for="X-8"></label>
+                        <label for="X-9"></label>
+                        <div>
+                            <label for="X-1"></label>
+                            <label for="X-2"></label>
+                            <label for="X-3"></label>
+                            <label for="X-4"></label>
+                            <label for="X-5"></label>
+                            <label for="X-6"></label>
+                            <label for="X-7"></label>
+                            <label for="X-8"></label>
+                            <label for="X-9"></label>
+                        </div>
+                    </div>
+                    <div class="O random">
+                        <label for="O-1"></label>
+                        <label for="O-2"></label>
+                        <label for="O-3"></label>
+                        <label for="O-4"></label>
+                        <label for="O-5"></label>
+                        <label for="O-6"></label>
+                        <label for="O-7"></label>
+                        <label for="O-8"></label>
+                        <label for="O-9"></label>
+                        <div>
+                            <label for="O-1"></label>
+                            <label for="O-2"></label>
+                            <label for="O-3"></label>
+                            <label for="O-4"></label>
+                            <label for="O-5"></label>
+                            <label for="O-6"></label>
+                            <label for="O-7"></label>
+                            <label for="O-8"></label>
+                            <label for="O-9"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="board">
+                <div class="board-square board-square-1">
+                    <label for="O-1"></label>
+                    <label for="X-1"></label>
+                    <div class="symbol-X">❌</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-2">
+                    <label for="O-2"></label>
+                    <label for="X-2"></label>
+                    <div class="symbol-X">❌</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-3">
+                    <label for="O-3"></label>
+                    <label for="X-3"></label>
+                    <div class="symbol-X">❌</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-4">
+                    <label for="O-4"></label>
+                    <label for="X-4"></label>
+                    <div class="symbol-X">❌</div>
+                    <div class="symbol-O">
+                    <img src="./crowsant.png">
+                    <div>  
+                        <audio controls src="./croissant.mp3"></audio>
+                    </div>
+                </div>
+                </div>
+                <div class="board-square board-square-5">
+                    <label for="O-5"></label>
+                    <label for="X-5"></label>
+                    <div class="symbol-X">❌</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-6">
+                    <label for="O-6"></label>
+                    <label for="X-6"></label>
+                    <div class="symbol-X">❌</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-7">
+                    <label for="O-7"></label>
+                    <label for="X-7"></label>
+                    <div class="symbol-X">❌</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-8">
+                    <label for="O-8"></label>
+                    <label for="X-8"></label>
+                    <div class="symbol-X">❌</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="board-square board-square-9">
+                    <label for="O-9"></label>
+                    <label for="X-9"></label>
+                    <div class="symbol-X">❌</div>
+                    <div class="symbol-O">
+                        <img src="./crowsant.png">
+                        <div>  
+                            <audio controls src="./croissant.mp3"></audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <style>
+
+        body {
+            background: lightgrey;
+            color: white;
+            font-size: 30px;
+            user-select: none;
+            
+            --grid-colour: limegreen;
+            --grid-box: black;
+            --grid-square-size: 120px;
+            --grid-board-border-radius: 30px;
+            --box-shadow: 1px 8px 5px 0px #696969;
+
+            --button-width: 120px;
+            --button-height: 30px;
+            
+            --has-x-just-played: 0;
+            --has-X-won: 0;
+            --has-O-won: 0;
+            --is-board-full: 0;
+            
+            --is-game-over: max(var(--has-O-won), var(--has-X-won), var(--is-board-full));
+            --is-game-on: calc(1 - var(--is-game-over));
+            --has-draw: calc(var(--is-game-over) - var(--has-X-won) - var(--has-O-won));
+            
+            --is-X-to-play: calc(var(--is-game-on)*(1 - var(--has-x-just-played)));
+            --is-O-to-play: calc(var(--is-game-on)*var(--has-x-just-played));
+        }
+        
+        /* base styles */
+        form {
+            display: none;
+        }
+
+        .main {
+            width: fit-content;
+            margin: 10px auto;
+        }
+
+        .board {
+            margin: 20px auto 0;
+
+            width: fit-content;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+
+            background-color: var(--grid-colour);
+            border-radius: var(--grid-board-border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .board-square {
+            position: relative;
+            
+            background-color: var(--grid-box);
+            width: var(--grid-square-size);
+            height: var(--grid-square-size);
+        }
+        
+        .board-square-1 { border-radius: var(--grid-board-border-radius) 0 0 0;}
+
+        .board-square-3 { border-radius: 0 var(--grid-board-border-radius) 0 0;}
+
+        .board-square-7 { border-radius: 0 0 0 var(--grid-board-border-radius); }
+
+        .board-square-9 { border-radius: 0 0 var(--grid-board-border-radius) 0;}
+
+        .board-square > *,
+        .symbol-O
+        {
+            display: inline-block;
+            position: absolute;
+
+            width: var(--grid-square-size);
+            height: var(--grid-square-size);
+        }
+
+        .symbol-X {
+            line-height: var(--grid-square-size);
+            font-size: 60px;
+
+            text-align: center;
+        }
+        
+        .symbol-X p {
+            margin: auto 0;
+        }
+
+        .symbol-O div {
+            position: absolute;
+            top: 50px;
+            left: 45px;
+            
+            height: 30px;
+            width: 30px;
+            border-radius: 20px;
+            transform: scale(1.6);
+            
+            overflow: hidden;
+        }
+
+        .symbol-O img {
+            z-index: 1;
+            position: relative;
+            pointer-events: none;
+
+            display: block;
+            width: 45%;
+            margin: 25px auto;
+        }
+
+        .symbol-O div audio {
+            position: absolute;
+            top: -11px;
+            left: -11px;
+        }
+
+        .state-display {
+            position: relative;
+            height: 40px;
+            width: 440px;
+
+            margin: 20px 0;
+
+            border: 5px solid var(--grid-colour);
+            background: var(--grid-box);
+            box-shadow: var(--box-shadow);
+
+            line-height: 40px;
+        }
+        
+        .state-display > div {
+            position: absolute;
+            left: 0px;
+            width: 100%;
+
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .state-display img {
+            position: relative;
+            top: 5px;
+            height: 30px;
+        }
+
+        .button-panel {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button {
+            height: var(--button-height);
+            line-height: var(--button-height);
+            width: var(--button-width);
+
+            background: var(--grid-box);
+            text-align: center;
+            font-size: 20px;
+
+            box-shadow: inset 0px 0px 0px 4px var(--grid-colour), var(--box-shadow);
+        }
+    
+
+        .button-holder {
+            box-shadow: var(--box-shadow);
+        }
+
+        /* gameplay logic */
+
+        body:has(input:checked),
+        body:has(input[id^="X"]:checked ~ input[id^="X"]:checked),
+        body:has(input[id^="X"]:checked ~ input[id^="X"]:checked ~ input[id^="X"]:checked),
+        body:has(input[id^="X"]:checked ~ input[id^="X"]:checked ~ input[id^="X"]:checked ~ input[id^="X"]:checked)
+        {
+            --has-x-just-played: 1;
+        }
+
+        body:has(input[id^="O"]:checked),
+        body:has(input[id^="O"]:checked ~ input[id^="O"]:checked),
+        body:has(input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked),
+        body:has(input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked ~ input[id^="O"]:checked)
+        {
+            --has-x-just-played: 0;
+        }
+
+        /* end-game detection */
+
+        body:has(input[id^="X"]:nth-of-type(3n-2):checked + input:checked + input:checked),
+        body:has(input[id^="X"]:checked + * + * + input:checked + * + * + input[id^="X"]:checked),
+        body:has(input#X-1:checked ~ input#X-5:checked ~ input#X-9:checked),
+        body:has(input#X-3:checked ~ input#X-5:checked ~ input#X-7:checked)
+        {
+            --has-X-won: 1;
+        }
+
+        body:has(input[id^="O"]:nth-of-type(3n+7):checked + input:checked + input:checked),
+        body:has(input[id^="O"]:checked + * + * + input:checked + * + * + input[id^="O"]:checked),
+        body:has(input#O-1:checked ~ input#O-5:checked ~ input#O-9:checked),
+        body:has(input#O-3:checked ~ input#O-5:checked ~ input#O-7:checked)
+        {
+            --has-O-won: 1;
+        }
+
+        body:has(input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked ~ input:checked)
+        {
+            --is-board-full: 1;
+        }
+
+        /* display logic */
+        body:has(#X-1:checked) .board-square-1 .symbol-X,
+        body:has(#X-2:checked) .board-square-2 .symbol-X,
+        body:has(#X-3:checked) .board-square-3 .symbol-X,
+        body:has(#X-4:checked) .board-square-4 .symbol-X,
+        body:has(#X-5:checked) .board-square-5 .symbol-X,
+        body:has(#X-6:checked) .board-square-6 .symbol-X,
+        body:has(#X-7:checked) .board-square-7 .symbol-X,
+        body:has(#X-8:checked) .board-square-8 .symbol-X,
+        body:has(#X-9:checked) .board-square-9 .symbol-X,
+        body:has(#O-1:checked) .board-square-1 .symbol-O,
+        body:has(#O-2:checked) .board-square-2 .symbol-O,
+        body:has(#O-3:checked) .board-square-3 .symbol-O,
+        body:has(#O-4:checked) .board-square-4 .symbol-O,
+        body:has(#O-5:checked) .board-square-5 .symbol-O,
+        body:has(#O-6:checked) .board-square-6 .symbol-O,
+        body:has(#O-7:checked) .board-square-7 .symbol-O,
+        body:has(#O-8:checked) .board-square-8 .symbol-O,
+        body:has(#O-9:checked) .board-square-9 .symbol-O
+        {
+            display: block;
+        }
+
+        body:has([id$="1"]:checked) label[for$="1"],
+        body:has([id$="2"]:checked) label[for$="2"],
+        body:has([id$="3"]:checked) label[for$="3"],
+        body:has([id$="4"]:checked) label[for$="4"],
+        body:has([id$="5"]:checked) label[for$="5"],
+        body:has([id$="6"]:checked) label[for$="6"],
+        body:has([id$="7"]:checked) label[for$="7"],
+        body:has([id$="8"]:checked) label[for$="8"],
+        body:has([id$="9"]:checked) label[for$="9"]
+        {
+            display: none;
+        }
+
+        .board-square > .symbol-O,
+        .board-square > .symbol-X
+        {
+            display: none;
+        }
+
+        .x-to-play, label[for^="X"] {
+            transform: scale(var(--is-X-to-play));
+        }
+
+        .o-to-play, label[for^="O"] {
+            transform: scale(var(--is-O-to-play));
+        }
+        
+        .x-won {
+            transform: scale(var(--has-X-won));
+        }
+
+        .o-won {
+            transform: scale(var(--has-O-won));
+        }
+
+        .draw {
+            transform: scale(var(--has-draw));
+        }
+
+        /* Random placement button */
+        
+        .random {
+            display: grid;
+            width: var(--button-width);
+            animation: 0.0984363s linear 0s infinite normal moving-button;
+            transform: scale(var(--is-game-on));
+        }
+
+        .random:hover {
+            /* this is neede because if a label moves away while the user is clicking, the click fails */
+            animation-play-state: paused;
+        }
+
+        .random.O {
+            height: calc(var(--button-height) * 10 * var(--is-O-to-play));
+        }
+        
+        .random.X {
+            height: calc(var(--button-height) * 10 * var(--is-X-to-play));
+        }
+
+
+        .random label {
+            display: block;
+            width: var(--button-width);
+        }
+
+        .random div label {
+            height: 100%;
+        }
+        
+        .random-button-holder {
+            height: var(--button-height);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        @keyframes moving-button {
+            from {
+                transform: translateY(calc(-1 * var(--button-height)));
+            }
+            to {
+                transform: translateY(calc(var(--button-height) * -10));
+            }
+        }
+     </style>
+</html>
