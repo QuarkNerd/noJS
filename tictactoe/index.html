@@ -57,7 +57,7 @@
                         <label for="X-7"></label>
                         <label for="X-8"></label>
                         <label for="X-9"></label>
-                        <div>
+                        <div class="final">
                             <label for="X-1"></label>
                             <label for="X-2"></label>
                             <label for="X-3"></label>
@@ -79,7 +79,7 @@
                         <label for="O-7"></label>
                         <label for="O-8"></label>
                         <label for="O-9"></label>
-                        <div>
+                        <div class="final">
                             <label for="O-1"></label>
                             <label for="O-2"></label>
                             <label for="O-3"></label>
@@ -361,7 +361,7 @@
 
             box-shadow: inset 0px 0px 0px 4px var(--grid-colour), var(--box-shadow);
         }
-    
+
 
         .button-holder {
             box-shadow: var(--box-shadow);
@@ -473,7 +473,8 @@
         /* Random placement button */
         
         .random {
-            display: grid;
+            display: flex;
+            flex-direction: column;
             width: var(--button-width);
             animation: 0.0984363s linear 0s infinite normal moving-button;
             transform: scale(var(--is-game-on));
@@ -490,12 +491,12 @@
         
         .random.X {
             height: calc(var(--button-height) * 10 * var(--is-X-to-play));
-        }
-
+        } 
 
         .random label {
             display: block;
             width: var(--button-width);
+            flex-grow: 1;
         }
 
         .random div label {
@@ -506,6 +507,11 @@
             height: var(--button-height);
             overflow: hidden;
             box-shadow: var(--box-shadow);
+        }
+
+        .final {
+            height: var(--button-height);
+            flex-grow: 0;
         }
 
         @keyframes moving-button {
