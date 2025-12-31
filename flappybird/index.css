@@ -1,0 +1,635 @@
+@property --bird-delta-y {
+  syntax: "<length>";
+  initial-value: 0px;
+  inherits: true;
+}
+
+@property --pipe-left {
+  syntax: "<length>";
+  initial-value: 0px;
+  inherits: true;
+}
+
+@property --passed-count {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: true;
+}
+
+@font-face {
+  font-family: "Orbitron";
+  font-style: normal;
+  font-weight: 400;
+  src: url(font.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+:root {
+  --jump-height: 70px;
+  --fall-distance: 800px;
+  --jump-duration: 1.5s;
+
+  --active-number: 0;
+  --click-box-height: 20px;
+  --click-box-number: 33;
+  --click-box-width: 20px;
+
+  --user-target-side-length: 20px;
+
+  --game-width: 600px;
+  --bird-frame-width: 630px;
+  --game-height-in-boxes: 27;
+  --game-height: calc(var(--click-box-height) * var(--game-height-in-boxes));
+
+  --margin-top: 10px;
+  --margin-left: 10px;
+  --background: #e0e0e0;
+
+  --brid-x: 80px;
+  --bird-delta-y: 0px;
+  --bird-frame-height: calc(var(--click-box-height) * var(--click-box-number));
+  --bird-frame-base-top: calc(
+    var(--margin-top) - var(--click-box-height) *
+      (var(--click-box-number) - var(--game-height-in-boxes)) / 2
+  );
+  --furthest-click-dist: calc(
+    var(--click-box-height) * (var(--click-box-number) - 1) / 2
+  );
+  --bird-frame-top: calc(
+    var(--bird-frame-base-top) +
+      clamp(
+        var(--furthest-click-dist) * -1,
+        var(--bird-delta-y),
+        var(--furthest-click-dist)
+      )
+  );
+  animation-fill-mode: forwards;
+  animation-duration: var(--jump-duration);
+
+  --bird-width: 40px;
+
+  --pipe-width: 80px;
+  --pipe-vertical-gap: 140px;
+  --pipe-horizontol-gap: 300px;
+  --pipe-count: 3;
+  --pipe-speed: calc(95px / 1s);
+  --pipe-delay: calc(var(--pipe-horizontol-gap) / var(--pipe-speed));
+  --pipe-duration: calc(var(--pipe-delay) * var(--pipe-count));
+
+  --max-index: 10000;
+
+  font-family: Orbitron;
+  background-color: lightgray;
+  font-size: 36px;
+}
+
+body {
+  margin: 0px var(--margin-left);
+  background-color: #e0e0e0;
+  overflow: hidden;
+}
+
+#game-screen {
+  position: fixed;
+  background-color: lightblue;
+  height: var(--game-height);
+  width: var(--game-width);
+  top: var(--margin-top);
+}
+
+label {
+  width: var(--click-box-width);
+  height: var(--click-box-height);
+  background-color: blue;
+  cursor: pointer;
+}
+label:active {
+  height: 300px;
+}
+
+#jump-input-holder {
+  display: none;
+}
+
+#bird-frame {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--bird-frame-width);
+  height: var(--bird-frame-height);
+  top: var(--bird-frame-top);
+}
+
+.jump-label-holder {
+  display: flex;
+  flex-direction: column;
+}
+
+#bird {
+  position: relative;
+  left: var(--brid-x);
+  background-image: url("./bird.svg");
+  height: var(--bird-width);
+  width: var(--bird-width);
+  z-index: 2;
+  transition: background-image 0.06s steps(1);
+}
+
+#bird:has(~ div label:active) {
+  background-image: url("./bird-flap.svg");
+  transition: background-image 0s steps(1);
+}
+
+#jump-label-holder-2 {
+  display: none;
+}
+
+div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-2 {
+  display: flex;
+}
+
+div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
+  display: none;
+}
+
+/* Pipes */
+
+#pipe-1 {
+  --pipe-number: 1;
+}
+
+#pipe-2 {
+  --pipe-number: 2;
+  animation-delay: calc(var(--pipe-delay) * 1);
+}
+
+#pipe-3 {
+  --pipe-number: 3;
+  animation-delay: calc(var(--pipe-delay) * 2);
+}
+
+.pipe-frame {
+  /* Calculate gap location */
+  --integer: round(
+    down,
+    calc((var(--passed-count) + 3 - var(--pipe-number)) / 3)
+  );
+  --pipe-index: calc(var(--integer) * 3 + var(--pipe-number));
+  --random-number: calc(
+    (1 + sin(var(--pipe-index) * var(--pipe-index) * 17)) / 2
+  );
+
+  --y-of-top: calc(
+    40px + var(--random-number) *
+      (var(--game-height) - var(--pipe-vertical-gap) - 80px)
+  );
+
+  position: fixed;
+  width: var(--pipe-width);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: var(--game-height);
+  top: var(--margin-top);
+
+  z-index: 3;
+  animation-duration: var(--pipe-duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  pointer-events: none;
+  --pipe-left: calc(var(--margin-left) + var(--game-width));
+  left: var(--pipe-left);
+  --collision-in-x: calc(
+    (
+        max(
+            0px,
+            var(--brid-x) + var(--margin-left) + var(--bird-width) -
+              var(--pipe-left)
+          ) / 1px
+      ) *
+      max(
+        0px,
+        var(--pipe-left) + var(--pipe-width) - var(--brid-x) -
+          var(--margin-left)
+      )
+  );
+  --bird-top: calc(
+    var(--bird-frame-top) - var(--margin-top) +
+      (var(--bird-frame-height) - var(--bird-width)) / 2
+  );
+  --collision-in-y: calc(
+    max(0px, var(--y-of-top) - var(--bird-top)) +
+      max(
+        0px,
+        var(--bird-top) + var(--bird-width) - var(--y-of-top) -
+          var(--pipe-vertical-gap)
+      )
+  );
+}
+
+.pipe-frame div {
+  background-image: url("./pipe.svg");
+  width: 100%;
+}
+
+.pipe-frame .upper {
+  height: var(--y-of-top);
+  transform: rotate(180deg);
+}
+
+.pipe-frame .lower {
+  height: calc(var(--game-height) - var(--y-of-top) - var(--pipe-vertical-gap));
+}
+
+.pipe-frame .game-ender {
+  position: absolute;
+  left: calc(-1 * var(--pipe-left));
+  top: -10px;
+  pointer-events: auto;
+  opacity: 0;
+  height: calc(
+    200vh * (var(--collision-in-x) / 1px) * var(--collision-in-y) / 1px
+  );
+  width: 100vw;
+}
+
+/* Score */
+#score {
+  counter-reset: score;
+  counter-increment: score var(--passed-count);
+}
+
+#score::after {
+  position: fixed;
+  top: calc(var(--game-height) + var(--margin-top) - 36px);
+  z-index: 30;
+
+  content: "Score: " counter(score);
+}
+
+/* Animation states */
+
+:root,
+:root .pipe-frame,
+:root body {
+  animation-play-state: paused;
+}
+
+:root:hover:not(:has(label:active), :has(.game-end:hover)),
+:root:hover:not(:has(.game-end:hover)) body,
+:root:hover:not(:has(.game-end:hover)) .pipe-frame {
+  animation-play-state: running;
+}
+
+/* Pipe animation */
+
+:root:has(input[name="jump"]:checked) .pipe-frame {
+  animation-name: pipe;
+}
+
+@keyframes pipe {
+  0% {
+    --pipe-left: calc(var(--margin-left) + var(--game-width));
+  }
+  100% {
+    --pipe-left: calc(
+      var(--margin-left) + var(--game-width) - var(--pipe-duration) *
+        var(--pipe-speed)
+    );
+  }
+}
+
+/* @keyframes index */
+
+body:has(input[name="jump"]:checked) {
+  --passed-count: 0;
+  animation-name: passed-index;
+  animation-duration: calc(var(--max-index) * var(--pipe-delay));
+  animation-delay: calc(
+    (var(--game-width) + var(--pipe-width)) / var(--pipe-speed)
+  );
+  animation-timing-function: steps(var(--max-index), jump-start);
+}
+
+@keyframes passed-index {
+  0% {
+    --passed-count: 0;
+  }
+  100% {
+    --passed-count: var(--max-index);
+  }
+}
+
+/* Jump and fall animations */
+
+:root:has(input[id$="fall1"]:checked) {
+  animation-name: jumpAndFall2;
+}
+:root:has(input[id$="fall2"]:checked) {
+  animation-name: jumpAndFall;
+}
+
+@keyframes jumpAndFall {
+  0% {
+    --bird-delta-y: calc(var(--active-number) * var(--click-box-height));
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  25% {
+    --bird-delta-y: calc(
+      var(--active-number) * var(--click-box-height) - var(--jump-height)
+    );
+    animation-timing-function: cubic-bezier(0.68, 0, 1, 0.26);
+  }
+  100% {
+    --bird-delta-y: calc(
+      var(--fall-distance) + var(--active-number) * var(--click-box-height)
+    );
+  }
+}
+
+@keyframes jumpAndFall2 {
+  0% {
+    --bird-delta-y: calc(var(--active-number) * var(--click-box-height));
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  25% {
+    --bird-delta-y: calc(
+      var(--active-number) * var(--click-box-height) - var(--jump-height)
+    );
+    animation-timing-function: cubic-bezier(0.68, 0, 1, 0.26);
+  }
+  100% {
+    --bird-delta-y: calc(
+      var(--fall-distance) + var(--active-number) * var(--click-box-height)
+    );
+  }
+}
+
+/* Label blocker */
+
+#label-blocker {
+  position: fixed;
+  height: 100vh;
+  width: var(--click-box-width);
+  top: var(--margin-top);
+  left: calc(
+    var(--bird-frame-width) + var(--margin-left) - var(--click-box-width)
+  );
+  pointer-events: none;
+  z-index: 15;
+}
+
+#label-blocker .upper {
+  height: calc((var(--game-height) - var(--user-target-side-length)) / 2);
+  width: 100%;
+  pointer-events: auto;
+}
+
+#label-blocker .middle {
+  height: var(--user-target-side-length);
+  pointer-events: none;
+  background-color: red;
+}
+
+#label-blocker .lower {
+  height: 100%;
+  width: 100%;
+  pointer-events: auto;
+}
+
+/* Hiders - Used to cover up elements when not on game screen or in clicker location */
+
+#hider {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: max(100vw, var(--game-width) + 40px);
+  height: 100vh;
+  left: 0px;
+  z-index: 10;
+}
+
+#hider > * {
+  width: 100%;
+}
+
+#hider {
+  pointer-events: none !important;
+}
+
+#hider :not(.blank) {
+  background-color: var(--background);
+}
+
+#hider-top {
+  height: var(--margin-top);
+}
+
+#hider-middle {
+  height: var(--game-height);
+  display: flex;
+}
+
+#hider-left {
+  width: var(--margin-left);
+}
+
+#hider-game {
+  width: var(--game-width);
+}
+
+#hider-a {
+  width: calc(
+    var(--bird-frame-width) - var(--game-width) - var(--user-target-side-length)
+  );
+}
+
+#hider-click {
+  width: var(--user-target-side-length);
+}
+
+#hider-click div {
+  height: calc((var(--game-height) - var(--user-target-side-length)) / 2);
+}
+
+#hider-click div + div {
+  margin-top: var(--user-target-side-length);
+}
+
+#hider-middle :last-child {
+  flex-grow: 1;
+}
+
+#hider-bottom {
+  flex-grow: 1;
+}
+
+/* Game end screen */
+
+.game-end {
+  position: fixed;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.6);
+  top: 100vh;
+  z-index: 20;
+  transition: top 6000s steps(1);
+}
+
+div:has(.game-ender:hover) ~ #normal-end,
+.game-end:hover {
+  top: 0;
+  transition: top 0s;
+}
+
+div:has(label:active) ~ #hold-end {
+  top: 0;
+  transition: top 0s 0.3s;
+}
+
+/* Information screen */
+
+/* .message {
+  display: none;
+  position: absolute;
+  margin: 0 8px;
+  z-index: 200;
+
+  background-color: darkgray;
+  border-radius: 15px;
+
+  text-align: center;
+  padding: 5px;
+}
+
+input#show-info:checked ~ * .info {
+  display: block;
+}
+
+label[for="show-info"] {
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  margin: 0;
+
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+
+  color: white;
+  font-size: 10px;
+  line-height: 30px;
+}*/
+
+/* Set active click number */
+:root:has(input[id^="1"]:checked) {
+  --active-number: 1;
+}
+:root:has(input[id^="0"]:checked) {
+  --active-number: 0;
+}
+:root:has(input[id^="-1"]:checked) {
+  --active-number: -1;
+}
+:root:has(input[id^="15"]:checked) {
+  --active-number: 15;
+}
+:root:has(input[id^="14"]:checked) {
+  --active-number: 14;
+}
+:root:has(input[id^="13"]:checked) {
+  --active-number: 13;
+}
+:root:has(input[id^="12"]:checked) {
+  --active-number: 12;
+}
+:root:has(input[id^="11"]:checked) {
+  --active-number: 11;
+}
+:root:has(input[id^="10"]:checked) {
+  --active-number: 10;
+}
+:root:has(input[id^="9"]:checked) {
+  --active-number: 9;
+}
+:root:has(input[id^="8"]:checked) {
+  --active-number: 8;
+}
+:root:has(input[id^="7"]:checked) {
+  --active-number: 7;
+}
+:root:has(input[id^="6"]:checked) {
+  --active-number: 6;
+}
+:root:has(input[id^="5"]:checked) {
+  --active-number: 5;
+}
+:root:has(input[id^="4"]:checked) {
+  --active-number: 4;
+}
+:root:has(input[id^="3"]:checked) {
+  --active-number: 3;
+}
+:root:has(input[id^="2"]:checked) {
+  --active-number: 2;
+}
+:root:has(input[id^="-2"]:checked) {
+  --active-number: -2;
+}
+:root:has(input[id^="-3"]:checked) {
+  --active-number: -3;
+}
+:root:has(input[id^="-4"]:checked) {
+  --active-number: -4;
+}
+:root:has(input[id^="-5"]:checked) {
+  --active-number: -5;
+}
+:root:has(input[id^="-6"]:checked) {
+  --active-number: -6;
+}
+:root:has(input[id^="-7"]:checked) {
+  --active-number: -7;
+}
+:root:has(input[id^="-8"]:checked) {
+  --active-number: -8;
+}
+:root:has(input[id^="-9"]:checked) {
+  --active-number: -9;
+}
+:root:has(input[id^="-10"]:checked) {
+  --active-number: -10;
+}
+:root:has(input[id^="-11"]:checked) {
+  --active-number: -11;
+}
+:root:has(input[id^="-12"]:checked) {
+  --active-number: -12;
+}
+:root:has(input[id^="-13"]:checked) {
+  --active-number: -13;
+}
+:root:has(input[id^="-14"]:checked) {
+  --active-number: -14;
+}
+:root:has(input[id^="-15"]:checked) {
+  --active-number: -15;
+}
+
+/* hover doesnt work when using translate */
+/* pause game when certain parts not hovered over for clear endgame state */
+/* Insert flappy bird and play */
+/* rise animation-timing-function: cubic-bezier(0.33333, 0.66667, 0.66667, 1) */
+/* fall animation-timing-function: cubic-bezier(0.33333, 0, 0.66667, 0.33333) */
+/* needs to be fixed so not altered by inpout:activw */
+/* height: var(--game-height/); */
+/* before below figure out how to account for changing height when active?
+  fix height sperately */
+/* let height be defined by number of jump buttons, add varible for extra jump buttons, adjust #bird-frame top based on that, add endgame labels and screen on top of that */
+/* translate y fail */

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+ <g class="layer">
+  <title>Layer 1</title>
+  <rect fill="#ff7f00" height="40" id="svg_2" stroke="#000000" stroke-width="2" width="40" x="0" y="0"/>
+  <ellipse cx="31.2" cy="10.9" fill="#000000" id="svg_3" rx="8" ry="8.5" stroke="#777777" transform="translate(-2 0)"/>
+  <ellipse cx="27.7" cy="8.9" fill="#ffffff" id="svg_4" rx="3" ry="3" stroke="#777777" stroke-width="0"/>
+ </g>
+</svg>
