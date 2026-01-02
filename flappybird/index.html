@@ -4,7 +4,8 @@
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
-    <div id="jump-input-holder">
+    <div id="input-holder">
+      <input name="a" type="radio" id="hide-info" />
       <input name="jump" type="radio" id="15-fall1" />
       <input name="jump" type="radio" id="14-fall1" />
       <input name="jump" type="radio" id="13-fall1" />
@@ -178,15 +179,11 @@
       </div>
       <div id="hider-bottom"></div>
     </div>
-    <div class="message info">
-      <label for="show-info"> X </label>
-      Thanks for checking out my pure CSS calculator. It works best in Chromium
-      browsers.
-      <a
-        href="https://blog.scottlogic.com/2022/01/20/noJS-making-a-calculator-in-pure-css-html.html"
-        >See how I made it.</a
-      >
-      The trig functions aren't always very accurate.
+    <div id="message">
+      Thanks for checking out <label for="hide-info"> X </label> my pure CSS
+      flappy bird clone. Click the red button to start and to jump, dont hold
+      down on it for too long since that will trigger game end.
+      <!-- <a href="">See how I made it.</a> -->
     </div>
     <div id="normal-end" class="game-end">
       Game Over! <br />

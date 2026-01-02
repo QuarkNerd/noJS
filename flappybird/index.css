@@ -109,7 +109,7 @@ label:active {
   height: 300px;
 }
 
-#jump-input-holder {
+#input-holder {
   display: none;
 }
 
@@ -279,9 +279,9 @@ div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
   animation-play-state: paused;
 }
 
-:root:hover:not(:has(label:active), :has(.game-end:hover)),
-:root:hover:not(:has(.game-end:hover)) body,
-:root:hover:not(:has(.game-end:hover)) .pipe-frame {
+:root:hover:not(:has(label:active), :has(.game-end:hover, #message:hover)),
+:root:hover:not(:has(.game-end:hover, #message:hover)) body,
+:root:hover:not(:has(.game-end:hover, #message:hover)) .pipe-frame {
   animation-play-state: running;
 }
 
@@ -494,29 +494,27 @@ div:has(label:active) ~ #hold-end {
 
 /* Information screen */
 
-/* .message {
-  display: none;
-  position: absolute;
-  margin: 0 8px;
+#message {
+  display: block;
+  position: fixed;
   z-index: 200;
 
   background-color: darkgray;
   border-radius: 15px;
 
   text-align: center;
+  width: 400px;
   padding: 5px;
 }
 
-input#show-info:checked ~ * .info {
-  display: block;
+:root:has(input#hide-info:checked) #message {
+  display: none;
 }
 
-label[for="show-info"] {
+label[for="hide-info"] {
   display: inline-block;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  margin: 0;
+  position: relative;
+  bottom: 8px;
 
   height: 30px;
   width: 30px;
@@ -525,7 +523,7 @@ label[for="show-info"] {
   color: white;
   font-size: 10px;
   line-height: 30px;
-}*/
+}
 
 /* Set active click number */
 :root:has(input[id^="1"]:checked) {
