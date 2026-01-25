@@ -86,6 +86,8 @@
 }
 
 body {
+  height: 100vh;
+  width: 100vw;
   margin: 0px var(--margin-left);
   background-color: #e0e0e0;
   overflow: hidden;
@@ -155,6 +157,11 @@ div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
   display: none;
 }
 
+:root:not(:has(input#hide-info:checked)) #jump-label-holder-1,
+:root:not(:has(input#hide-info:checked)) #jump-label-holder-2 {
+  display: none !important;
+}
+
 /* Pipes */
 
 #pipe-1 {
@@ -179,7 +186,7 @@ div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
   );
   --pipe-index: calc(var(--integer) * 3 + var(--pipe-number));
   --random-number: calc(
-    (1 + sin(var(--pipe-index) * var(--pipe-index) * 17)) / 2
+    (1 + sin(20 * pow(var(--pipe-index), 6 / 7)) * sin(pow( 4 * var(--pipe-index), 1.5))) / 2
   );
 
   --y-of-top: calc(
