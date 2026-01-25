@@ -61,7 +61,7 @@
     var(--bird-frame-base-top) +
       clamp(
         var(--furthest-click-dist) * -1,
-        var(--bird-delta-y),
+        var(--bird-delta-y) + var(--active-number) * var(--click-box-height),
         var(--furthest-click-dist)
       )
   );
@@ -342,37 +342,29 @@ body:has(input[name="jump"]:checked) {
 
 @keyframes jumpAndFall {
   0% {
-    --bird-delta-y: calc(var(--active-number) * var(--click-box-height));
+    --bird-delta-y: 0;
     animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
   25% {
-    --bird-delta-y: calc(
-      var(--active-number) * var(--click-box-height) - var(--jump-height)
-    );
+    --bird-delta-y: calc(-1 * var(--jump-height));
     animation-timing-function: cubic-bezier(0.68, 0, 1, 0.26);
   }
   100% {
-    --bird-delta-y: calc(
-      var(--fall-distance) + var(--active-number) * var(--click-box-height)
-    );
+    --bird-delta-y: var(--fall-distance)
   }
 }
 
 @keyframes jumpAndFall2 {
   0% {
-    --bird-delta-y: calc(var(--active-number) * var(--click-box-height));
+    --bird-delta-y: 0;
     animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
   25% {
-    --bird-delta-y: calc(
-      var(--active-number) * var(--click-box-height) - var(--jump-height)
-    );
+    --bird-delta-y: calc(-1 * var(--jump-height));
     animation-timing-function: cubic-bezier(0.68, 0, 1, 0.26);
   }
   100% {
-    --bird-delta-y: calc(
-      var(--fall-distance) + var(--active-number) * var(--click-box-height)
-    );
+    --bird-delta-y: var(--fall-distance)
   }
 }
 
