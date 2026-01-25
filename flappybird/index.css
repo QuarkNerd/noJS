@@ -1,3 +1,9 @@
+@property --randomiser {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: true;
+}
+
 @property --bird-delta-y {
   syntax: "<length>";
   initial-value: 0px;
@@ -65,6 +71,7 @@
         var(--furthest-click-dist)
       )
   );
+
   animation-fill-mode: forwards;
   animation-duration: var(--jump-duration);
 
@@ -185,8 +192,9 @@ div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
     calc((var(--passed-count) + 3 - var(--pipe-number)) / 3)
   );
   --pipe-index: calc(var(--integer) * 3 + var(--pipe-number));
+  --secondary-index: calc(var(--pipe-index) + 3 * round(down, var(--randomiser)));
   --random-number: calc(
-    (1 + sin(20 * pow(var(--pipe-index), 6 / 7)) * sin(pow( 4 * var(--pipe-index), 1.5))) / 2
+    (1 + sin(20 * pow(var(--secondary-index), 6 / 7)) * sin(pow( 4 * var(--pipe-index), 1.5))) / 2
   );
 
   --y-of-top: calc(
@@ -293,6 +301,25 @@ div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
 }
 
 /* Pipe animation */
+
+#randomiser {
+  animation-name: randomiser;
+  animation-duration: 3600s;
+}
+
+@keyframes randomiser {
+  0% {
+    --randomiser: 0;
+  }
+  100% {
+    --randomiser: 100000000;
+  }
+}
+
+#randomiser:has(input#hide-info:checked) {
+  animation-play-state: paused;
+  
+}
 
 :root:has(input[name="jump"]:checked) .pipe-frame {
   animation-name: pipe;
