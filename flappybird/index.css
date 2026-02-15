@@ -16,7 +16,7 @@
   inherits: true;
 }
 
-@property --passed-count {
+@property --score {
   syntax: "<integer>";
   initial-value: 0;
   inherits: true;
@@ -189,7 +189,7 @@ div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
   /* Calculate gap location */
   --integer: round(
     down,
-    calc((var(--passed-count) + 3 - var(--pipe-number)) / 3)
+    calc((var(--score) + 3 - var(--pipe-number)) / 3)
   );
   --pipe-index: calc(var(--integer) * 3 + var(--pipe-number));
   --secondary-index: calc(var(--pipe-index) + 3 * round(down, var(--randomiser)));
@@ -275,7 +275,7 @@ div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
 /* Score */
 #score {
   counter-reset: score;
-  counter-increment: score var(--passed-count);
+  counter-increment: score var(--score);
 }
 
 #score::after {
@@ -340,7 +340,7 @@ div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
 /* @keyframes index */
 
 body:has(input[name="jump"]:checked) {
-  --passed-count: 0;
+  --score: 0;
   animation-name: passed-index;
   animation-duration: calc(var(--max-index) * var(--pipe-delay));
   animation-delay: calc(
@@ -351,10 +351,10 @@ body:has(input[name="jump"]:checked) {
 
 @keyframes passed-index {
   0% {
-    --passed-count: 0;
+    --score: 0;
   }
   100% {
-    --passed-count: var(--max-index);
+    --score: var(--max-index);
   }
 }
 
