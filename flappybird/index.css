@@ -534,11 +534,11 @@ div:has(label:active) ~ #hold-end {
   border-radius: 15px;
 
   text-align: center;
-  width: 400px;
+  width: 600px;
   top: 50%;
   left: 50%;
-  margin-top: -200px;
-  margin-left: -215px;
+  margin-top: -215px;
+  margin-left: -300px;
   padding: 5px;
 }
 
