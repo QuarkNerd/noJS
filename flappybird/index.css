@@ -26,10 +26,11 @@
   font-family: "Orbitron";
   font-style: normal;
   font-weight: 400;
-  src: url(font.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF, U+FFFD;
+  src: url("../font.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
 }
 
 :root {
@@ -187,14 +188,17 @@ div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
 
 .pipe-frame {
   /* Calculate gap location */
-  --integer: round(
-    down,
-    calc((var(--score) + 3 - var(--pipe-number)) / 3)
-  );
+  --integer: round(down, calc((var(--score) + 3 - var(--pipe-number)) / 3));
   --pipe-index: calc(var(--integer) * 3 + var(--pipe-number));
-  --secondary-index: calc(var(--pipe-index) + 3 * round(down, var(--randomiser)));
+  --secondary-index: calc(
+    var(--pipe-index) + 3 * round(down, var(--randomiser))
+  );
   --random-number: calc(
-    (1 + sin(20 * pow(var(--secondary-index), 6 / 7)) * sin(pow( 4 * var(--pipe-index), 1.5))) / 2
+    (
+        1 + sin(20 * pow(var(--secondary-index), 6 / 7)) *
+          sin(pow(4 * var(--pipe-index), 1.5))
+      ) /
+      2
   );
 
   --y-of-top: calc(
@@ -224,7 +228,8 @@ div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
             0px,
             var(--brid-x) + var(--margin-left) + var(--bird-width) -
               var(--pipe-left)
-          ) / 1px
+          ) /
+          1px
       ) *
       max(
         0px,
@@ -280,7 +285,7 @@ div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
 
 #score::after {
   position: fixed;
-  top: calc(var(--game-height) + var(--margin-top) - 36px);
+  top: calc(var(--game-height) + var(--margin-top) - 40px);
   z-index: 30;
 
   content: "Score: " counter(score);
@@ -318,7 +323,6 @@ div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
 
 #randomiser:has(input#hide-info:checked) {
   animation-play-state: paused;
-  
 }
 
 :root:has(input[name="jump"]:checked) .pipe-frame {
@@ -377,7 +381,7 @@ body:has(input[name="jump"]:checked) {
     animation-timing-function: cubic-bezier(0.68, 0, 1, 0.26);
   }
   100% {
-    --bird-delta-y: var(--fall-distance)
+    --bird-delta-y: var(--fall-distance);
   }
 }
 
@@ -391,7 +395,7 @@ body:has(input[name="jump"]:checked) {
     animation-timing-function: cubic-bezier(0.68, 0, 1, 0.26);
   }
   100% {
-    --bird-delta-y: var(--fall-distance)
+    --bird-delta-y: var(--fall-distance);
   }
 }
 
@@ -501,7 +505,7 @@ body:has(input[name="jump"]:checked) {
   left: 0px;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.9);
   top: 100vh;
   z-index: 20;
   transition: top 6000s steps(1);
@@ -524,12 +528,17 @@ div:has(label:active) ~ #hold-end {
   display: block;
   position: fixed;
   z-index: 200;
+  font-size: 30px;
 
   background-color: darkgray;
   border-radius: 15px;
 
   text-align: center;
   width: 400px;
+  top: 50%;
+  left: 50%;
+  margin-top: -200px;
+  margin-left: -215px;
   padding: 5px;
 }
 
@@ -540,7 +549,7 @@ div:has(label:active) ~ #hold-end {
 label[for="hide-info"] {
   display: inline-block;
   position: relative;
-  bottom: 8px;
+  left: 170px;
 
   height: 30px;
   width: 30px;
