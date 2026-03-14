@@ -291,6 +291,13 @@ div:has(input[id$="fall1"]:checked) ~ * #jump-label-holder-1 {
   content: "Score: " counter(score);
 }
 
+#instructions {
+  position: fixed;
+  font-size: 16px;
+  top: calc(var(--margin-top) + var(--game-height) + 10px);
+  z-index: 30;
+}
+
 /* Animation states */
 
 :root,
