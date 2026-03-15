@@ -1,238 +1,220 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <link rel="stylesheet" href="./index.css" />
-    <link rel="icon" href="./bird.svg" type="image/svg+xml"></link>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Environment Check</title>
+    <style>
+      @font-face {
+        font-family: "Orbitron";
+        font-style: normal;
+        font-weight: 400;
+        src: url("../font.woff2") format("woff2");
+        unicode-range:
+          U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+          U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+          U+FEFF, U+FFFD;
+      }
+
+      :root {
+        font-family: Orbitron;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        background: #e0e0e0;
+        color: #111;
+        display: grid;
+        place-items: center;
+        padding: 16px;
+      }
+
+      main {
+        width: min(100%, 720px);
+        background: #fff;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 1.4rem;
+      }
+
+      p {
+        margin: 0 0 12px;
+        line-height: 1.5;
+      }
+
+      .badge {
+        display: inline-block;
+        margin: 4px 0 12px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .links {
+        display: grid;
+        gap: 8px;
+      }
+
+      .view {
+        display: none;
+      }
+
+      .view.is-visible {
+        display: block;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      @media (min-width: 640px) {
+        main {
+          padding: 24px;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="randomiser">
-      <div id="input-holder">
-        <input name="a" type="radio" id="hide-info" />
-        <input name="jump" type="radio" id="15-fall1" />
-        <input name="jump" type="radio" id="14-fall1" />
-        <input name="jump" type="radio" id="13-fall1" />
-        <input name="jump" type="radio" id="12-fall1" />
-        <input name="jump" type="radio" id="11-fall1" />
-        <input name="jump" type="radio" id="10-fall1" />
-        <input name="jump" type="radio" id="9-fall1" />
-        <input name="jump" type="radio" id="8-fall1" />
-        <input name="jump" type="radio" id="7-fall1" />
-        <input name="jump" type="radio" id="6-fall1" />
-        <input name="jump" type="radio" id="5-fall1" />
-        <input name="jump" type="radio" id="4-fall1" />
-        <input name="jump" type="radio" id="3-fall1" />
-        <input name="jump" type="radio" id="2-fall1" />
-        <input name="jump" type="radio" id="1-fall1" />
-        <input name="jump" type="radio" id="0-fall1" />
-        <input name="jump" type="radio" id="-1-fall1" />
-        <input name="jump" type="radio" id="-2-fall1" />
-        <input name="jump" type="radio" id="-3-fall1" />
-        <input name="jump" type="radio" id="-4-fall1" />
-        <input name="jump" type="radio" id="-5-fall1" />
-        <input name="jump" type="radio" id="-6-fall1" />
-        <input name="jump" type="radio" id="-7-fall1" />
-        <input name="jump" type="radio" id="-8-fall1" />
-        <input name="jump" type="radio" id="-9-fall1" />
-        <input name="jump" type="radio" id="-10-fall1" />
-        <input name="jump" type="radio" id="-11-fall1" />
-        <input name="jump" type="radio" id="-12-fall1" />
-        <input name="jump" type="radio" id="-13-fall1" />
-        <input name="jump" type="radio" id="-14-fall1" />
-        <input name="jump" type="radio" id="-15-fall1" />
-
-        <input name="jump" type="radio" id="15-fall2" />
-        <input name="jump" type="radio" id="14-fall2" />
-        <input name="jump" type="radio" id="13-fall2" />
-        <input name="jump" type="radio" id="12-fall2" />
-        <input name="jump" type="radio" id="11-fall2" />
-        <input name="jump" type="radio" id="10-fall2" />
-        <input name="jump" type="radio" id="9-fall2" />
-        <input name="jump" type="radio" id="8-fall2" />
-        <input name="jump" type="radio" id="7-fall2" />
-        <input name="jump" type="radio" id="6-fall2" />
-        <input name="jump" type="radio" id="5-fall2" />
-        <input name="jump" type="radio" id="4-fall2" />
-        <input name="jump" type="radio" id="3-fall2" />
-        <input name="jump" type="radio" id="2-fall2" />
-        <input name="jump" type="radio" id="1-fall2" />
-        <input name="jump" type="radio" id="0-fall2" />
-        <input name="jump" type="radio" id="-1-fall2" />
-        <input name="jump" type="radio" id="-2-fall2" />
-        <input name="jump" type="radio" id="-3-fall2" />
-        <input name="jump" type="radio" id="-4-fall2" />
-        <input name="jump" type="radio" id="-5-fall2" />
-        <input name="jump" type="radio" id="-6-fall2" />
-        <input name="jump" type="radio" id="-7-fall2" />
-        <input name="jump" type="radio" id="-8-fall2" />
-        <input name="jump" type="radio" id="-9-fall2" />
-        <input name="jump" type="radio" id="-10-fall2" />
-        <input name="jump" type="radio" id="-11-fall2" />
-        <input name="jump" type="radio" id="-12-fall2" />
-        <input name="jump" type="radio" id="-13-fall2" />
-        <input name="jump" type="radio" id="-14-fall2" />
-        <input name="jump" type="radio" id="-15-fall2" />
-      </div>
-      <div id="game-screen"></div>
-      <div id="bird-frame">
-        <div id="bird"></div>
-        <div class="jump-label-holder" id="jump-label-holder-1">
-          <label class="game-ender"></label>
-          <label for="15-fall1"></label>
-          <label for="14-fall1"></label>
-          <label for="13-fall1"></label>
-          <label for="12-fall1"></label>
-          <label for="11-fall1"></label>
-          <label for="10-fall1"></label>
-          <label for="9-fall1"></label>
-          <label for="8-fall1"></label>
-          <label for="7-fall1"></label>
-          <label for="6-fall1"></label>
-          <label for="5-fall1"></label>
-          <label for="4-fall1"></label>
-          <label for="3-fall1"></label>
-          <label for="2-fall1"></label>
-          <label for="1-fall1"></label>
-          <label for="0-fall1"></label>
-          <label for="-1-fall1"></label>
-          <label for="-2-fall1"></label>
-          <label for="-3-fall1"></label>
-          <label for="-4-fall1"></label>
-          <label for="-5-fall1"></label>
-          <label for="-6-fall1"></label>
-          <label for="-7-fall1"></label>
-          <label for="-8-fall1"></label>
-          <label for="-9-fall1"></label>
-          <label for="-10-fall1"></label>
-          <label for="-11-fall1"></label>
-          <label for="-12-fall1"></label>
-          <label for="-13-fall1"></label>
-          <label for="-14-fall1"></label>
-          <label for="-15-fall1"></label>
-          <label class="game-ender"></label>
-        </div>
-        <div class="jump-label-holder" id="jump-label-holder-2">
-          <label class="game-ender"></label>
-          <label for="15-fall2"></label>
-          <label for="14-fall2"></label>
-          <label for="13-fall2"></label>
-          <label for="12-fall2"></label>
-          <label for="11-fall2"></label>
-          <label for="10-fall2"></label>
-          <label for="9-fall2"></label>
-          <label for="8-fall2"></label>
-          <label for="7-fall2"></label>
-          <label for="6-fall2"></label>
-          <label for="5-fall2"></label>
-          <label for="4-fall2"></label>
-          <label for="3-fall2"></label>
-          <label for="2-fall2"></label>
-          <label for="1-fall2"></label>
-          <label for="0-fall2"></label>
-          <label for="-1-fall2"></label>
-          <label for="-2-fall2"></label>
-          <label for="-3-fall2"></label>
-          <label for="-4-fall2"></label>
-          <label for="-5-fall2"></label>
-          <label for="-6-fall2"></label>
-          <label for="-7-fall2"></label>
-          <label for="-8-fall2"></label>
-          <label for="-9-fall2"></label>
-          <label for="-10-fall2"></label>
-          <label for="-11-fall2"></label>
-          <label for="-12-fall2"></label>
-          <label for="-13-fall2"></label>
-          <label for="-14-fall2"></label>
-          <label for="-15-fall2"></label>
-          <label class="game-ender"></label>
-        </div>
-      </div>
-      <div id="label-blocker">
-        <div class="upper"></div>
-        <div class="middle"></div>
-        <div class="lower"></div>
-      </div>
-      <div id="pipe-1" class="pipe-frame">
-        <div class="upper"></div>
-        <div class="lower"></div>
-        <div class="game-ender"></div>
-      </div>
-      <div id="pipe-2" class="pipe-frame">
-        <div class="upper"></div>
-        <div class="lower"></div>
-        <div class="game-ender"></div>
-      </div>
-      <div id="pipe-3" class="pipe-frame">
-        <div class="upper"></div>
-        <div class="lower"></div>
-        <div class="game-ender"></div>
-      </div>
-      <div id="score"></div>
-      <div id="hider">
-        <div id="hider-top"></div>
-        <div id="hider-middle" class="blank">
-          <div id="hider-left"></div>
-          <div id="hider-game" class="blank"></div>
-          <div id="hider-a"></div>
-          <div id="hider-click" class="blank">
-            <div></div>
-            <div></div>
+    <main>
+      <h1>Checking Your Environment...</h1>
+      <noscript>
+        <div id="view-no-js" aria-live="polite">
+          <span class="badge" style="background: #cfe3ff"
+            >Default case: JavaScript is disabled</span
+          >
+          <p>
+            While the game itself does not use JavaScript. This page needs
+            JavaScript to detect your browser and device. You can still continue
+            using the links below. This game needs to be in desktop Chrome/Edge
+          </p>
+          <div class="links">
+            <a href="./game.html">Open game</a>
+            <a
+              href="https://blog.scottlogic.com/2026/03/09/noJS-3-flappy-bird.html"
+              >See how I made the game</a
+            >
+            <a href="https://quarknerd.com/#contact"
+              >If the game doesn't work please let me know here</a
+            >
           </div>
-          <div></div>
         </div>
-        <div id="hider-bottom"></div>
-      </div>
-      <div id="message">
-        <label for="hide-info"> X </label>
-        <br>
-        Chromium support only!  And this will not work on a touch device.
-        <br />
-        <br />
-        
-        Thanks for checking out my pure CSS flappy bird clone. 
-        <br />
-        <br />
-        
-        Close the modal, then click the red button to
-        start and to jump, dont hold down on it for too long since that will
-        trigger game end. Click
-        <a href="https://blog.scottlogic.com/2026/03/09/noJS-3-flappy-bird.html"
-          >here</a
+      </noscript>
+
+      <div id="view-mobile" class="view" aria-live="polite">
+        <span class="badge" style="background: #ffd8d8"
+          >Case 1: Mobile / no mouse</span
         >
-        to see how I made this.
+        <p>You seem to be on a touch-only device. This game will not work.</p>
+        <div class="links">
+          <a
+            href="https://blog.scottlogic.com/2026/03/09/noJS-3-flappy-bird.html"
+            >See how I made the game</a
+          >
+        </div>
       </div>
-      <div id="normal-end" class="game-end">
-        Game Over! <br />
-        Click <a href="./">here</a> to play again. It is possible the collision
-        detection is a bit buggy, so if you think you didnt hit anything, try
-        again and hopefully it will work better. Click
-        <a href="https://blog.scottlogic.com/2026/03/09/noJS-3-flappy-bird.html"
-          >here</a
+
+      <div id="view-desktop-other" class="view" aria-live="polite">
+        <span class="badge" style="background: #fff1c2"
+          >Case 2: Desktop / non-Chrome/Edge</span
         >
-        to see how I made this.
+        <p>
+          You are on desktop, but not using Chrome or Edge. Some CSS features in
+          this project may not work as expected.
+        </p>
+        <div class="links">
+          <a href="./game.html">Continue anyway</a>
+          <a
+            href="https://blog.scottlogic.com/2026/03/09/noJS-3-flappy-bird.html"
+            >See how I made the game</a
+          >
+        </div>
       </div>
-      <div id="hold-end" class="game-end">
-        Game Over! <br />
-        <br/>
-        Do not keep the mouse pressed on the red button for extended periods of
-        time. 
-        <br/>
-        <br/>
-        Also this game does not work on work on a touch device, you need a mouse.
-        <br/>
-        <br/>
-        
-        Click
-        <a href="./">here</a> to play again. Click
-        <a href="https://blog.scottlogic.com/2026/03/09/noJS-3-flappy-bird.html"
-          >here</a
+
+      <div id="view-desktop-chromium" class="view" aria-live="polite">
+        <span class="badge" style="background: #d7f8df"
+          >Case 3: Desktop / Chrome or Edge</span
         >
-        to see how I made this.
+        <p>
+          You are on a supported desktop browser. You should get the best
+          experience.
+        </p>
+        <div class="links">
+          <a href="./game.html">Start game</a>
+          <a
+            href="https://blog.scottlogic.com/2026/03/09/noJS-3-flappy-bird.html"
+            >See how I made the game</a
+          >
+          <a href="https://quarknerd.com/#contact"
+            >If the game doesn't work please let me know here</a
+          >
+        </div>
       </div>
-    </div>
-    <div id="instructions">
-      Use chromium backed browser. Use a desktop. <br />
-      Click the red square to start and jump. <br />
-      Keep your mouse on the page
-    </div>
+    </main>
+
+    <script>
+      (function () {
+        var ua = navigator.userAgent || "";
+        var hasFinePointer = window.matchMedia("(any-pointer: fine)").matches;
+        var hasHover = window.matchMedia("(any-hover: hover)").matches;
+
+        var looksMobile =
+          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(
+            ua,
+          ) || window.matchMedia("(pointer: coarse)").matches;
+
+        var isNoMouseDevice = !hasFinePointer && !hasHover;
+        var isMobileNoMouse = looksMobile && isNoMouseDevice;
+
+        var isEdge = /Edg\//i.test(ua);
+        var isOpera = /OPR\//i.test(ua);
+        var isChrome =
+          /Chrome\//i.test(ua) && !isEdge && !isOpera && !/CriOS/i.test(ua);
+
+        var isDesktop = !isMobileNoMouse;
+        var isDesktopChromeOrEdge = isDesktop && (isChrome || isEdge);
+        var isDesktopNotChromeOrEdge = isDesktop && !isDesktopChromeOrEdge;
+
+        var mobileView = document.getElementById("view-mobile");
+        var desktopOtherView = document.getElementById("view-desktop-other");
+        var desktopChromiumView = document.getElementById(
+          "view-desktop-chromium",
+        );
+
+        function showView(viewToShow) {
+          mobileView.classList.remove("is-visible");
+          desktopOtherView.classList.remove("is-visible");
+          desktopChromiumView.classList.remove("is-visible");
+          viewToShow.classList.add("is-visible");
+        }
+
+        if (isMobileNoMouse) {
+          showView(mobileView);
+          return;
+        }
+
+        if (isDesktopNotChromeOrEdge) {
+          showView(desktopOtherView);
+          return;
+        }
+
+        showView(desktopChromiumView);
+      })();
+    </script>
   </body>
 </html>

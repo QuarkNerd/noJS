@@ -537,8 +537,9 @@ div:has(label:active) ~ #hold-end {
   z-index: 200;
   font-size: 30px;
 
-  background-color: darkgray;
-  border-radius: 15px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 
   text-align: center;
   width: 600px;
