@@ -531,7 +531,7 @@ div:has(label:active) ~ #hold-end {
 
 /* Information screen */
 
-#message {
+.message {
   display: block;
   position: fixed;
   z-index: 200;
@@ -550,9 +550,30 @@ div:has(label:active) ~ #hold-end {
   padding: 5px;
 }
 
+#pause-message {
+  display: none;
+}
+
+:root:not(:hover):has(input#hide-info:checked) #pause-message {
+  display: block;
+}
+
 :root:has(input#hide-info:checked) #message {
   display: none;
 }
+
+#start-message {
+  display: none;
+}
+
+:root:has(input#hide-info:checked) #start-message {
+  display: block;
+}
+
+:root:has([name="jump"]:checked) #start-message {
+  display: none !important;
+}
+
 
 label[for="hide-info"] {
   display: inline-block;
