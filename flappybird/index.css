@@ -564,6 +564,8 @@ div:has(label:active) ~ #hold-end {
 
 #start-message {
   display: none;
+  top: 0px;
+  margin-top: 10px;
 }
 
 :root:has(input#hide-info:checked) #start-message {
