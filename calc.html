@@ -310,7 +310,7 @@
                                                                 <span class="determine-numbers">
                                                                     <div class="number-display display answer-display">
                                                                         <span class="negative-sign"></span>
-                                                                        <span class="integer"></span>
+                                                                        <span class="integer"><span class="ans-hi"></span><span class="ans-lo-pad"></span><span class="ans-lo-raw"></span></span>
                                                                         <span class="decimal"></span>
                                                                     </div>
                                                                 </span>
@@ -355,6 +355,22 @@
             inherits: true;
         }
 
+        /* High/low halves of the integer part. A single <integer> overflows past
+           ~2^31 for large products and (being invalid at computed-value time)
+           falls back to its initial value 0 — that is why big multiplications
+           showed 0. Splitting keeps each half well within range. */
+        @property --int-hi {
+            syntax: '<integer>';
+            initial-value: 0;
+            inherits: true;
+        }
+
+        @property --int-lo {
+            syntax: '<integer>';
+            initial-value: 0;
+            inherits: true;
+        }
+
         @counter-style pad-1 {
             system: numeric;
             symbols: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
@@ -379,6 +395,11 @@
         @counter-style pad-5 {
             system: extends pad-1;
             pad: 5 "0"
+        }
+
+        @counter-style pad-6 {
+            system: extends pad-1;
+            pad: 6 "0"
         }
 
         @counter-style pad-7 {
@@ -559,9 +580,16 @@
             --number: calc(var(--first-number) * var(--second-number));
         }
 
-        input[name="equals"]:checked ~ * .answer-display > .integer::after {
-            content: counter(number-integer);
+        input[name="equals"]:checked ~ * .answer-display > .integer {
+            font-size: 0;
+            counter-reset: ans-hi var(--int-hi) ans-lo var(--int-lo);
         }
+        input[name="equals"]:checked ~ * .answer-display .ans-hi { font-size: calc(var(--has-hi) * 30px); }
+        input[name="equals"]:checked ~ * .answer-display .ans-hi::after { content: counter(ans-hi); }
+        input[name="equals"]:checked ~ * .answer-display .ans-lo-pad { font-size: calc(var(--has-hi) * 30px); }
+        input[name="equals"]:checked ~ * .answer-display .ans-lo-pad::after { content: counter(ans-lo, pad-6); }
+        input[name="equals"]:checked ~ * .answer-display .ans-lo-raw { font-size: calc((1 - var(--has-hi)) * 30px); }
+        input[name="equals"]:checked ~ * .answer-display .ans-lo-raw::after { content: counter(ans-lo); }
 
         input#operation-sin:checked ~ .set-operation .determine-numbers {
             --number: calc(sin(var(--second-number)));
@@ -669,7 +697,10 @@
             --abs-number: max(var(--number), -1 * var(--number));
             --property-integer: calc(var(--abs-number) - 0.5);
             --number-integer: var(--property-integer);
-            --number-decimal: calc((var(--abs-number) - var(--property-integer)) * var(--number-decimal-shift));
+            --int-hi: calc(var(--abs-number) / 1000000 - 0.5);
+            --int-lo: calc(var(--abs-number) - var(--int-hi) * 1000000 - 0.5);
+            --has-hi: min(var(--int-hi), 1);
+            --number-decimal: calc((var(--abs-number) - var(--int-hi) * 1000000 - var(--int-lo)) * var(--number-decimal-shift));
 
             --sign-number: calc(var(--number) * 100000000000);
         }
